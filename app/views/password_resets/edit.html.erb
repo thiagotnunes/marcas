@@ -1,0 +1,44 @@
+<%= form_for @user, :url => password_reset_path(@user), :html => { :class => 'form-horizontal', :method => :put } do |f| %>
+  <% if @user.errors.any? %>
+    <div class="alert alert-error">
+        <% for message in @user.errors.full_messages %>
+          <div><%= message %></div>
+        <% end %>
+    </div>
+  <% end %>
+
+
+  <fieldset>
+    <legend>Choose a new password</legend>
+
+    <%= hidden_field_tag :token, @token %>
+
+    <div class="control-group">
+      <%= f.label :email, :class => 'control-label' %>
+      <div class="controls">
+        <p class="help-block">
+          <%= @user.email %>
+        </p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :password, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.password_field :password, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :password_confirmation, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.password_field :password_confirmation, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', users_path, :class => 'btn' %>
+    </div>
+  </fieldset>
+<% end %>
