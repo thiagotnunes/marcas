@@ -24,6 +24,15 @@
       </div>
     </div>
 
+    <% if controller.action_name == "edit" || controller.action_name == "update" %>
+      <div class="control-group">
+        <%= f.label :old_password, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.password_field :old_password, :class => 'text_field' %>
+        </div>
+      </div>
+    <% end %>
+
     <div class="control-group">
       <%= f.label :password, :class => 'control-label' %>
       <div class="controls">

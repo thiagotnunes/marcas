@@ -37,13 +37,13 @@
           <%= link_to "Marca Expressa", root_url, class: "brand" %>
           <div class="container nav-collapse">
             <ul class="nav">
-              <% if current_user %>
+              <% if logged_in? %>
                 <li><%= link_to "My account", edit_user_path(current_user) %></li>
               <% end %>
               <li><%= link_to "Registro de marcas", ""  %></li>
             </ul>
             <p class="navbar-text pull-right">
-            <% if current_user %>
+            <% if logged_in? %>
               Logged in as <%= link_to current_user.username, edit_user_path(current_user) %>.
               <%= link_to "Log out", logout_path %>
             <% else %>
@@ -74,7 +74,7 @@
           <div class="span3">
             <div class="well sidebar-nav">
               <h3>Navigation</h3>
-              <% if current_user && current_user.admin? %>
+              <% if logged_in? && current_user.admin? %>
                 <ul class="nav nav-list">
                   <li class="nav-header">Menu</li>
                   <li><%= link_to "Users", users_path %></li>
