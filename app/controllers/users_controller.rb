@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     if @user.save
-      redirect_to root_url, notice: 'User was successfully created.'
+      redirect_to root_url, notice: 'User was successfully created. A mail have been sent to your email, please check it to activate your account'
     else
       render :new
     end
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
 
-    redirect_to users_url
+    redirect_to users_url, notice: "#{@user.username} was removed"
   end
 
   def activate

@@ -9,6 +9,12 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+ActionMailer::Base.delivery_method = :smtp
+if Rails.env != 'test'
+  email_settings = YAML::load(File.open("config/email.yml"))
+  ActionMailer::Base.smtp_settings = email_settings[Rails.env] unless email_settings[Rails.env].nil?
+end
+
 module Marcas
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

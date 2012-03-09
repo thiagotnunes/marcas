@@ -1,15 +1,30 @@
-<%= form_tag sessions_path do %>
-  <div class="field">
-    <%= label_tag :username %>
-    <%= text_field_tag :username, params[:email] %>
-  </div>
-  <div class="field">
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-  </div>
-  <div class="field">
-    <%= check_box_tag :remember_me, 1, params[:remember_me] %>
-    <%= label_tag :remember_me %>
-  </div>
-  <div class="actions"><%= submit_tag "Log in" %></div>
+<%= form_for sessions_path, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend>Login</legend>
+
+    <div class="control-group">
+      <%= label_tag :username, nil, :class => 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag :username, params[:username], :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= label_tag :password, nil, :class => 'control-label' %>
+      <div class="controls">
+        <%= password_field_tag :password, params[:password], :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= label_tag :remember_me, nil, :class => 'control-label' %>
+      <div class="controls">
+        <%= check_box_tag :remember_me, 1, params[:remember_me], :class => 'checkbox' %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= submit_tag "Log in", :class => 'btn btn-primary' %>
+    </div>
+  </fieldset>
 <% end %>
