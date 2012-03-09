@@ -3,6 +3,9 @@ Marcas::Application.routes.draw do
   get "login" => "sessions#new", :as => "login"
   post "login" => "sessions#create", :as => "login"
   get "signup" => "users#new", :as => "signup"
+  get "password_resets/create"
+  get "password_resets/edit"
+  get "password_resets/update"
 
   get "index" => "home#index", :as => "home"
 
