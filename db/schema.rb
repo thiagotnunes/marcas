@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120308195338) do
+ActiveRecord::Schema.define(:version => 20120309181956) do
 
   create_table "users", :force => true do |t|
     t.string   "username",                        :null => false
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20120308195338) do
     t.datetime "reset_password_email_sent_at"
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
+    t.string   "role"
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"

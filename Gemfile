@@ -18,6 +18,7 @@ gem 'jquery-rails'
 
 gem 'sorcery'
 gem 'twitter-bootstrap-rails'
+gem 'cancan'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'

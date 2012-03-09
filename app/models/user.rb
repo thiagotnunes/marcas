@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
   validates_presence_of :email
 
   validates_uniqueness_of :username, :email
+
+  def admin?
+    self.role == :admin
+  end
 end

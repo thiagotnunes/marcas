@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :require_login, :except => [:new, :create]
+  before_filter :require_login, :except => [:new, :create, :activate]
+  load_and_authorize_resource :except => [:new, :create, :activate]
 
   def index
     @users = User.all
@@ -19,6 +20,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    @user.role = :customer
 
     if @user.save
       redirect_to root_url, notice: 'User was successfully created. A mail have been sent to your email, please check it to activate your account'
