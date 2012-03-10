@@ -10,7 +10,7 @@ When /^I signup$/ do
   fill_in("Email", :with => "john@doe.com")
   fill_in("Password", :with => "password")
   fill_in("Password confirmation", :with => "password")
-  click_on("Create User")
+  click_button("Create User")
 end
 
 When /^I activate my account$/ do
@@ -24,7 +24,7 @@ When /^I login$/ do
   click_link("Log in")
   fill_in("Username", :with => "John")
   fill_in("Password", :with => "password")
-  click_on("Log in")
+  click_button("Log in")
 end
 
 Then /^I should receive a notification to activate my user$/ do
@@ -33,4 +33,12 @@ end
 
 Then /^my account should be active$/ do
   page.should have_content("User was successfully activated.")
+end
+
+Then /^I should be logged in$/ do
+  page.should have_content("Logged in as John. Log out")
+end
+
+Then /^show me the page$/ do
+  save_and_open_page
 end

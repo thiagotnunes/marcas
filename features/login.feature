@@ -14,3 +14,9 @@ Feature: Login
     Given I signup
     When I activate my account
     Then my account should be active
+
+  Scenario: Login
+    Given I signup
+    And I activate my account
+    When I login
+    Then I should be logged in

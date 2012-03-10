@@ -22,6 +22,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'cucumber-rails'
   gem 'database_cleaner'
+  gem 'launchy'
 end
 
 gem 'sorcery'
