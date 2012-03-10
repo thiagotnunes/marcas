@@ -20,3 +20,12 @@ Feature: Login
     And I activate my account
     When I login
     Then I should be logged in
+
+  Scenario: Forgot password
+    Given I signup
+    And I activate my account
+    When I forgot my password
+    Then I should receive reset password instructions in my email 
+    And I should be able to reset my password to "newPassword"
+    And I should be able to login with "newPassword"
+    And I should be logged in
