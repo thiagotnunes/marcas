@@ -4,6 +4,13 @@ Given /^I am on the home page$/ do
   visit(home_url)
 end
 
+Given /^I am an existing customer$/ do
+  user = User.new(:username => "John", :password => "password", :password_confirmation => "password", :email => "john@doe.com")
+  user.role = :customer
+  user.save!
+  user.activate!
+end
+
 When /^I signup$/ do
   click_link("Sign up")
   fill_in("Username", :with => "John")
@@ -67,4 +74,5 @@ Then /^I should be able to login with "(.*)"$/ do |password|
   fill_in("Username", :with => "John")
   fill_in("Password", :with => password)
   click_button("Log in")
+  step "I should be logged in"
 end
