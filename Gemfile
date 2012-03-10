@@ -16,6 +16,12 @@ end
 
 gem 'jquery-rails'
 
+group :test, :development do
+  gem 'rspec-rails'
+  gem 'shoulda'
+  gem 'factory_girl_rails'
+end
+
 gem 'sorcery'
 gem 'twitter-bootstrap-rails'
 gem 'cancan'
