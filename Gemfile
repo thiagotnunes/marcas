@@ -16,10 +16,12 @@ end
 
 gem 'jquery-rails'
 
-group :test, :development do
+group :test do
   gem 'rspec-rails'
   gem 'shoulda'
   gem 'factory_girl_rails'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
 end
 
 gem 'sorcery'
