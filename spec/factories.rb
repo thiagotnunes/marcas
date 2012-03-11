@@ -7,10 +7,10 @@ FactoryGirl.define do
   end
 
   factory :customer, :parent => :user do
-    role :customer
+    role "customer"
   end
 
   factory :admin, :parent => :user do
-    role :admin
+    role "admin"
   end
 end

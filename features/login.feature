@@ -21,9 +21,23 @@ Feature: Login
     When I login
     Then I should be logged in
 
+  Scenario: Logout
+    Given I am an existing customer
+    And I am logged in
+    When I log out
+    Then I should not be logged in
+
   Scenario: Forgot password
     Given I am an existing customer
     When I forgot my password
     Then I should receive reset password instructions in my email 
     And I should be able to reset my password to "newPassword"
     And I should be able to login with "newPassword"
+
+  Scenario: Change password
+    Given I am an existing customer
+    And I am logged in
+    When I update my password to "newPassword"
+    And I log out
+    Then I should be able to login with "newPassword"
+

@@ -1,22 +1,31 @@
 MAIL_URL = /http:\/\/(.*)(\.)?$/
 
+USERNAME = "John"
+PASSWORD = "password"
+EMAIL = "john@doe.com"
+
 Given /^I am on the home page$/ do
   visit(home_url)
 end
 
 Given /^I am an existing customer$/ do
-  user = User.new(:username => "John", :password => "password", :password_confirmation => "password", :email => "john@doe.com")
+  user = User.new(:username => USERNAME, :password => PASSWORD, :password_confirmation => PASSWORD, :email => EMAIL)
   user.role = :customer
   user.save!
   user.activate!
 end
 
+Given /^I am logged in$/ do
+  step "I am on the home page"
+  step "I login"
+end
+
 When /^I signup$/ do
   click_link("Sign up")
-  fill_in("Username", :with => "John")
-  fill_in("Email", :with => "john@doe.com")
-  fill_in("Password", :with => "password")
-  fill_in("Password confirmation", :with => "password")
+  fill_in("Username", :with => USERNAME)
+  fill_in("Email", :with => EMAIL)
+  fill_in("Password", :with => PASSWORD)
+  fill_in("Password confirmation", :with => PASSWORD)
   click_button("Create User")
 end
 
@@ -28,16 +37,25 @@ When /^I activate my account$/ do
 end
 
 When /^I login$/ do
-  click_link("Log in")
-  fill_in("Username", :with => "John")
-  fill_in("Password", :with => "password")
-  click_button("Log in")
+  login(PASSWORD)
+end
+
+When /^I update my password to "(.*)"$/ do |password|
+  click_link(USERNAME)
+  fill_in("Old password", :with => PASSWORD)
+  fill_in("Password", :with => password)
+  fill_in("Password confirmation", :with => password)
+  click_button("Update User")
+end
+
+When /^I log out$/ do
+  click_link("Log out")
 end
 
 When /^I forgot my password$/ do
   visit(login_path)
   click_link("Forgot Password?")
-  fill_in("Email", :with => "john@doe.com")
+  fill_in("Email", :with => EMAIL)
   click_button("Reset my password")
 end
 
@@ -51,10 +69,6 @@ end
 
 Then /^I should be logged in$/ do
   page.should have_content("Logged in as John. Log out")
-end
-
-Then /^show me the page$/ do
-  save_and_open_page
 end
 
 Then /^I should receive reset password instructions in my email$/ do
@@ -71,8 +85,19 @@ Then /^I should be able to reset my password to "(.*)"$/ do |password|
 end
 
 Then /^I should be able to login with "(.*)"$/ do |password|
-  fill_in("Username", :with => "John")
+  login(password)
+  step "I should be logged in"
+end
+
+Then /^I should not be logged in$/ do
+  page.should have_content("Sign up or Log in")
+  page.should_not have_content(USERNAME)
+  page.should_not have_content("My account")
+end
+
+def login(password)
+  click_link("Log in")
+  fill_in("Username", :with => USERNAME)
   fill_in("Password", :with => password)
   click_button("Log in")
-  step "I should be logged in"
 end
