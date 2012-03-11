@@ -37,14 +37,11 @@
           <%= link_to "Marca Expressa", root_url, class: "brand" %>
           <div class="container nav-collapse">
             <ul class="nav">
-              <% if logged_in? %>
-                <li><%= link_to "My account", edit_user_path(current_user) %></li>
-              <% end %>
               <li><%= link_to "Registro de marcas", ""  %></li>
             </ul>
             <p class="navbar-text pull-right">
             <% if logged_in? %>
-              Logged in as <%= link_to current_user.username, edit_user_path(current_user) %>.
+              Logged in as <%= link_to current_user.username, user_path(current_user) %>.
               <%= link_to "Log out", logout_path %>
             <% else %>
               <%= link_to "Sign up", signup_path %> or <%= link_to "Log in", login_path  %>.

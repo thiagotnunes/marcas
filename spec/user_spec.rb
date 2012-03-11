@@ -24,7 +24,7 @@ describe User do
   context "Customer" do
     let(:customer) { Factory(:customer) }
 
-    it 'should not be an admin' do
+    it "should not be an admin" do
       customer.admin?.should be_false
     end
   end

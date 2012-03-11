@@ -11,7 +11,6 @@
 </p>
 
 <div class="form-actions">
-  <%= link_to 'Back', users_path, :class => 'btn'  %>
-  <%= link_to 'Edit', edit_user_path(@user), :class => 'btn' %>
-  <%= link_to 'Delete', user_path(@user), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+  <%= link_to 'Change password', edit_password_path(@user), :class => 'btn'  %>
+  <%= link_to 'Back', root_path, :class => 'btn'  %>
 </div>

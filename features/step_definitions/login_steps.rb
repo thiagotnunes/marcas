@@ -47,10 +47,11 @@ end
 
 When /^I update my password to "(.*)"$/ do |password|
   click_link(USERNAME)
+  click_link("Change password")
   fill_in("Old password", :with => PASSWORD)
   fill_in("Password", :with => password)
   fill_in("Password confirmation", :with => password)
-  click_button("Update User")
+  click_button("Update password")
 end
 
 When /^I log out$/ do

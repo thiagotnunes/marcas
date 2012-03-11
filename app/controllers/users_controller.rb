@@ -18,6 +18,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def edit_password
+    @user = User.find(params[:id])
+  end
+
   def create
     @user = User.new(params[:user])
     @user.role = :customer
@@ -30,10 +34,14 @@ class UsersController < ApplicationController
   end
 
   def update
-    if update_password(params[:user])
-      redirect_to root_url, notice: 'Password was successfully updated.'
+    render :edit
+  end
+
+  def update_password
+    if change_password(params[:user])
+      redirect_to root_url, notice: 'Password was successfully changed.'
     else
-      render :edit
+      render :edit_password
     end
   end
 
@@ -55,7 +63,7 @@ class UsersController < ApplicationController
 
   private
 
-  def update_password(attributes)
+  def change_password(attributes)
     if !login(@user.username, attributes["old_password"])
       @user.errors.add(:old_password, 'invalid')
       return false
