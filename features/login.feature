@@ -22,8 +22,7 @@ Feature: Login
     Then I should be logged in
 
   Scenario: Logout
-    Given I am an existing customer
-    And I am logged in
+    Given I am a logged in customer
     When I log out
     Then I should not be logged in
 
@@ -35,9 +34,7 @@ Feature: Login
     And I should be able to login with "newPassword"
 
   Scenario: Change password
-    Given I am an existing customer
-    And I am logged in
+    Given I am a logged in customer
     When I update my password to "newPassword"
     And I log out
     Then I should be able to login with "newPassword"
-

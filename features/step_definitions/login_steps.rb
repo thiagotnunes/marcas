@@ -20,6 +20,11 @@ Given /^I am logged in$/ do
   step "I login"
 end
 
+Given /^I am a logged in customer$/ do
+  step "I am an existing customer"
+  step "I am logged in"
+end
+
 When /^I signup$/ do
   click_link("Sign up")
   fill_in("Username", :with => USERNAME)
