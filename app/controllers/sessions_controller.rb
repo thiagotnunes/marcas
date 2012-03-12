@@ -1,4 +1,8 @@
 class SessionsController < ApplicationController
+
+  include SslRequirement
+  ssl_exceptions 
+
   def new
   end
 

@@ -5,7 +5,6 @@ gem 'rails', '3.2.2'
 gem 'sqlite3', :group => [:development, :test]
 gem 'pg', :group => :production
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -30,6 +29,7 @@ gem 'heroku'
 gem 'sorcery'
 gem 'twitter-bootstrap-rails'
 gem 'cancan'
+gem 'bartt-ssl_requirement', '~>1.4.0', :require => 'ssl_requirement'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'

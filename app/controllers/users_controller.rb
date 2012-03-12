@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   before_filter :require_login, :except => [:new, :create, :activate]
   load_and_authorize_resource :except => [:activate]
 
+  include SslRequirement
+  ssl_exceptions
+
   def index
     @users = User.where("role = ?", "customer")
   end
