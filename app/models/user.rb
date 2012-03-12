@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
     self.role == "admin"
   end
 
+  def customer?
+    self.role == "customer"
+  end
+
   def active?
     self.activation_state == "active"
   end

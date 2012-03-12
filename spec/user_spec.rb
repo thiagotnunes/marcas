@@ -24,6 +24,10 @@ describe User do
   context "Customer" do
     let(:customer) { Factory(:customer) }
 
+    it "should be a customer" do
+      customer.customer?.should be_true
+    end
+
     it "should not be an admin" do
       customer.admin?.should be_false
     end
@@ -32,6 +36,10 @@ describe User do
   context "Administrator" do
     let(:admin) { Factory(:admin) }
 
+    it "should not be a customer" do
+      admin.customer?.should be_false
+    end
+    
     it "should be an admin" do
       admin.admin?.should be_true  
     end

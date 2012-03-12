@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_login, :except => [:new, :create, :activate]
-  load_and_authorize_resource :except => [:new, :create, :activate]
+  load_and_authorize_resource :except => [:activate]
 
   def index
     @users = User.where("role = ?", "customer")
