@@ -43,7 +43,7 @@ When /^I login$/ do
   login(USERNAME, PASSWORD)
 end
 
-Then /^I login with "(.*)"$/ do |password|
+When /^I login with "(.*)"$/ do |password|
   login(USERNAME, password)
 end
 
