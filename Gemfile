@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.2'
 
-gem 'sqlite3'
+gem 'sqlite3', :group => [:development, :test]
+gem 'pg', :group => :production
 
 
 # Gems used only for assets and not required
@@ -25,6 +26,7 @@ group :test do
   gem 'launchy'
 end
 
+gem 'heroku'
 gem 'sorcery'
 gem 'twitter-bootstrap-rails'
 gem 'cancan'
