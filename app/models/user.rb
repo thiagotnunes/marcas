@@ -18,4 +18,8 @@ class User < ActiveRecord::Base
     self.role == "admin"
   end
 
+  def active?
+    self.activation_state == "active"
+  end
+
 end

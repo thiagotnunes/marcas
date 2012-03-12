@@ -1,18 +1,11 @@
 MAIL_URL = /http:\/\/(.*)(\.)?$/
 
-USERNAME = "John"
+USERNAME = "john"
 PASSWORD = "password"
 EMAIL = "john@doe.com"
 
 Given /^I am on the home page$/ do
   visit(home_url)
-end
-
-Given /^I am an existing customer$/ do
-  user = User.new(:username => USERNAME, :password => PASSWORD, :password_confirmation => PASSWORD, :email => EMAIL)
-  user.role = :customer
-  user.save!
-  user.activate!
 end
 
 Given /^I am logged in$/ do
@@ -21,7 +14,12 @@ Given /^I am logged in$/ do
 end
 
 Given /^I am a logged in customer$/ do
-  step "I am an existing customer"
+  step "I am an existing customer \"#{USERNAME}\""
+  step "I am logged in"
+end
+
+Given /^I am a logged in administrator$/ do
+  step "I am an existing administrator \"#{USERNAME}\""
   step "I am logged in"
 end
 
@@ -42,7 +40,15 @@ When /^I activate my account$/ do
 end
 
 When /^I login$/ do
-  login(PASSWORD)
+  login(USERNAME, PASSWORD)
+end
+
+Then /^I login with "(.*)"$/ do |password|
+  login(USERNAME, password)
+end
+
+When /^I login as a administrator(.*)$/ do
+  login(USERNAME, PASSWORD)
 end
 
 When /^I update my password to "(.*)"$/ do |password|
@@ -65,34 +71,30 @@ When /^I forgot my password$/ do
   click_button("Reset my password")
 end
 
+When /^I follow reset password url received by email$/ do
+  reset_password_mail = ActionMailer::Base.deliveries.last
+  match = MAIL_URL.match(reset_password_mail.body.to_s)
+  visit(match[0])
+end
+
+Then /^I reset my password to "(.*)"$/ do |password|
+  fill_in("Password", :with => password)
+  fill_in("Password confirmation", :with => password)
+  click_button("Update User")
+end
+
 Then /^I should receive a notification to activate my user$/ do
   page.should have_content("User was successfully created. A mail has been sent to your email, please check it to activate your account.");
 end
 
 Then /^my account should be active$/ do
   page.should have_content("User was successfully activated.")
+  user = User.find_by_username(USERNAME)
+  user.active?.should be_true
 end
 
 Then /^I should be logged in$/ do
-  page.should have_content("Logged in as John. Log out")
-end
-
-Then /^I should receive reset password instructions in my email$/ do
-  page.should have_content("Instructions have been sent to your email.")
-  reset_password_mail = ActionMailer::Base.deliveries.last
-  match = MAIL_URL.match(reset_password_mail.body.to_s)
-  visit(match[0])
-end
-
-Then /^I should be able to reset my password to "(.*)"$/ do |password|
-  fill_in("Password", :with => password)
-  fill_in("Password confirmation", :with => password)
-  click_button("Update User")
-end
-
-Then /^I should be able to login with "(.*)"$/ do |password|
-  login(password)
-  step "I should be logged in"
+  page.should have_content("Logged in as #{USERNAME}. Log out")
 end
 
 Then /^I should not be logged in$/ do
@@ -101,9 +103,9 @@ Then /^I should not be logged in$/ do
   page.should_not have_content("My account")
 end
 
-def login(password)
+def login(username, password)
   click_link("Log in")
-  fill_in("Username", :with => USERNAME)
+  fill_in("Username", :with => username)
   fill_in("Password", :with => password)
   click_button("Log in")
 end

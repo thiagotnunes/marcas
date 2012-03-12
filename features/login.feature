@@ -27,14 +27,16 @@ Feature: Login
     Then I should not be logged in
 
   Scenario: Forgot password
-    Given I am an existing customer
+    Given I am an existing customer "john"
     When I forgot my password
-    Then I should receive reset password instructions in my email 
-    And I should be able to reset my password to "newPassword"
-    And I should be able to login with "newPassword"
+    And I follow reset password url received by email 
+    And I reset my password to "newPassword"
+    And I login with "newPassword"
+    Then I should be logged in
 
   Scenario: Change password
     Given I am a logged in customer
     When I update my password to "newPassword"
     And I log out
-    Then I should be able to login with "newPassword"
+    And I login with "newPassword"
+    Then I should be logged in
