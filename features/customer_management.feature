@@ -6,7 +6,6 @@ Feature: Customer management
   Background:
     Given I am a logged in administrator
 
-  @focus
   Scenario: List all the customer
     Given a customer "thiago" exists
     And a customer "carol" exists
@@ -14,4 +13,12 @@ Feature: Customer management
     When I go to the list of customers
     Then I should see "thiago"
     And I should see "carol"
-    And I should not see "tarik"
+    But I should not see "tarik"
+
+  Scenario: Destroy a customer
+    Given a customer "thiago" exists
+    And a customer "carol" exists
+    When I go to the list of customers
+    And I delete "thiago"
+    Then I should not see "thiago"
+    But I should see "carol"

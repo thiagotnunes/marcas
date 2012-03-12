@@ -49,7 +49,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
 
-    redirect_to users_url, notice: "#{@user.username} was removed"
+    redirect_to users_url, notice: "User successfuly removed."
   end
 
   def activate
