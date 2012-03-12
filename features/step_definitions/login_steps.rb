@@ -2,7 +2,7 @@ MAIL_URL = /http:\/\/(.*)(\.)?$/
 
 USERNAME = "john"
 PASSWORD = "password"
-EMAIL = "john@doe.com"
+EMAIL = "john@marcaexpressa.com"
 
 Given /^I am on the home page$/ do
   visit(home_url)

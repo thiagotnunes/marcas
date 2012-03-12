@@ -21,6 +21,11 @@ Feature: Login
     When I login
     Then I should be logged in
 
+  Scenario: Login with unactive user
+    Given I signup
+    When I login
+    Then I should not be logged in
+
   Scenario: Logout
     Given I am a logged in customer
     When I log out
