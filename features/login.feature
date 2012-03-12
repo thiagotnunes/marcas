@@ -39,6 +39,14 @@ Feature: Login
     And I login with "newPassword"
     Then I should be logged in
 
+  Scenario: Resetting password and old password
+    Given I am an existing customer "john"
+    When I forgot my password
+    And I follow reset password url received by email 
+    And I reset my password to "newPassword"
+    And I login with "password"
+    Then I should not be logged in
+
   Scenario: Change password
     Given I am a logged in customer
     When I update my password to "newPassword"
