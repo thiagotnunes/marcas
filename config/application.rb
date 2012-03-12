@@ -11,8 +11,15 @@ end
 
 ActionMailer::Base.delivery_method = :smtp
 if Rails.env != 'test'
-  email_settings = YAML::load(File.open("config/email.yml"))
-  ActionMailer::Base.smtp_settings = email_settings[Rails.env] unless email_settings[Rails.env].nil?
+  ActionMailer::Base.smtp_settings = {
+    address: ENV["SMTP_ADDRESS"],
+    port: ENV["SMTP_PORT"],
+    domain: ENV["SMTP_DOMAIN"],
+    user_name: ENV["SMTP_USERNAME"],
+    password: ENV["SMTP_PASSWORD"],
+    authentication: "plain",
+    enable_starttls_auto: true
+  }
 end
 
 module Marcas

@@ -15,4 +15,4 @@
 /tmp
 
 # Ignore email configuration file
-/config/email.yml
+/env.sh
