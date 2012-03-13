@@ -1,25 +1,31 @@
-<h1>Users</h1>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Username</th>
-      <th>Email</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
+<p>
+  <h1>Users</h1>
+</p>
+<% if @users.empty? %>
+  <div class="alert alert-info">
+    No customers available.
+  </div>
+<% else %>
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= user.id %></td>
-        <td><%= link_to user.username, user_path(user) %></td>
-        <td><%= user.email %></td>
-        <td>
-          <%= link_to 'Destroy', user_path(user), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger', :id => "destroy-#{user.username}" %>
-        </td>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to 'New', new_user_path, :class => 'btn btn-primary' %>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= link_to user.username, user_path(user) %></td>
+          <td><%= user.email %></td>
+          <td>
+            <%= link_to 'Destroy', user_path(user), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger', :id => "destroy-#{user.username}" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

@@ -6,7 +6,7 @@ Feature: Customer management
   Background:
     Given I am a logged in administrator
 
-  Scenario: List all the customer
+  Scenario: List all the customers
     Given a customer "thiago" exists
     And a customer "carol" exists
     And a administrator "tarik" exists
@@ -22,3 +22,8 @@ Feature: Customer management
     And I delete "thiago"
     Then I should not see "thiago"
     But I should see "carol"
+
+  Scenario: No customer should be displayed
+    Given no customer exists
+    When I go to the list of customers
+    Then I should see "No customers available."

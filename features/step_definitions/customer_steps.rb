@@ -7,3 +7,7 @@ Given /^a customer "(.*)" exists$/ do |username|
   user.save!
   user.activate!
 end
+
+Given /^no customer exists$/ do
+  User.destroy_all(:role => "customer")
+end
