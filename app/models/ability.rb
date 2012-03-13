@@ -21,6 +21,5 @@ class Ability
       can :update, User, :id => user.id
       can :show, User, :id => user.id
     end
-    can :create, User
   end
 end

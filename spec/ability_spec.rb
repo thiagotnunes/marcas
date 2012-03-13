@@ -44,11 +44,6 @@ describe Ability do
       customer_ability.should be_able_to(:show, customer) 
     end
 
-    it "should be able to create a new account" do
-      customer_ability.should be_able_to(:new, customer) 
-      customer_ability.should be_able_to(:create, customer) 
-    end
-
     it "should not be able to change another users password" do
       customer_ability.should_not be_able_to(:change_password, another_user)
     end
@@ -77,10 +72,6 @@ describe Ability do
 
   context "Guest" do
     let(:guest_ability) { Ability.new(nil) }
-
-    it "should be able to create a new user" do
-      guest_ability.should be_able_to(:create, User.new)
-    end
 
     it "should not be able to change password" do
       guest_ability.should_not be_able_to(:change_password, User.new)      
