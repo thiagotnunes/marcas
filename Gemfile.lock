@@ -206,7 +206,7 @@ DEPENDENCIES
   bartt-ssl_requirement (~> 1.4.0)
   cancan
   coffee-rails (~> 3.2.1)
-  cucumber-rails
+  cucumber-rails (~> 1.0)
   database_cleaner
   factory_girl_rails
   heroku

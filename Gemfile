@@ -20,7 +20,7 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda'
   gem 'factory_girl_rails'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', "~> 1.0", require: false
   gem 'database_cleaner'
   gem 'launchy'
 end
