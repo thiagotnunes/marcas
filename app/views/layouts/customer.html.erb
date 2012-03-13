@@ -42,12 +42,12 @@
             <p class="navbar-text pull-right">
             <% if logged_in? %>
               <%= t('user.navbar.logged_as') %> <%= link_to current_user.username, user_path(current_user) %>.
-              <%= link_to t('user.navbar.logout'), logout_path %>
+              <%= link_to t('user.navbar.logout'), logout_path, :id => "logout" %>
             <% else %>
               <%= t(:make) %> 
-              <%= link_to t('user.navbar.signup'), signup_path %> 
+              <%= link_to t('user.navbar.signup'), signup_path, :id => "signup" %> 
               <%= t(:or) %> 
-              <%= link_to t('user.navbar.login'), login_path  %>.
+              <%= link_to t('user.navbar.login'), login_path, :id => "login"%>.
             <% end %>
             </p>
           </div><!--/.nav-collapse -->

@@ -24,12 +24,12 @@ Given /^I am a logged in administrator$/ do
 end
 
 When /^I signup$/ do
-  click_link("Sign up")
-  fill_in("Username", :with => USERNAME)
-  fill_in("Email", :with => EMAIL)
-  fill_in("Password", :with => PASSWORD)
-  fill_in("Password confirmation", :with => PASSWORD)
-  click_button("Create User")
+  click_link("signup")
+  fill_in("user_username", :with => USERNAME)
+  fill_in("user_email", :with => EMAIL)
+  fill_in("user_password", :with => PASSWORD)
+  fill_in("user_password_confirmation", :with => PASSWORD)
+  click_button("commit")
 end
 
 When /^I activate my account$/ do
@@ -53,22 +53,22 @@ end
 
 When /^I update my password to "(.*)"$/ do |password|
   click_link(USERNAME)
-  click_link("Change password")
-  fill_in("Old password", :with => PASSWORD)
-  fill_in("Password", :with => password)
-  fill_in("Password confirmation", :with => password)
-  click_button("Update password")
+  click_link("change_password")
+  fill_in("user_old_password", :with => PASSWORD)
+  fill_in("user_password", :with => password)
+  fill_in("user_password_confirmation", :with => password)
+  click_button("commit")
 end
 
 When /^I log out$/ do
-  click_link("Log out")
+  click_link("logout")
 end
 
 When /^I forgot my password$/ do
   visit(login_path)
-  click_link("Forgot Password?")
-  fill_in("Email", :with => EMAIL)
-  click_button("Reset my password")
+  click_link("forgot_password")
+  fill_in("email", :with => EMAIL)
+  click_button("commit")
 end
 
 When /^I follow reset password url received by email$/ do
@@ -78,34 +78,33 @@ When /^I follow reset password url received by email$/ do
 end
 
 Then /^I reset my password to "(.*)"$/ do |password|
-  fill_in("Password", :with => password)
-  fill_in("Password confirmation", :with => password)
-  click_button("Update User")
+  fill_in("user_password", :with => password)
+  fill_in("user_password_confirmation", :with => password)
+  click_button("commit")
 end
 
 Then /^I should receive a notification to activate my user$/ do
-  page.should have_content("User was successfully created. A mail has been sent to your email, please check it to activate your account.");
+  page.should have_content(I18n.t('user.messages.created'));
 end
 
 Then /^my account should be active$/ do
-  page.should have_content("User was successfully activated.")
+  page.should have_content(I18n.t('user.messages.activated'))
   user = User.find_by_username(USERNAME)
   user.active?.should be_true
 end
 
 Then /^I should be logged in$/ do
-  page.should have_content("Logged in as #{USERNAME}. Log out")
+  page.should have_content(I18n.t('user.navbar.logged_as') + ' ' + USERNAME + '. ' + I18n.t('user.navbar.logout'))
 end
 
 Then /^I should not be logged in$/ do
-  page.should have_content("Sign up or Log in")
+  page.should have_content(I18n.t('make') + ' ' + I18n.t('user.navbar.signup') + ' ' + I18n.t('or') + ' ' + I18n.t('user.navbar.login'))
   page.should_not have_content(USERNAME)
-  page.should_not have_content("My account")
 end
 
 def login(username, password)
-  click_link("Log in")
-  fill_in("Username", :with => username)
-  fill_in("Password", :with => password)
-  click_button("Log in")
+  click_link("login")
+  fill_in("username", :with => username)
+  fill_in("password", :with => password)
+  click_button("commit")
 end

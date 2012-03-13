@@ -26,4 +26,4 @@ Feature: Customer management
   Scenario: No customer should be displayed
     Given no customer exists
     When I go to the list of customers
-    Then I should see "No customers available."
+    Then I should not see any customers

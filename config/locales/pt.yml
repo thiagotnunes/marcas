@@ -29,7 +29,7 @@ pt:
       login: "Entrar"
     messages:
       customer:
-        empty: "Nenhum usuario disponivel."
+        empty: "Nenhum usuario disponivel"
       created: "Usuario criado com sucesso. Um email lhe foi enviado. Verifique-o para ativar sua conta."
       password_changed: "Senha alterada com sucesso."
       removed: "Usuario removido com sucesso."

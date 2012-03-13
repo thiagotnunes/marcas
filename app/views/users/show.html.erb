@@ -14,7 +14,7 @@
 
 <div class="form-actions">
   <% if can? :edit_password, @user %>
-    <%= link_to t('button.change_password'), edit_password_path(@user), :class => 'btn'  %>
+    <%= link_to t('button.change_password'), edit_password_path(@user), :id => "change_password", :class => 'btn'  %>
   <% end %>
   <%= link_to t('button.back'), users_path, :class => 'btn'  %>
 </div>
