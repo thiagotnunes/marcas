@@ -9,7 +9,7 @@
 
 
   <fieldset>
-    <legend>Choose a new password</legend>
+    <legend><%= t('user.title.change_password') %></legend>
 
     <%= hidden_field_tag :token, @token %>
     
@@ -37,8 +37,8 @@
     </div>
 
     <div class="form-actions">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to 'Cancel', users_path, :class => 'btn' %>
+      <%= f.submit t('user.button.change_password'), :class => 'btn btn-primary' %>
+      <%= link_to t('button.cancel'), users_path, :class => 'btn' %>
     </div>
   </fieldset>
 <% end %>

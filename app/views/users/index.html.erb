@@ -3,16 +3,16 @@
 </p>
 <% if @users.empty? %>
   <div class="alert alert-info">
-    No customers available.
+    <%= t('user.messages.customer.empty') %>
   </div>
 <% else %>
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Actions</th>
+        <th><%= t('helpers.label.user.id') %></th>
+        <th><%= t('helpers.label.user.username') %></th>
+        <th><%= t('helpers.label.user.email') %></th>
+        <th><%= t('actions') %></th>
       </tr>
     </thead>
     <tbody>
@@ -22,7 +22,7 @@
           <td><%= link_to user.username, user_path(user) %></td>
           <td><%= user.email %></td>
           <td>
-            <%= link_to 'Destroy', user_path(user), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger', :id => "destroy-#{user.username}" %>
+            <%= link_to t('button.destroy'), user_path(user), :method => :delete, :confirm => t('confirmation.message'), :class => 'btn btn-mini btn-danger', :id => "destroy-#{user.username}" %>
           </td>
         </tr>
       <% end %>

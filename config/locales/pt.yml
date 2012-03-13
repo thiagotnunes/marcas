@@ -1,0 +1,62 @@
+pt:
+  brand_name: "Marca Expressa" 
+  view_details: "Mais detalhes"
+  or: "ou"
+  make: "Realizar"
+  actions: "Acoes"
+  confirmation:
+    message: "Voce realmente deseja remover o usuario?"
+  services:
+    trademarks_registration: "Registro de marcas"
+    domain_registration: "Registro de dominios"
+    patenting: "Registro de patentes"
+  user:
+    navbar:
+      logged_as: "Logado como"
+      logout: "Sair"
+      signup: "registro"
+      login: "login"
+    title:
+      change_password: "Atualizar a senha"
+      register_user: "Cadastro de Usuario"
+      forgot_password: "Esqueci minha senha"
+      login: "Entrar no sistema"
+      user: "Usuario"
+    button:
+      change_password: "Atualizar a senha"
+      register_user: "Cadastrar"
+      forgot_password: "Enviar email"
+      login: "Entrar"
+    messages:
+      customer:
+        empty: "Nenhum usuario disponivel."
+      created: "Usuario criado com sucesso. Um email lhe foi enviado. Verifique-o para ativar sua conta."
+      password_changed: "Senha alterada com sucesso."
+      removed: "Usuario removido com sucesso."
+      activated: "Usuario ativado com sucesso."
+      login: "Login realizado com sucesso."
+      logout: "Logout realizado com sucesso."
+      error:
+        invalid_login: "Usuario ou senha invalidos"
+  activerecord:
+    errors:
+      messages:
+        blank: "nao pode ser vazio"
+        too_long: "e muito longo (deve conter no maximo %{count} caracteres)"
+        too_short: "e muito curto (deve conter no minimo %{count} caracteres)"
+        confirmation: "nao e igual a confirmacao"
+        invalid: "invalido"
+  button:
+    cancel: "Cancelar"
+    back: "Voltar"
+    destroy: "Remover"
+  helpers:
+    label:
+      user:
+        id: "Id"
+        username: "Usuario"
+        email: "Email"
+        old_password: "Senha atual"
+        password: "Senha"
+        password_confirmation: "Confirmacao de senha"
+        remember_me: "Lembrar"

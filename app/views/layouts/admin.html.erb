@@ -37,7 +37,6 @@
           <%= link_to "Marca Expressa", root_url, class: "brand" %>
           <div class="container nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Registro de marcas", ""  %></li>
             </ul>
             <p class="navbar-text pull-right">
             <% if logged_in? %>
@@ -71,17 +70,10 @@
           <div class="span3">
             <div class="well sidebar-nav">
               <h3>Navigation</h3>
-              <% if logged_in? && current_user.admin? %>
-                <ul class="nav nav-list">
-                  <li class="nav-header">Menu</li>
-                  <li><%= link_to "Users", users_path %></li>
-                </ul>
-              <% else %>
-                <ul class="nav nav-list">
-                  <li class="nav-header">Menu</li>
-                  <li><%= link_to "Registro de marcas" %></li>
-                </ul>
-              <% end %>
+              <ul class="nav nav-list">
+                <li class="nav-header">Menu</li>
+                <li><%= link_to "Users", users_path %></li>
+              </ul>
             </div>
           </div>
         </div>

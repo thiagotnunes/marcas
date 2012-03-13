@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     @user.role = :customer
 
     if @user.save
-      redirect_to root_url, notice: 'User was successfully created. A mail has been sent to your email, please check it to activate your account.'
+      redirect_to root_url, notice: t('user.messages.created')
     else
       render :new
     end
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
 
   def update_password
     if change_password(params[:user])
-      redirect_to root_url, notice: 'Password was successfully changed.'
+      redirect_to root_url, notice: t('user.messages.password_changed')
     else
       render :edit_password
     end
@@ -52,13 +52,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
 
-    redirect_to users_url, notice: "User successfuly removed."
+    redirect_to users_url, notice: t('user.messages.removed')
   end
 
   def activate
     if (@user = User.load_from_activation_token(params[:id]))
       @user.activate!
-      redirect_to(login_path, :notice => 'User was successfully activated.')
+      redirect_to login_path, :notice => t('user.messages.activated')
     else
       not_authenticated
     end
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
 
   def change_password(attributes)
     if !login(@user.username, attributes["old_password"])
-      @user.errors.add(:old_password, 'invalid')
+      @user.errors.add(:old_password, t('activerecord.errors.messages.invalid'))
       return false
     end
     @user.password = attributes["password"]

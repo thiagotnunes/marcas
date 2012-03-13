@@ -1,16 +1,16 @@
 <%= form_for sessions_path, :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
-    <legend>Login</legend>
+    <legend><%= t('user.title.login') %></legend>
 
     <div class="control-group">
-      <%= label_tag :username, nil, :class => 'control-label' %>
+      <%= label_tag :username, t('helpers.label.user.username'), :class => 'control-label' %>
       <div class="controls">
         <%= text_field_tag :username, params[:username], :class => 'text_field' %>
       </div>
     </div>
 
     <div class="control-group">
-      <%= label_tag :password, nil, :class => 'control-label' %>
+      <%= label_tag :password, t('helpers.label.user.password'), :class => 'control-label' %>
       <div class="controls">
         <%= password_field_tag :password, params[:password], :class => 'text_field' %>
       </div>
@@ -20,19 +20,19 @@
       <div class="controls">
         <label class="checkbox">
           <%= check_box_tag :remember_me, 1, params[:remember_me], :class => 'checkbox' %>
-          Remember me
+          <%= t('helpers.label.user.remember_me') %>
         </label>
       </div>
     </div>
 
     <div class="control-group">
       <div class="controls">
-        <%= link_to 'Forgot Password?', new_password_reset_path %>
+        <%= link_to t('user.title.forgot_password'), new_password_reset_path %>
       </div>
     </div>
 
     <div class="form-actions">
-      <%= submit_tag "Log in", :class => 'btn btn-primary' %>
+      <%= submit_tag t('user.button.login'), :class => 'btn btn-primary' %>
     </div>
   </fieldset>
 <% end %>
