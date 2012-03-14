@@ -54,6 +54,15 @@ pt:
         confirmation: "nao e igual a confirmacao"
         invalid: "invalido"
         taken: "ja esta registrado, por favor selecione outro"
+    models:
+      user:
+        attributes:
+          id: "Id"
+          username: "Usuario"
+          email: "Email"
+          old_password: "Senha atual"
+          password: "Senha"
+          password_confirmation: "Confirmacao de senha"
   button:
     cancel: "Cancelar"
     back: "Voltar"
