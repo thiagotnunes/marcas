@@ -39,7 +39,7 @@
             <%= yield :navbar_menu %>
             <p class="navbar-text pull-right">
             <% if logged_in? %>
-              <%= t('user.navbar.logged_as') %> <%= link_to current_user.username, user_path(current_user) %>.
+              <%= t('user.navbar.logged_as') %> <%= link_to current_user.username, user_path(current_user), :id => "my_account" %>.
               <%= link_to t('user.navbar.logout'), logout_path, :id => "logout" %>
             <% else %>
               <%= t(:make) %> 

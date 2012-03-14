@@ -5,77 +5,76 @@ Feature: Login
 
   Background:
     Given I am on the home page
+    And an activated customer "john"
 
   Scenario: Signup
-    When I signup
+    When I create an user "alice"
     Then I should receive a notification to activate my user
 
   Scenario: Canceling signup
-    Given I am on the signup page
+    Given no user exist
+    And I am on the signup page
     When I cancel
-    Then I should not be registered
+    Then no user should exist
     And I should be on the home page
 
   Scenario: Activating an user
-    Given I signup
+    Given I create an user "alice"
     When I activate my account
-    Then my account should be active
+    Then I should receive a success activation message
+    And the user "alice" should be active
 
   Scenario: Login
-    Given I am an existing customer "john"
-    When I login
-    Then I should be logged in
+    When I login as "john"
+    Then I should be logged in as "john"
 
   Scenario: Canceling login
-    Given I am an existing customer "john"
-    And I am on the login page
+    Given I am on the login page
     When I cancel
     Then I should not be logged in
     And I should be on the home page
 
   Scenario: Login with unactive user
-    Given I signup
-    When I login
+    Given I create an user "alice"
+    When I login as "alice"
     Then I should not be logged in
 
   Scenario: Logout
-    Given I am a logged in customer
+    Given I am logged in as "john"
     When I log out
     Then I should not be logged in
 
   Scenario: Forgot password
-    Given I am an existing customer "john"
-    And I forgot my password
-    And I go to reset password page
+    Given I go to forgot password page
+    And I request a password reset for user "john"
     When I reset my password to "newPassword"
-    And I login with "newPassword"
-    Then I should be logged in
+    And I login as "john" with "newPassword"
+    Then I should be logged in as "john"
 
   Scenario: Forgot password should invalidate old password
-    Given I am an existing customer "john"
-    And I forgot my password
-    And I go to reset password page
+    Given I go to forgot password page
+    And I request a password reset for user "john"
     When I reset my password to "newPassword"
-    And I login with "password"
+    And I login as "john" with "password"
     Then I should not be logged in
 
   Scenario: Canceling forgot password
-    Given I am on the forgot password page
+    Given I go to forgot password page
     When I cancel
     Then I should not have received any email
     And I should be on the home page
 
   Scenario: Change password
-    Given I am a logged in customer
+    Given I am logged in as "john"
     When I update my password to "newPassword"
     And I log out
-    And I login with "newPassword"
-    Then I should be logged in
+    And I login as "john" with "newPassword"
+    Then I should be logged in as "john"
 
   Scenario: Invalid current password when changing password should not logout
-    Given I am a logged in customer
-    When I am on the change password page
-    And I miss my current password
+    Given I am logged in as "john"
+    When I go to change password page
+    And I enter an invalid current password
     Then I should receive an error
-    And I should be logged in
+    But I should be logged in as "john"
 

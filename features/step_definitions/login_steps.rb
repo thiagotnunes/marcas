@@ -1,15 +1,17 @@
 MAIL_URL = /http:\/\/(.*)(\.)?$/
 
-USERNAME = "john"
-PASSWORD = "password"
-EMAIL = "john@marcaexpressa.com"
+DEFAULT_PASSWORD = "password"
 
-Given /^I am on the forgot password page$/ do
-  visit(new_password_reset_url)
+Given /^an activated customer "(.*)"$/ do |username|
+  user = create_customer(username)
+  user.activate!
+  ActionMailer::Base.deliveries.clear
 end
 
-Given /^I am on the change password page$/ do
-  visit(edit_password_url(User.find_by_username(USERNAME)))
+Given /^an activated admin "(.*)"$/ do |username|
+  user = create_admin(username)
+  user.activate!
+  ActionMailer::Base.deliveries.clear
 end
 
 Given /^I am on the signup page$/ do
@@ -20,83 +22,73 @@ Given /^I am on the login page$/ do
   visit(login_url)
 end
 
-Given /^I am logged in$/ do
-  step "I am on the home page"
-  step "I login"
+
+Given /^no user exist$/ do
+  User.destroy_all
 end
 
-Given /^I am a logged in customer$/ do
-  step "I am an existing customer \"#{USERNAME}\""
-  step "I am logged in"
+Given /^I am logged in as "(.*)"$/ do |username|
+  login(username, DEFAULT_PASSWORD)
 end
 
-Given /^I am a logged in administrator$/ do
-  step "I am an existing administrator \"#{USERNAME}\""
-  step "I am logged in"
-end
-
-When /^I signup$/ do
+When /^I create an user "(.*)"$/ do |username|
   click_link("signup")
-  fill_in("user_username", :with => USERNAME)
-  fill_in("user_email", :with => EMAIL)
-  fill_in("user_password", :with => PASSWORD)
-  fill_in("user_password_confirmation", :with => PASSWORD)
+  fill_in("user_username", :with => username)
+  fill_in("user_email", :with => email_for(username))
+  fill_in("user_password", :with => DEFAULT_PASSWORD)
+  fill_in("user_password_confirmation", :with => DEFAULT_PASSWORD)
   click_button("commit")
 end
 
 When /^I activate my account$/ do
-  activation_mail = ActionMailer::Base.deliveries.last
-  body = activation_mail.body
-  match = MAIL_URL.match(body.to_s) 
-  visit(match[0])
+  visit(get_action_url)
 end
 
-When /^I login$/ do
-  login(USERNAME, PASSWORD)
+When /^I login as "(.*)"$/ do |username|
+  login(username, DEFAULT_PASSWORD)
 end
 
-When /^I login with "(.*)"$/ do |password|
-  login(USERNAME, password)
-end
-
-When /^I login as a administrator$/ do
-  step "I login"
-end
-
-When /^I update my password to "(.*)"$/ do |password|
-  click_link(USERNAME)
-  click_link("change_password")
-  fill_in("user_old_password", :with => PASSWORD)
-  fill_in("user_password", :with => password)
-  fill_in("user_password_confirmation", :with => password)
-  click_button("commit")
-end
-
-When /^I miss my current password$/ do
-  fill_in("user_old_password", :with => "invalid password")
-  click_button("commit")
+When /^I login as "(.*)" with "(.*)"$/ do |username, password|
+  login(username, password)
 end
 
 When /^I log out$/ do
   click_link("logout")
 end
 
-When /^I forgot my password$/ do
+When /^I go to forgot password page$/ do
   visit(login_path)
   click_link("forgot_password")
-  fill_in("email", :with => EMAIL)
+end
+
+When /^I go to change password page$/ do
+  click_link("my_account")
+  click_link("change_password")
+end
+
+When /^I request a password reset for user "(.*)"$/ do |username|
+  fill_in("email", :with => email_for(username))
   click_button("commit")
 end
 
-When /^I go to reset password page$/ do
-  reset_password_mail = ActionMailer::Base.deliveries.last
-  match = MAIL_URL.match(reset_password_mail.body.to_s)
-  visit(match[0])
-end
-
-Then /^I reset my password to "(.*)"$/ do |password|
+When /^I reset my password to "(.*)"$/ do |password|
+  visit(get_action_url)
   fill_in("user_password", :with => password)
   fill_in("user_password_confirmation", :with => password)
+  click_button("commit")
+end
+
+When /^I update my password to "(.*)"$/ do |password|
+  click_link("my_account")
+  click_link("change_password")
+  fill_in("user_old_password", :with => DEFAULT_PASSWORD)
+  fill_in("user_password", :with => password)
+  fill_in("user_password_confirmation", :with => password)
+  click_button("commit")
+end
+
+When /^I enter an invalid current password$/ do
+  fill_in("user_old_password", :with => "invalid password")
   click_button("commit")
 end
 
@@ -104,23 +96,50 @@ Then /^I should receive a notification to activate my user$/ do
   page.should have_content(I18n.t('user.messages.created'));
 end
 
-Then /^my account should be active$/ do
+Then /^no user should exist$/ do
+  User.count.should be 0
+end
+
+Then /^I should receive a success activation message$/ do
   page.should have_content(I18n.t('user.messages.activated'))
-  user = User.find_by_username(USERNAME)
+end
+
+Then /^the user "(.*)" should be active$/ do |username|
+  user = User.find_by_username(username)
   user.active?.should be_true
 end
 
-Then /^I should be logged in$/ do
-  page.should have_content(I18n.t('user.navbar.logged_as') + ' ' + USERNAME + '. ' + I18n.t('user.navbar.logout'))
+Then /^I should be logged in as "(.*)"$/ do |username|
+  page.should have_content("#{I18n.t('user.navbar.logged_as')} #{username}. #{I18n.t('user.navbar.logout')}")
 end
 
 Then /^I should not be logged in$/ do
-  page.should have_content(I18n.t('make') + ' ' + I18n.t('user.navbar.signup') + ' ' + I18n.t('or') + ' ' + I18n.t('user.navbar.login'))
-  page.should_not have_content(USERNAME)
+  page.should have_content("#{I18n.t('make')} #{I18n.t('user.navbar.signup')} #{I18n.t('or')} #{I18n.t('user.navbar.login')}")
 end
 
-Then /^I should not be registered$/ do
-  User.find_by_username(USERNAME).should be_nil
+def create_customer(username)
+  Factory(:customer, 
+         :username => username,
+         :password => DEFAULT_PASSWORD,
+         :email => email_for(username))
+end 
+
+def create_admin(username)
+  Factory(:admin, 
+         :username => username,
+         :password => DEFAULT_PASSWORD,
+         :email => email_for(username))
+end 
+
+def email_for(username)
+  "#{username}@email.com"
+end
+
+def get_action_url
+  activation_mail = ActionMailer::Base.deliveries.last
+  body = activation_mail.body
+  match = MAIL_URL.match(body.to_s) 
+  match[0]
 end
 
 def login(username, password)

@@ -4,7 +4,9 @@ Feature: Customer management
   I want to manage all the customer
 
   Background:
-    Given I am a logged in administrator
+    Given an activated admin "admin"
+    And I am on the home page
+    And I am logged in as "admin"
 
   Scenario: List all the customers
     Given a customer "thiago" exists
