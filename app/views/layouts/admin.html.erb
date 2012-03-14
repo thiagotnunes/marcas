@@ -3,10 +3,10 @@
   </ul>
 <% end %>
 <% content_for :navigation_menu do %>
-  <h3>Navigation</h3>
+  <h3><%= t('navigation') %></h3>
   <ul class="nav nav-list">
     <li class="nav-header">Menu</li>
-    <li><%= link_to "Users", users_path %></li>
+    <li><%= link_to t('user.title.users'), users_path %></li>
   </ul>
 <% end %>
 <%= render :template => 'layouts/application' %>

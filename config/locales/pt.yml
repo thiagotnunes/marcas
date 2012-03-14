@@ -4,6 +4,7 @@ pt:
   or: "ou"
   make: "Realizar"
   actions: "Acoes"
+  navigation: "Navegacao"
   confirmation:
     message: "Voce realmente deseja remover o usuario?"
   services:
@@ -22,6 +23,7 @@ pt:
       forgot_password: "Esqueci minha senha"
       login: "Entrar no sistema"
       user: "Usuario"
+      users: "Usuarios"
     button:
       change_password: "Atualizar a senha"
       register_user: "Cadastrar"
