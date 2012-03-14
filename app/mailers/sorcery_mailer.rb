@@ -3,20 +3,20 @@ class SorceryMailer < ActionMailer::Base
 
   def activation_needed_email(user)
     @user = user
-    @url  = "http://0.0.0.0:3000/users/#{user.activation_token}/activate"
-    mail(:to => user.email, :subject => "Welcome to Marca Expressa")
+    @url = activate_user_url(user.activation_token)
+    mail(:to => user.email, :subject => "Bem vindo a Marca Expressa")
   end
 
   def activation_success_email(user)
     @user = user
-    @url  = "http://0.0.0.0:3000/login"
-    mail(:to => user.email, :subject => "Your account is now activated")
+    @url  = login_url
+    mail(:to => user.email, :subject => "Sua conta foi ativada")
   end
 
   def reset_password_email(user)
     @user = user
-    @url  = "http://0.0.0.0:3000/password_resets/#{user.reset_password_token}/edit"
+    @url = edit_password_reset_url(user.reset_password_token)
     mail(:to => user.email,
-         :subject => "Your password has been reset")
+         :subject => "Sua senha foi resetada")
   end
 end

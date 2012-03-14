@@ -48,6 +48,7 @@ pt:
         too_short: "e muito curto (deve conter no minimo %{count} caracteres)"
         confirmation: "nao e igual a confirmacao"
         invalid: "invalido"
+        taken: "ja esta registrado, por favor selecione outro"
   button:
     cancel: "Cancelar"
     back: "Voltar"
