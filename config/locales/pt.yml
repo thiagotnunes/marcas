@@ -55,8 +55,8 @@ pt:
         invalid: "invalido"
         taken: "ja esta registrado, por favor selecione outro"
     models:
-      user:
-        attributes:
+      attributes:
+        user:
           id: "Id"
           username: "Usuario"
           email: "Email"
