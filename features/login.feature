@@ -10,16 +10,28 @@ Feature: Login
     When I signup
     Then I should receive a notification to activate my user
 
+  Scenario: Canceling signup
+    When I click on "signup"
+    And I cancel
+    Then I should not be registered
+    And I should be on the home page
+
   Scenario: Activating an user
     Given I signup
     When I activate my account
     Then my account should be active
 
   Scenario: Login
-    Given I signup
-    And I activate my account
+    Given I am an existing customer "john"
     When I login
     Then I should be logged in
+
+  Scenario: Canceling login
+    Given I am an existing customer "john"
+    When I click on "login"
+    And I cancel
+    Then I should not be logged in
+    And I should be on the home page
 
   Scenario: Login with unactive user
     Given I signup
@@ -39,13 +51,11 @@ Feature: Login
     And I login with "newPassword"
     Then I should be logged in
 
-  Scenario: Resetting password and old password
-    Given I am an existing customer "john"
-    When I forgot my password
-    And I follow reset password url received by email 
-    And I reset my password to "newPassword"
-    And I login with "password"
-    Then I should not be logged in
+  Scenario: Canceling forgot password
+    Given I am on the forgot password page
+    When I cancel
+    Then I should not have received any email
+    And I should be on the home page
 
   Scenario: Change password
     Given I am a logged in customer
@@ -53,3 +63,11 @@ Feature: Login
     And I log out
     And I login with "newPassword"
     Then I should be logged in
+
+  Scenario: Change password and old password
+    Given I am an existing customer "john"
+    When I forgot my password
+    And I follow reset password url received by email 
+    And I reset my password to "newPassword"
+    And I login with "password"
+    Then I should not be logged in

@@ -4,10 +4,6 @@ USERNAME = "john"
 PASSWORD = "password"
 EMAIL = "john@marcaexpressa.com"
 
-Given /^I am on the home page$/ do
-  visit(home_url)
-end
-
 Given /^I am logged in$/ do
   step "I am on the home page"
   step "I login"
@@ -24,7 +20,7 @@ Given /^I am a logged in administrator$/ do
 end
 
 When /^I signup$/ do
-  click_link("signup")
+  step "I click on \"signup\""
   fill_in("user_username", :with => USERNAME)
   fill_in("user_email", :with => EMAIL)
   fill_in("user_password", :with => PASSWORD)
@@ -102,8 +98,12 @@ Then /^I should not be logged in$/ do
   page.should_not have_content(USERNAME)
 end
 
+Then /^I should not be registered$/ do
+  User.find_by_username(USERNAME).should be_nil
+end
+
 def login(username, password)
-  click_link("login")
+  step "I click on \"login\""
   fill_in("username", :with => username)
   fill_in("password", :with => password)
   click_button("commit")
