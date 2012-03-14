@@ -11,8 +11,8 @@ Feature: Login
     Then I should receive a notification to activate my user
 
   Scenario: Canceling signup
-    When I click on "signup"
-    And I cancel
+    Given I am on the signup page
+    When I cancel
     Then I should not be registered
     And I should be on the home page
 
@@ -28,8 +28,8 @@ Feature: Login
 
   Scenario: Canceling login
     Given I am an existing customer "john"
-    When I click on "login"
-    And I cancel
+    And I am on the login page
+    When I cancel
     Then I should not be logged in
     And I should be on the home page
 
@@ -45,11 +45,19 @@ Feature: Login
 
   Scenario: Forgot password
     Given I am an existing customer "john"
-    When I forgot my password
-    And I follow reset password url received by email 
-    And I reset my password to "newPassword"
+    And I forgot my password
+    And I go to reset password page
+    When I reset my password to "newPassword"
     And I login with "newPassword"
     Then I should be logged in
+
+  Scenario: Forgot password should invalidate old password
+    Given I am an existing customer "john"
+    And I forgot my password
+    And I go to reset password page
+    When I reset my password to "newPassword"
+    And I login with "password"
+    Then I should not be logged in
 
   Scenario: Canceling forgot password
     Given I am on the forgot password page
@@ -64,10 +72,10 @@ Feature: Login
     And I login with "newPassword"
     Then I should be logged in
 
-  Scenario: Change password and old password
-    Given I am an existing customer "john"
-    When I forgot my password
-    And I follow reset password url received by email 
-    And I reset my password to "newPassword"
-    And I login with "password"
-    Then I should not be logged in
+  Scenario: Invalid current password when changing password should not logout
+    Given I am a logged in customer
+    When I am on the change password page
+    And I miss my current password
+    Then I should receive an error
+    And I should be logged in
+

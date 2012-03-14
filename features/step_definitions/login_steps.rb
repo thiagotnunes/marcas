@@ -4,6 +4,22 @@ USERNAME = "john"
 PASSWORD = "password"
 EMAIL = "john@marcaexpressa.com"
 
+Given /^I am on the forgot password page$/ do
+  visit(new_password_reset_url)
+end
+
+Given /^I am on the change password page$/ do
+  visit(edit_password_url(User.find_by_username(USERNAME)))
+end
+
+Given /^I am on the signup page$/ do
+  visit(signup_url)
+end
+
+Given /^I am on the login page$/ do
+  visit(login_url)
+end
+
 Given /^I am logged in$/ do
   step "I am on the home page"
   step "I login"
@@ -20,7 +36,7 @@ Given /^I am a logged in administrator$/ do
 end
 
 When /^I signup$/ do
-  step "I click on \"signup\""
+  click_link("signup")
   fill_in("user_username", :with => USERNAME)
   fill_in("user_email", :with => EMAIL)
   fill_in("user_password", :with => PASSWORD)
@@ -43,8 +59,8 @@ When /^I login with "(.*)"$/ do |password|
   login(USERNAME, password)
 end
 
-When /^I login as a administrator(.*)$/ do
-  login(USERNAME, PASSWORD)
+When /^I login as a administrator$/ do
+  step "I login"
 end
 
 When /^I update my password to "(.*)"$/ do |password|
@@ -53,6 +69,11 @@ When /^I update my password to "(.*)"$/ do |password|
   fill_in("user_old_password", :with => PASSWORD)
   fill_in("user_password", :with => password)
   fill_in("user_password_confirmation", :with => password)
+  click_button("commit")
+end
+
+When /^I miss my current password$/ do
+  fill_in("user_old_password", :with => "invalid password")
   click_button("commit")
 end
 
@@ -67,7 +88,7 @@ When /^I forgot my password$/ do
   click_button("commit")
 end
 
-When /^I follow reset password url received by email$/ do
+When /^I go to reset password page$/ do
   reset_password_mail = ActionMailer::Base.deliveries.last
   match = MAIL_URL.match(reset_password_mail.body.to_s)
   visit(match[0])
@@ -103,7 +124,7 @@ Then /^I should not be registered$/ do
 end
 
 def login(username, password)
-  step "I click on \"login\""
+  click_link("login")
   fill_in("username", :with => username)
   fill_in("password", :with => password)
   click_button("commit")
