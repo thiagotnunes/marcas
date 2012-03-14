@@ -29,6 +29,11 @@ pt:
       register_user: "Cadastrar"
       forgot_password: "Enviar email"
       login: "Entrar"
+    mailer:
+      title:
+        activation_needed: "Bem vindo a Marca Expressa"
+        activation_success: "Sua conta foi ativada"
+        reset_password: "Sua senha foi resetada"
     messages:
       customer:
         empty: "Nenhum usuario disponivel"
