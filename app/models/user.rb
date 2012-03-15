@@ -13,17 +13,21 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, :email
 
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
+
+  def self.all_customers
+    where("role = ?", "customer")
+  end
   
   def admin?
-    self.role == "admin"
+    role == "admin"
   end
 
   def customer?
-    self.role == "customer"
+    role == "customer"
   end
 
   def active?
-    self.activation_state == "active"
+    activation_state == "active"
   end
 
 end

@@ -3,21 +3,31 @@ require 'spec_helper'
 describe User do
 
   context "Generic user" do
-    subject { Factory(:user) }
+    let(:user) { Factory(:user) }
 
-    it { should validate_presence_of :username }
-    it { should validate_presence_of :password }
-    it { should validate_presence_of :email }
+    it { user.should validate_presence_of :username }
+    it { user.should validate_presence_of :password }
+    it { user.should validate_presence_of :email }
 
-    it { should validate_uniqueness_of :username }
-    it { should validate_uniqueness_of :email }
+    it { user.should validate_uniqueness_of :username }
+    it { user.should validate_uniqueness_of :email }
 
-    it { should_not allow_value("invalidMail").for(:email) }
+    it { user.should_not allow_value("invalidMail").for(:email) }
 
-    it { should ensure_length_of(:username).is_at_least(3) }
-    it { should ensure_length_of(:username).is_at_most(20) }
-    it { should ensure_length_of(:password).is_at_least(6) }
-    it { should ensure_length_of(:password).is_at_most(30) }
+    it { user.should ensure_length_of(:username).is_at_least(3) }
+    it { user.should ensure_length_of(:username).is_at_most(20) }
+    it { user.should ensure_length_of(:password).is_at_least(6) }
+    it { user.should ensure_length_of(:password).is_at_most(30) }
+
+    it "should retrieve all the customers" do
+      firstCustomer = Factory(:customer)
+      secondCustomer = Factory(:customer)
+      admin = Factory(:admin)
+
+      all_customers = User.all_customers
+      all_customers.should include(firstCustomer)
+      all_customers.should include(secondCustomer)
+    end
     
   end
 

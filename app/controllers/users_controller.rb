@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   ssl_exceptions
 
   def index
-    @users = User.where("role = ?", "customer")
+    @users = User.all_customers
   end
 
   def show
