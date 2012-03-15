@@ -9,12 +9,14 @@ Feature: Customer management
     And I am logged in as "admin"
 
   Scenario: List all the customers
-    Given a customer "thiago" exists
+    Given an activated customer "thiago" exists
     And a customer "carol" exists
     And a administrator "tarik" exists
     When I go to the list of customers
     Then I should see "thiago"
+    And I should see an activated user
     And I should see "carol"
+    And I should see a unactive user
     But I should not see "tarik"
 
   Scenario: Destroy a customer

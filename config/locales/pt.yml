@@ -43,6 +43,8 @@ pt:
       activated: "Usuario ativado com sucesso."
       login: "Login realizado com sucesso."
       logout: "Logout realizado com sucesso."
+      active: "Ativado"
+      unactive: "Esperando ativacao"
       error:
         invalid_login: "Usuario ou senha invalidos"
   activerecord:
@@ -77,3 +79,4 @@ pt:
         password: "Senha"
         password_confirmation: "Confirmacao de senha"
         remember_me: "Lembrar"
+        activation_state: "Status de ativacao"

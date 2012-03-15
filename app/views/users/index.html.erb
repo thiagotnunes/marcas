@@ -12,6 +12,7 @@
         <th><%= t('helpers.label.user.id') %></th>
         <th><%= t('helpers.label.user.username') %></th>
         <th><%= t('helpers.label.user.email') %></th>
+        <th><%= t('helpers.label.user.activation_state') %></th>
         <th><%= t('actions') %></th>
       </tr>
     </thead>
@@ -21,6 +22,17 @@
           <td><%= user.id %></td>
           <td><%= link_to user.username, user_path(user) %></td>
           <td><%= user.email %></td>
+          <td>
+            <% if user.active? %>
+              <span class="label label-success">
+                <%= t('user.messages.active') %>
+              </span>
+            <% else %>
+              <span class="label label-warning">
+                <%= t('user.messages.unactive') %>
+              </span>
+            <% end %>
+          </td>
           <td>
             <%= link_to t('button.destroy'), user_path(user), :method => :delete, :confirm => t('confirmation.message'), :class => 'btn btn-mini btn-danger', :id => "destroy-#{user.username}" %>
           </td>
