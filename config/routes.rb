@@ -5,7 +5,7 @@ Marcas::Application.routes.draw do
 
   get "signup" => "users#new", :as => "signup"
   get "edit_password/:id" => "users#edit_password", :as => "edit_password"
-  post "edit_password/:id" => "users#update_password", :as => "update_password"
+  put "edit_password/:id" => "users#update_password", :as => "update_password"
 
   get "password_resets/create"
   get "password_resets/edit"
