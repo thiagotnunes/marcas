@@ -25,6 +25,7 @@ group :test do
   gem 'launchy'
   gem 'pry'
   gem 'watchr'
+  gem 'spork'
 end
 
 gem 'heroku'
