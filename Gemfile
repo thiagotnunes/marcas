@@ -24,6 +24,7 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'pry'
+  gem 'watchr'
 end
 
 gem 'heroku'
