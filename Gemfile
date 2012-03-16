@@ -23,6 +23,7 @@ group :test do
   gem 'cucumber-rails', "~> 1.0", require: false
   gem 'database_cleaner'
   gem 'launchy'
+  gem 'pry'
 end
 
 gem 'heroku'

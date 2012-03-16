@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   include SslRequirement
   ssl_exceptions
 
+  attr_writer :user
+
   def index
     @users = User.all_customers
   end
@@ -67,7 +69,7 @@ class UsersController < ApplicationController
   private
 
   def change_password(attributes)
-    if !login(@user.username, attributes["old_password"])
+    unless login(@user.username, attributes["old_password"])
       @user.errors.add(:old_password, t('activerecord.errors.messages.invalid'))
       return false
     end
