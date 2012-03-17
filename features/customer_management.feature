@@ -1,7 +1,7 @@
 Feature: Customer management
   In order to follow up with usage of the system
-  As a administrator
-  I want to manage all the customer
+  As an administrator
+  I want to manage all the customers
 
   Background:
     Given an activated admin "admin"

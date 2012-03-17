@@ -6,7 +6,7 @@ pt:
   actions: "Acoes"
   navigation: "Navegacao"
   confirmation:
-    message: "Voce realmente deseja remover o usuario?"
+    message: "Voce realmente deseja remove-lo?"
   services:
     trademarks_registration: "Registro de marcas"
     domain_registration: "Registro de dominios"
@@ -47,6 +47,12 @@ pt:
       unactive: "Esperando ativacao"
       error:
         invalid_login: "Usuario ou senha invalidos"
+  order_status:
+    title:
+      order_statuses: "Estados de um pedido"
+      order_status: "Estado de um pedido"
+    messages:
+      empty: "Nenhum estado de pedido disponivel"
   activerecord:
     errors:
       messages:
@@ -56,6 +62,7 @@ pt:
         confirmation: "nao e igual a confirmacao"
         invalid: "invalido"
         taken: "ja esta registrado, por favor selecione outro"
+        wrong_length: "deve ter um tamanho igual a %{count}"
     models:
       attributes:
         user:
@@ -69,6 +76,10 @@ pt:
     cancel: "Cancelar"
     back: "Voltar"
     destroy: "Remover"
+    edit: "Editar"
+    new: "Novo"
+    create: "Criar"
+    update: "Atualizar"
   helpers:
     label:
       user:
@@ -80,3 +91,8 @@ pt:
         password_confirmation: "Confirmacao de senha"
         remember_me: "Lembrar"
         activation_state: "Status de ativacao"
+      order_status:
+        id: "Id"
+        status: "Estado"
+        description: "Descricao"
+        color: "Cor"

@@ -3,21 +3,23 @@ require 'spec_helper'
 describe User do
 
   context "Generic user" do
-    let(:user) { Factory(:user) }
+    subject { Factory(:user) }
 
-    it { user.should validate_presence_of :username }
-    it { user.should validate_presence_of :password }
-    it { user.should validate_presence_of :email }
+    it { should validate_presence_of :username }
+    it { should validate_uniqueness_of :username }
+    it { should ensure_length_of(:username).is_at_least(3) }
+    it { should ensure_length_of(:username).is_at_most(20) }
+    it { should allow_mass_assignment_of(:username) }
 
-    it { user.should validate_uniqueness_of :username }
-    it { user.should validate_uniqueness_of :email }
+    it { should validate_presence_of :password }
+    it { should ensure_length_of(:password).is_at_least(6) }
+    it { should ensure_length_of(:password).is_at_most(30) }
+    it { should allow_mass_assignment_of(:password) }
 
-    it { user.should_not allow_value("invalidMail").for(:email) }
-
-    it { user.should ensure_length_of(:username).is_at_least(3) }
-    it { user.should ensure_length_of(:username).is_at_most(20) }
-    it { user.should ensure_length_of(:password).is_at_least(6) }
-    it { user.should ensure_length_of(:password).is_at_most(30) }
+    it { should validate_presence_of :email }
+    it { should validate_uniqueness_of :email }
+    it { should_not allow_value("invalidMail").for(:email) }
+    it { should allow_mass_assignment_of(:email) }
 
     it "should retrieve all the customers" do
       firstCustomer = Factory(:customer)

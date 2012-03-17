@@ -13,4 +13,9 @@ FactoryGirl.define do
   factory :admin, :parent => :user do
     role "admin"
   end
+
+  factory :order_status do
+    sequence(:status) { |n| "status#{n}" }
+    color "#000000"
+  end
 end

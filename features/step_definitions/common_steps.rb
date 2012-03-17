@@ -6,6 +6,14 @@ When /^I cancel$/ do
   click_on("cancel")
 end
 
+When /^I click on "(.*)"$/ do |element|
+  click_on(element)
+end
+
+When /^I delete "(.*)"$/ do |id|
+  click_link("destroy-#{id}")
+end
+
 Then /^show me the page$/ do
   save_and_open_page
 end

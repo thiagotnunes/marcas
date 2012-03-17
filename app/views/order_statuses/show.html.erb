@@ -1,0 +1,24 @@
+<p>
+<h1><%= t('order_status.title.order_status') %></h1>
+</p>
+
+<p>
+  <b><%= t('helpers.label.order_status.status') %></b><br>
+  <%= @order_status.status %>
+</p>
+
+<p>
+  <b><%= t('helpers.label.order_status.description') %></b><br>
+  <%= @order_status.description %>
+</p>
+
+<p>
+  <b><%= t('helpers.label.order_status.color') %></b>
+  <div class="color_picker" style="background-color: <%= @order_status.color %>"></div>
+</p>
+
+<div class="form-actions">
+  <%= link_to t('button.back'), order_statuses_path, :class => 'btn'  %>
+  <%= link_to t('button.edit'), edit_order_status_path(@order_status), :class => 'btn' %>
+  <%= link_to t('button.destroy'), order_status_path(@order_status), :method => 'delete', :confirm => t('confirmation.message'), :class => 'btn btn-danger' %>
+</div>

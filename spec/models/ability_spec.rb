@@ -25,6 +25,10 @@ describe Ability do
     it "should be able to destroy a customer" do
       administrator_ability.should be_able_to(:destroy, customer)
     end
+
+    it "should be able to manage order statuses" do
+      administrator_ability.should be_able_to(:manage, OrderStatus.new)
+    end
   end
 
   context "Customer" do
@@ -68,6 +72,10 @@ describe Ability do
     it "should not be able to destroy another user" do
       customer_ability.should_not be_able_to(:destroy, another_user)
     end
+
+    it "should not be able to manage order statuses" do
+      customer_ability.should_not be_able_to(:manage, OrderStatus.new) 
+    end
   end
 
   context "Guest" do
@@ -87,6 +95,10 @@ describe Ability do
 
     it "should not be able to destroy users" do
       guest_ability.should_not be_able_to(:destroy, User.new)      
+    end
+
+    it "should not be able to manage order statuses" do
+      guest_ability.should_not be_able_to(:manage, OrderStatus.new) 
     end
   end
   

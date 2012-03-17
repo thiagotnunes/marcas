@@ -1,0 +1,31 @@
+<%= form_for @order_status, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Order Status</legend>
+
+    <div class="control-group">
+      <%= f.label :status, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :status, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :description, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_area :description, :class => 'text_area' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :color, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :color, :class => 'color{hash:true} text_field' %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit button_label, :class => 'btn btn-primary', :id => "commit" %>
+      <%= link_to t('button.cancel'), order_statuses_path, :class => 'btn'  %>
+    </div>
+  </fieldset>
+<% end %>
