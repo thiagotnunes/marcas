@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120317233513) do
+ActiveRecord::Schema.define(:version => 20120319194501) do
 
   create_table "order_statuses", :force => true do |t|
     t.string   "status"
@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(:version => 20120317233513) do
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
     t.integer  "first_status", :limit => 1, :default => 0
+  end
+
+  create_table "order_types", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|
