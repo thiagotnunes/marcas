@@ -2,21 +2,20 @@
   <%% if @<%= singular_table_name %>.errors.any? %>
     <div id="error" class="alert alert-error">
       <%% for message in @<%= singular_table_name %>.errors.full_messages %>
-        <div><%%= message %></div>
+      <div><%%= message %></div>
       <%% end %>
     </div>
   <%% end %>
 
   <fieldset>
     <legend><%%= t('<%= singular_table_name %>.title.<%= index_helper %>') %></legend>
-
-    <% attributes.each do |attribute| -%>
-      <div class="control-group">
-        <%%= f.label :<%= attribute.name %>, :class => 'control-label' %>
-        <div class="controls">
-          <%%= f.<%= attribute.field_type %> :<%= attribute.name %>, :class => '<%= attribute.field_type %>' %>
-        </div>
+    <% attributes.each do |attribute| %>
+    <div class="control-group">
+      <%%= f.label :<%= attribute.name %>, :class => 'control-label' %>
+      <div class="controls">
+        <%%= f.<%= attribute.field_type %> :<%= attribute.name %>, :class => '<%= attribute.field_type %>' %>
       </div>
+    </div>
     <% end -%>
 
     <div class="form-actions">
