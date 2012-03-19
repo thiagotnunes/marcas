@@ -52,7 +52,9 @@ pt:
       order_statuses: "Estados de um pedido"
       order_status: "Estado de um pedido"
     messages:
-      empty: "Nenhum estado de pedido disponivel"
+      empty: "Nenhum estado de pedido disponivel."
+      created: "Estado do pedido criado com sucesso."
+      updated: "Estado do pedido atualizado com sucesso."
   activerecord:
     errors:
       messages:
@@ -96,3 +98,4 @@ pt:
         status: "Estado"
         description: "Descricao"
         color: "Cor"
+        first_status: "Primeiro?"

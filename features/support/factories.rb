@@ -17,5 +17,6 @@ FactoryGirl.define do
   factory :order_status do
     sequence(:status) { |n| "status#{n}" }
     color "#000000"
+    first_status 0
   end
 end

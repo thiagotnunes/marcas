@@ -11,6 +11,7 @@
       <tr>
         <th><%= t('helpers.label.order_status.id') %></th>
         <th><%= t('helpers.label.order_status.status') %></th>
+        <th><%= t('helpers.label.order_status.first_status') %></th>
         <th><%= t('helpers.label.order_status.color') %></th>
         <th><%= t('actions') %></th>
       </tr>
@@ -20,6 +21,7 @@
         <tr>
           <td><%= order_status.id %></td>
           <td><%= link_to order_status.status, order_status_path(order_status) %></td>
+          <td><%= formatted_first_status_for(order_status) %></td>
           <td>
             <div class="color_picker" style="background-color: <%= order_status.color %>"></div>
           </td>

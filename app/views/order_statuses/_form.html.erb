@@ -23,6 +23,13 @@
       </div>
     </div>
 
+    <div class="control-group">
+      <%= f.label :first_status, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.check_box :first_status, :class => 'text_field' %>
+      </div>
+    </div>
+
     <div class="form-actions">
       <%= f.submit button_label, :class => 'btn btn-primary', :id => "commit" %>
       <%= link_to t('button.cancel'), order_statuses_path, :class => 'btn'  %>

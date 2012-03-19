@@ -17,6 +17,12 @@
   <div class="color_picker" style="background-color: <%= @order_status.color %>"></div>
 </p>
 
+<p>
+  <b><%= t('helpers.label.order_status.first_status') %></b><br />
+  <%= formatted_first_status_for(@order_status) %>
+</p>
+
+
 <div class="form-actions">
   <%= link_to t('button.back'), order_statuses_path, :class => 'btn'  %>
   <%= link_to t('button.edit'), edit_order_status_path(@order_status), :class => 'btn' %>

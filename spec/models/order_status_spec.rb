@@ -20,4 +20,27 @@ describe OrderStatus do
   it { should_not allow_value("xFF0000").for(:color) }
   it { should allow_mass_assignment_of(:color) }
 
+  it { should validate_presence_of :first_status }
+
+  it "should not be first" do
+    status = Factory(:order_status)
+    status.first?.should be_false 
+  end
+
+  it "should be first" do
+    status = Factory(:order_status, :first_status => 1)
+    status.first?.should be_true 
+  end
+
+  it "should change first status element to false" do
+    Factory(:order_status)
+    Factory(:order_status, :first_status => 1) 
+    Factory(:order_status) 
+
+    OrderStatus.remove_first_flag
+
+    OrderStatus.all.each do |status|
+      status.first?.should be_false
+    end
+  end
 end
