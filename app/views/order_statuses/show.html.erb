@@ -1,5 +1,5 @@
 <p>
-<h1><%= t('order_status.title.order_status') %></h1>
+  <h1><%= t('order_statuses.show.title') %></h1>
 </p>
 
 <p>
@@ -24,7 +24,7 @@
 
 
 <div class="form-actions">
-  <%= link_to t('button.back'), order_statuses_path, :class => 'btn'  %>
-  <%= link_to t('button.edit'), edit_order_status_path(@order_status), :class => 'btn' %>
-  <%= link_to t('button.destroy'), order_status_path(@order_status), :method => 'delete', :confirm => t('confirmation.message'), :class => 'btn btn-danger' %>
+  <%= link_to t('buttons.back'), order_statuses_path, :class => 'btn'  %>
+  <%= link_to t('buttons.edit'), edit_order_status_path(@order_status), :class => 'btn' %>
+  <%= link_to t('buttons.destroy'), order_status_path(@order_status), :method => 'delete', :confirm => t('messages.confirmation'), :class => 'btn btn-danger' %>
 </div>

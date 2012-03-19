@@ -1,9 +1,9 @@
 <p>
-<h1><%= t('user.title.users') %></h1>
+  <h1><%= t('users.index.title') %></h1>
 </p>
 <% if @users.empty? %>
   <div class="alert alert-info">
-    <%= t('user.messages.customer.empty') %>
+    <%= t('users.index.empty') %>
   </div>
 <% else %>
   <table class="table table-striped">
@@ -25,16 +25,16 @@
           <td>
             <% if user.active? %>
               <span class="label label-success">
-                <%= t('user.messages.active') %>
+                <%= t('users.index.active') %>
               </span>
             <% else %>
               <span class="label label-warning">
-                <%= t('user.messages.unactive') %>
+                <%= t('users.index.unactive') %>
               </span>
             <% end %>
           </td>
           <td>
-            <%= link_to t('button.destroy'), user_path(user), :method => :delete, :confirm => t('confirmation.message'), :class => 'btn btn-mini btn-danger', :id => "destroy-#{user.username}" %>
+            <%= link_to t('buttons.destroy'), user_path(user), :method => :delete, :confirm => t('messages.confirmation'), :class => 'btn btn-mini btn-danger', :id => "destroy-#{user.username}" %>
           </td>
         </tr>
       <% end %>

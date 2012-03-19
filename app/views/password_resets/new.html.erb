@@ -1,6 +1,6 @@
 <%= form_tag password_resets_path, :class => 'form-horizontal', :method => :post do %>
   <fieldset>
-    <legend><%= t('user.title.forgot_password') %></legend>
+    <legend><%= t('password_resets.new.title') %></legend>
 
     <div class="control-group">
       <%= label_tag :email, nil, :class => 'control-label' %>
@@ -10,8 +10,8 @@
     </div>
 
     <div class="form-actions">
-      <%= submit_tag t('user.button.forgot_password'), :id => "commit", :class => 'btn btn-primary' %>
-      <%= link_to t('button.cancel'), root_path, :id => 'cancel', :class => 'btn' %>
+      <%= submit_tag t('password_resets.new.buttons.forgot_password'), :id => "commit", :class => 'btn btn-primary' %>
+      <%= link_to t('buttons.cancel'), root_path, :id => 'cancel', :class => 'btn' %>
     </div>
   </fieldset>
 <% end %>

@@ -9,16 +9,16 @@ class SessionsController < ApplicationController
   def create
     user = login(params[:username], params[:password], params[:remember_me])
     if user
-      redirect_back_or_to root_url, :notice => t('user.messages.login')
+      redirect_back_or_to root_url, :notice => t('sessions.flash.create.notice')
     else
-      flash.now.alert = t('user.messages.error.invalid_login')
+      flash.now.alert = t('sessions.flash.create.alert')
       render :new
     end
   end
 
   def destroy
     logout
-    redirect_to root_url, :notice => t('user.messages.logout')
+    redirect_to root_url, :notice => t('sessions.flash.destroy.notice')
   end
   
 end

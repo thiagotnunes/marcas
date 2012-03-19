@@ -8,7 +8,7 @@
   <% end %>
 
   <fieldset>
-    <legend><%= t('user.title.register_user') %></legend>
+    <legend><%= t('users.new.title') %></legend>
 
     <div class="control-group">
       <%= f.label :username, :class => 'control-label' %>
@@ -39,8 +39,8 @@
     </div>
 
     <div class="form-actions">
-      <%= f.submit t('user.button.register_user'), :class => 'btn btn-primary', :id => "commit" %>
-      <%= link_to t('button.cancel'), root_path, :id => 'cancel', :class => 'btn' %>
+      <%= f.submit t('users.new.buttons.register_user'), :class => 'btn btn-primary', :id => "commit" %>
+      <%= link_to t('buttons.cancel'), root_path, :id => 'cancel', :class => 'btn' %>
     </div>
   </fieldset>
 <% end %>

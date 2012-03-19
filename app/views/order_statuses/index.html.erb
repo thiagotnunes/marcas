@@ -1,9 +1,9 @@
 <p>
-<h1><%= t('order_status.title.order_statuses') %></h1>
+  <h1><%= t('order_statuses.index.title') %></h1>
 </p>
 <% if @order_statuses.empty? %>
   <div class="alert alert-info">
-    <%= t('order_status.messages.empty') %>
+    <%= t('order_statuses.index.empty') %>
   </div>
 <% else %>
   <table class="table table-striped">
@@ -26,12 +26,12 @@
             <div class="color_picker" style="background-color: <%= order_status.color %>"></div>
           </td>
           <td>
-            <%= link_to t('button.edit'), edit_order_status_path(order_status), :class => 'btn btn-mini', :id => "edit-#{order_status.status}" %>
-            <%= link_to t('button.destroy'), order_status_path(order_status), :method => :delete, :confirm => t('confirmation.message'), :class => 'btn btn-mini btn-danger', :id => "destroy-#{order_status.status}"  %>
+            <%= link_to t('buttons.edit'), edit_order_status_path(order_status), :class => 'btn btn-mini', :id => "edit-#{order_status.status}" %>
+            <%= link_to t('buttons.destroy'), order_status_path(order_status), :method => :delete, :confirm => t('messages.confirmation'), :class => 'btn btn-mini btn-danger', :id => "destroy-#{order_status.status}"  %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% end %>
-<%= link_to t('button.new'), new_order_status_path, :class => 'btn btn-primary', :id => "new" %>
+<%= link_to t('buttons.new'), new_order_status_path, :class => 'btn btn-primary', :id => "new" %>

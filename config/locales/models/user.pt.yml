@@ -1,0 +1,26 @@
+pt:
+  activerecord:
+    models:
+      user: "Usuario"
+    attributes:
+      user:
+        id: "Id"
+        username: "Usuario"
+        email: "Email"
+        old_password: "Senha atual"
+        password: "Senha"
+        password_confirmation: "Confirmacao de senha"
+    errors:
+      messages:
+        invalid: "invalido"
+  helpers:
+    label:
+      user:
+        id: "Id"
+        username: "Usuario"
+        email: "Email"
+        old_password: "Senha atual"
+        password: "Senha"
+        password_confirmation: "Confirmacao de senha"
+        remember_me: "Lembrar"
+        activation_state: "Status de ativacao"

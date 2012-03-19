@@ -7,7 +7,7 @@
     </div>
   <% end %>
   <fieldset>
-    <legend><%= t('order_status.title.order_statuses') %></legend>
+    <legend><%= t('order_statuses.form.title') %></legend>
 
     <div class="control-group">
       <%= f.label :status, :class => 'control-label' %>
@@ -39,7 +39,7 @@
 
     <div class="form-actions">
       <%= f.submit button_label, :class => 'btn btn-primary', :id => "commit" %>
-      <%= link_to t('button.cancel'), order_statuses_path, :class => 'btn'  %>
+      <%= link_to t('buttons.cancel'), order_statuses_path, :class => 'btn'  %>
     </div>
   </fieldset>
 <% end %>

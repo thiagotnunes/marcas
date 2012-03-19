@@ -73,5 +73,7 @@ module Marcas
       g.test_framework false
       g.stylesheets false
     end
+
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
   end
 end

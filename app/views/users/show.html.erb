@@ -1,5 +1,5 @@
 <p>
-  <h1><%= t('user.title.user') %></h1>
+  <h1><%= t('users.show.title') %></h1>
 </p>
 
 <p>
@@ -14,7 +14,7 @@
 
 <div class="form-actions">
   <% if can? :edit_password, @user %>
-    <%= link_to t('button.change_password'), edit_password_path(@user), :id => "change_password", :class => 'btn'  %>
+    <%= link_to t('users.edit_password.buttons.change_password'), edit_password_path(@user), :id => "change_password", :class => 'btn'  %>
   <% end %>
-  <%= link_to t('button.back'), users_path, :class => 'btn'  %>
+  <%= link_to t('buttons.back'), users_path, :class => 'btn'  %>
 </div>

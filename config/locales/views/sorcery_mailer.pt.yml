@@ -1,0 +1,8 @@
+pt:
+  sorcery_mailer:
+    activation_needed_email:
+      subject: "Siga as instrucoes para ativar sua conta."
+    activation_success_email:
+      subject: "Sua conta foi ativada com sucesso!"
+    reset_password_email:
+      subject: "Siga as instrucoes para resetar sua senha."

@@ -5,81 +5,13 @@ pt:
   make: "Realizar"
   actions: "Acoes"
   navigation: "Navegacao"
-  confirmation:
-    message: "Voce realmente deseja remove-lo?"
+  messages: 
+    confirmation: "Voce realmente deseja remove-lo?"
   services:
     trademarks_registration: "Registro de marcas"
     domain_registration: "Registro de dominios"
     patenting: "Registro de patentes"
-  user:
-    navbar:
-      logged_as: "Logado como"
-      logout: "Sair"
-      signup: "registro"
-      login: "login"
-    title:
-      change_password: "Atualizar a senha"
-      register_user: "Cadastro de Usuario"
-      forgot_password: "Esqueci minha senha"
-      login: "Entrar no sistema"
-      user: "Usuario"
-      users: "Usuarios"
-    button:
-      change_password: "Atualizar a senha"
-      register_user: "Cadastrar"
-      forgot_password: "Enviar email"
-      login: "Entrar"
-    mailer:
-      title:
-        activation_needed: "Bem vindo a Marca Expressa"
-        activation_success: "Sua conta foi ativada"
-        reset_password: "Sua senha foi resetada"
-    messages:
-      customer:
-        empty: "Nenhum usuario disponivel"
-      created: "Usuario criado com sucesso. Um email lhe foi enviado. Verifique-o para ativar sua conta."
-      password_changed: "Senha alterada com sucesso."
-      removed: "Usuario removido com sucesso."
-      activated: "Usuario ativado com sucesso."
-      login: "Login realizado com sucesso."
-      logout: "Logout realizado com sucesso."
-      active: "Ativado"
-      unactive: "Esperando ativacao"
-      error:
-        invalid_login: "Usuario ou senha invalidos"
-  order_status:
-    title:
-      order_statuses: "Estados de pedido"
-      order_status: "Estado de pedido"
-    messages:
-      empty: "Nenhum estado de pedido disponivel."
-      created: "Estado de pedido criado com sucesso."
-      updated: "Estado de pedido atualizado com sucesso."
-  activerecord:
-    errors:
-      messages:
-        blank: "nao pode ser vazio"
-        too_long: "e muito longo (deve conter no maximo %{count} caracteres)"
-        too_short: "e muito curto (deve conter no minimo %{count} caracteres)"
-        confirmation: "nao e igual a confirmacao"
-        invalid: "invalido"
-        taken: "ja esta registrado, por favor selecione outro"
-        wrong_length: "deve ter um tamanho igual a %{count}"
-    attributes:
-      user:
-        id: "Id"
-        username: "Usuario"
-        email: "Email"
-        old_password: "Senha atual"
-        password: "Senha"
-        password_confirmation: "Confirmacao de senha"
-      order_status:
-        id: "Id"
-        status: "Estado"
-        description: "Descricao"
-        color: "Cor"
-        first_status: "Primeiro?"
-  button:
+  buttons:
     cancel: "Cancelar"
     back: "Voltar"
     destroy: "Remover"
@@ -87,20 +19,12 @@ pt:
     new: "Novo"
     create: "Criar"
     update: "Atualizar"
-  helpers:
-    label:
-      user:
-        id: "Id"
-        username: "Usuario"
-        email: "Email"
-        old_password: "Senha atual"
-        password: "Senha"
-        password_confirmation: "Confirmacao de senha"
-        remember_me: "Lembrar"
-        activation_state: "Status de ativacao"
-      order_status:
-        id: "Id"
-        status: "Estado"
-        description: "Descricao"
-        color: "Cor"
-        first_status: "Primeiro?"
+  activerecord:
+    errors:
+      messages:
+        blank: "nao pode ser vazio"
+        too_long: "e muito longo (deve conter no maximo %{count} caracteres)"
+        too_short: "e muito curto (deve conter no minimo %{count} caracteres)"
+        confirmation: "nao e igual a confirmacao"
+        taken: "ja esta registrado, por favor selecione outro"
+        wrong_length: "deve ter um tamanho igual a %{count}"

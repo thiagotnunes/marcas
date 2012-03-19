@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     @user.role = :customer
 
     if @user.save
-      redirect_to root_url, notice: t('user.messages.created')
+      redirect_to root_url, notice: t('users.flash.create.notice')
     else
       render :new
     end
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
   def update_password
     if change_password(params[:user])
-      redirect_to root_url, notice: t('user.messages.password_changed')
+      redirect_to root_url, notice: t('users.flash.update_password.notice')
     else
       render :edit_password
     end
@@ -54,13 +54,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
 
-    redirect_to users_url, notice: t('user.messages.removed')
+    redirect_to users_url, notice: t('users.flash.destroy.notice')
   end
 
   def activate
     if (@user = User.load_from_activation_token(params[:id]))
       @user.activate!
-      redirect_to login_path, :notice => t('user.messages.activated')
+      redirect_to login_path, :notice => t('users.flash.activate.notice')
     else
       not_authenticated
     end

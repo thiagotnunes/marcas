@@ -1,0 +1,18 @@
+pt:
+  sessions:
+    new:
+      title: "Login"
+      buttons:
+        login: "Fazer login" 
+      logged_as: "Logado como"
+      logout: "Sair"
+      signup: "registro"
+      login: "login"
+      error:
+        invalid_login: 
+    flash:
+      create:
+        alert: "Usuario ou senha invalidos"
+        notice: "Login realizado com sucesso."
+      destroy:
+        notice: "Logout realizado com sucesso."

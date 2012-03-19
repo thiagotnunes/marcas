@@ -1,0 +1,19 @@
+pt:
+  activerecord:
+    models:
+      order_status: "Estado de pedido"
+    attributes:
+      order_status:
+        id: "Id"
+        status: "Estado"
+        description: "Descricao"
+        color: "Cor"
+        first_status: "Primeiro?"
+  helpers:
+    label:
+      order_status:
+        id: "Id"
+        status: "Estado"
+        description: "Descricao"
+        color: "Cor"
+        first_status: "Primeiro?"

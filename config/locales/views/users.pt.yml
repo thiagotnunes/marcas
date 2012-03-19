@@ -1,0 +1,31 @@
+pt:
+  users:
+    index:
+      title: "Usuarios"
+      empty: "Nenhum usuario disponivel."
+      active: "Ativado"
+      unactive: "Esperando ativacao"
+    show:
+      title: "Usuario"
+    edit_password:
+      title: "Atualizar a senha"
+      buttons:
+        change_password: "Atualizar a senha"
+    new:
+      title: "Cadastro de usuario"
+      buttons:
+        register_user: "Cadastrar"
+    flash:
+      create:
+        notice: "Usuario criado com sucesso. Um email lhe foi enviado com instrucoes para ativar sua conta."
+      update_password:
+        notice: "Senha alterada com sucesso."
+      destroy:
+        notice: "Usuario removido com sucesso."
+      activate:
+        notice: "Usuario ativado com sucesso."
+    navbar:
+      logged_as: "Logado como"
+      logout: "Sair"
+      signup: "registro"
+      login: "login"

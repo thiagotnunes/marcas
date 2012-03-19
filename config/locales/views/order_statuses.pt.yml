@@ -1,0 +1,16 @@
+pt:
+  order_statuses:
+    index:
+      title: "Estados de pedido"
+      empty: "Nenhum estado de pedido disponivel."
+    show:
+      title: "Estado de pedido"
+    form:
+      title: "Estado de pedido"
+    flash:
+      create:
+        notice: "Estado de pedido criado com sucesso."
+      update:
+        notice: "Estado de pedido alterado com sucesso."
+      destroy:
+        notice: "Estado de pedido removido com sucesso."
