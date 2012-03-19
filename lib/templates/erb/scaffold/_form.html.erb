@@ -1,6 +1,13 @@
 <%%= form_for @<%= singular_table_name %>, :html => { :class => 'form-horizontal' } do |f| %>
-  <fieldset>
+  <%% if @<%= singular_table_name %>.errors.any? %>
+    <div id="error" class="alert alert-error">
+      <%% for message in @<%= singular_table_name %>.errors.full_messages %>
+        <div><%%= message %></div>
+      <%% end %>
+    </div>
+  <%% end %>
 
+  <fieldset>
     <legend><%%= t('<%= singular_table_name %>.title.<%= index_helper %>') %></legend>
 
     <% attributes.each do |attribute| -%>

@@ -40,5 +40,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   def destroy
     @<%= file_name %> = <%= orm_class.find(class_name, "params[:id]") %>
     @<%= orm_instance.destroy %>
+
+    redirect_to <%= table_name %>_url
   end
 end
