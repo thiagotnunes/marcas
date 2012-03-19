@@ -1,6 +1,13 @@
 <%= form_for @order_status, :html => { :class => 'form-horizontal' } do |f| %>
+  <% if @order_status.errors.any? %>
+    <div id="error" class="alert alert-error">
+        <% for message in @order_status.errors.full_messages %>
+          <div><%= message %></div>
+        <% end %>
+    </div>
+  <% end %>
   <fieldset>
-    <legend><%= controller.action_name.capitalize %> Order Status</legend>
+    <legend><%= t('order_status.title.order_statuses') %></legend>
 
     <div class="control-group">
       <%= f.label :status, :class => 'control-label' %>

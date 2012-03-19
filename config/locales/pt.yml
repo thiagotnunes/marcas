@@ -49,12 +49,12 @@ pt:
         invalid_login: "Usuario ou senha invalidos"
   order_status:
     title:
-      order_statuses: "Estados de um pedido"
-      order_status: "Estado de um pedido"
+      order_statuses: "Estados de pedido"
+      order_status: "Estado de pedido"
     messages:
       empty: "Nenhum estado de pedido disponivel."
-      created: "Estado do pedido criado com sucesso."
-      updated: "Estado do pedido atualizado com sucesso."
+      created: "Estado de pedido criado com sucesso."
+      updated: "Estado de pedido atualizado com sucesso."
   activerecord:
     errors:
       messages:
@@ -65,15 +65,20 @@ pt:
         invalid: "invalido"
         taken: "ja esta registrado, por favor selecione outro"
         wrong_length: "deve ter um tamanho igual a %{count}"
-    models:
-      attributes:
-        user:
-          id: "Id"
-          username: "Usuario"
-          email: "Email"
-          old_password: "Senha atual"
-          password: "Senha"
-          password_confirmation: "Confirmacao de senha"
+    attributes:
+      user:
+        id: "Id"
+        username: "Usuario"
+        email: "Email"
+        old_password: "Senha atual"
+        password: "Senha"
+        password_confirmation: "Confirmacao de senha"
+      order_status:
+        id: "Id"
+        status: "Estado"
+        description: "Descricao"
+        color: "Cor"
+        first_status: "Primeiro?"
   button:
     cancel: "Cancelar"
     back: "Voltar"

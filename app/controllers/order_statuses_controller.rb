@@ -38,7 +38,7 @@ class OrderStatusesController < ApplicationController
     if @order_status.update_attributes(params[:order_status])
         redirect_to @order_status, notice: t('order_status.messages.updated')
     else
-      render :new
+      render :edit
     end
   end
 
