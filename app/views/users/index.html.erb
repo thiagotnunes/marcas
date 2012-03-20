@@ -22,17 +22,7 @@
           <td><%= user.id %></td>
           <td><%= link_to user.username, user_path(user) %></td>
           <td><%= user.email %></td>
-          <td>
-            <% if user.active? %>
-              <span class="label label-success">
-                <%= t('users.index.active') %>
-              </span>
-            <% else %>
-              <span class="label label-warning">
-                <%= t('users.index.unactive') %>
-              </span>
-            <% end %>
-          </td>
+          <td><%= formatted_activation_status_for(user) %></td>
           <td>
             <%= link_to t('buttons.destroy'), user_path(user), :method => :delete, :confirm => t('messages.confirmation'), :class => 'btn btn-mini btn-danger', :id => "destroy-#{user.username}" %>
           </td>
