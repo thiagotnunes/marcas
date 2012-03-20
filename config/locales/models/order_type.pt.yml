@@ -1,0 +1,14 @@
+pt:
+  activerecord:
+    models:
+      order_type: "Tipo de pedido"
+    attributes:
+      order_type:
+        id: "Id"
+        name: "Nome"
+        description: "Descricao"
+  helpers:
+    label:
+      order_type:
+        id: "Id"
+        name: "Nome"
