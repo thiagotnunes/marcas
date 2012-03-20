@@ -3,13 +3,13 @@ When /^I go to the list of customers$/ do
 end
 
 Then /^I should not see any customers$/ do
-  page.should have_content(I18n.t('user.messages.customer.empty'))
+  page.should have_content(I18n.t('users.index.empty'))
 end
 
 Then /^I should see an activated user$/ do 
-  page.should have_content(I18n.t('user.messages.active'))
+  page.should have_content(I18n.t('users.index.active'))
 end
 
 Then /^I should see a unactive user$/ do 
-  page.should have_content(I18n.t('user.messages.unactive'))
+  page.should have_content(I18n.t('users.index.unactive'))
 end

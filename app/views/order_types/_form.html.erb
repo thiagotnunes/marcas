@@ -1,0 +1,32 @@
+<%= form_for @order_type, :html => { :class => 'form-horizontal' } do |f| %>
+  <% if @order_type.errors.any? %>
+    <div id="error" class="alert alert-error">
+      <% for message in @order_type.errors.full_messages %>
+      <div><%= message %></div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <fieldset>
+    <legend><%= t('order_types.form.title') %></legend>
+    
+    <div class="control-group">
+      <%= f.label :name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :name, :class => 'text_field' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :description, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_area :description, :class => 'text_area' %>
+      </div>
+    </div>
+    
+    <div class="form-actions">
+      <%= f.submit button_label, :class => 'btn btn-primary', :id => 'commit' %>
+      <%= link_to t('buttons.cancel'), order_types_path, :class => 'btn'  %>
+    </div>
+  </fieldset>
+<% end %>

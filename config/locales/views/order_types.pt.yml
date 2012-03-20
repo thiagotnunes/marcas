@@ -1,0 +1,16 @@
+pt:
+  order_types:
+    index:
+      title: "Tipos de pedido"
+      empty: "Nenhum tipo de pedido disponivel."
+    show:
+      title: "Tipo de pedido"
+    form:
+      title: "Tipo de pedido"
+    flash:
+      create:
+        notice: "Tipo de pedido criado com sucesso."
+      update:
+        notice: "Tipo de pedido alterado com sucesso."
+      destroy:
+        notice: "Tipo de pedido removido com sucesso."

@@ -1,5 +1,7 @@
 Marcas::Application.routes.draw do
 
+  resources :order_types
+
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   post "login" => "sessions#create", :as => "login"

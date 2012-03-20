@@ -11,7 +11,7 @@ When /^I click on "(.*)"$/ do |element|
 end
 
 When /^I delete "(.*)"$/ do |id|
-  click_link("destroy-#{id}")
+  click_link("destroy-#{id.parameterize}")
 end
 
 Then /^show me the page$/ do

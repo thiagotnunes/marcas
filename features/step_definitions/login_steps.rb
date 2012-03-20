@@ -93,7 +93,7 @@ When /^I enter an invalid current password$/ do
 end
 
 Then /^I should receive a notification to activate my user$/ do
-  page.should have_content(I18n.t('user.messages.created'));
+  page.should have_content(I18n.t('users.flash.create.notice'));
 end
 
 Then /^no user should exist$/ do
@@ -101,7 +101,7 @@ Then /^no user should exist$/ do
 end
 
 Then /^I should receive a success activation message$/ do
-  page.should have_content(I18n.t('user.messages.activated'))
+  page.should have_content(I18n.t('users.flash.activate.notice'))
 end
 
 Then /^the user "(.*)" should be active$/ do |username|
@@ -110,11 +110,11 @@ Then /^the user "(.*)" should be active$/ do |username|
 end
 
 Then /^I should be logged in as "(.*)"$/ do |username|
-  page.should have_content("#{I18n.t('user.navbar.logged_as')} #{username}. #{I18n.t('user.navbar.logout')}")
+  page.should have_content("#{I18n.t('sessions.new.logged_as')} #{username}. #{I18n.t('sessions.new.logout')}")
 end
 
 Then /^I should not be logged in$/ do
-  page.should have_content("#{I18n.t('make')} #{I18n.t('user.navbar.signup')} #{I18n.t('or')} #{I18n.t('user.navbar.login')}")
+  page.should have_content("#{I18n.t('make')} #{I18n.t('sessions.new.signup')} #{I18n.t('or')} #{I18n.t('sessions.new.login')}")
 end
 
 def create_customer(username)

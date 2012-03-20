@@ -1,0 +1,19 @@
+<p>
+  <h1><%= t('order_types.index.title') %></h1>
+</p>
+
+<p>
+  <b><%= t('helpers.label.order_type.name') %></b><br />
+  <%= @order_type.name %>
+</p>
+
+<p>
+  <b><%= t('helpers.label.order_type.description') %></b><br />
+  <%= @order_type.description %>
+</p>
+
+<div class="form-actions">
+  <%= link_to t('buttons.back'), order_types_path, :class => 'btn'  %>
+  <%= link_to t('buttons.edit'), edit_order_type_path(@order_type), :class => 'btn' %>
+  <%= link_to t('buttons.destroy'), order_type_path(@order_type), :method => 'delete', :confirm => t('messages.confirmation'), :class => 'btn btn-danger' %>
+</div>

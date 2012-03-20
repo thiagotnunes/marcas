@@ -19,4 +19,8 @@ FactoryGirl.define do
     color "#000000"
     first_status 0
   end
+
+  factory :order_type do
+    sequence(:name) { |n| "name#{n}" }
+  end
 end

@@ -1,0 +1,35 @@
+<p>
+  <h1><%= t('order_type.title.order_types') %></h1>
+</p>
+
+<% if @order_types.empty? %>
+  <div class="alert alert-info">
+    <%= t('order_types.index.empty') %>
+  </div>
+<% else %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= t('helpers.label.order_type.id') %></th>
+        <th><%= t('helpers.label.order_type.name') %></th>
+        <th><%= t('helpers.label.order_type.description') %></th>
+        <th><%= t('actions') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order_types.each do |order_type| %>
+        <tr>
+          <td><%= order_type.id %></td>
+          <td><%= link_to order_type.name, order_type_path(order_type) %></td>
+          <td><%= order_type.description %></td>
+          <td>
+            <%= link_to t('buttons.edit'), edit_order_type_path(order_type), :class => 'btn btn-mini', :id => "edit-#{order_type.name.parameterize}" %>
+            <%= link_to t('buttons.destroy'), order_type_path(order_type), confirm: t('messages.confirmation'), :class => 'btn btn-mini btn-danger', method: :delete, :id => "destroy-#{order_type.name.parameterize}" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<%= link_to t('buttons.new'), new_order_type_path, :class => 'btn btn-primary', :id => 'new' %>
