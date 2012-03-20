@@ -8,7 +8,7 @@
   <%% end %>
 
   <fieldset>
-    <legend><%%= t('<%= singular_table_name %>.title.<%= index_helper %>') %></legend>
+    <legend><%%= t('<%= table_name %>.form.title') %></legend>
     <% attributes.each do |attribute| %>
     <div class="control-group">
       <%%= f.label :<%= attribute.name %>, :class => 'control-label' %>
@@ -20,7 +20,7 @@
 
     <div class="form-actions">
       <%%= f.submit button_label, :class => 'btn btn-primary', :id => 'commit' %>
-      <%%= link_to t('button.cancel'), <%= index_helper %>_path, :class => 'btn'  %>
+      <%%= link_to t('buttons.cancel'), <%= index_helper %>_path, :class => 'btn'  %>
     </div>
   </fieldset>
 <%% end %>

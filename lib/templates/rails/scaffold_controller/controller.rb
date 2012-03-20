@@ -21,7 +21,7 @@ class <%= controller_class_name %>Controller < ApplicationController
     @<%= file_name %> = <%= orm_class.build(class_name, "params[:#{file_name}]") %>
 
     if @<%= orm_instance.save %>
-      redirect_to @<%= singular_table_name %>, notice: t('<%= singular_table_name %>.messages.created')
+      redirect_to @<%= singular_table_name %>, notice: t('<%= table_name %>.flash.create.notice')
     else
       render :new
     end
@@ -31,7 +31,7 @@ class <%= controller_class_name %>Controller < ApplicationController
     @<%= file_name %> = <%= orm_class.find(class_name, "params[:id]") %>
 
     if @<%= orm_instance.update_attributes("params[:#{singular_table_name}]") %>
-      redirect_to @<%= singular_table_name %>, notice: t('<%= singular_table_name %>.messages.updated')
+      redirect_to @<%= singular_table_name %>, notice: t('<%= table_name %>.flash.update.notice')
     else
       render :edit
     end

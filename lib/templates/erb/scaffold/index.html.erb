@@ -4,7 +4,7 @@
 
 <%% if @<%= plural_table_name %>.empty? %>
   <div class="alert alert-info">
-    <%%= t('<%= singular_table_name %>.messages.empty') %>
+    <%%= t('<%= table_name %>.index.empty') %>
   </div>
 <%% else %>
   <table class="table table-striped">
@@ -29,8 +29,8 @@
 <% end -%>
 <% end -%>
           <td>
-            <%%= link_to t('button.edit'), edit_<%= singular_table_name %>_path(<%= singular_table_name %>), :class => 'btn btn-mini' %>
-            <%%= link_to t('button.destroy'), <%= singular_table_name %>_path(<%= singular_table_name %>), confirm: t('messages.confirmation'), :class => 'btn btn-mini btn-danger', method: :delete %>
+            <%%= link_to t('buttons.edit'), edit_<%= singular_table_name %>_path(<%= singular_table_name %>), :class => 'btn btn-mini' %>
+            <%%= link_to t('buttons.destroy'), <%= singular_table_name %>_path(<%= singular_table_name %>), confirm: t('messages.confirmation'), :class => 'btn btn-mini btn-danger', method: :delete %>
           </td>
         </tr>
       <%% end %>
@@ -38,4 +38,4 @@
   </table>
 <%% end %>
 
-<%%= link_to t('button.new'), new_<%= singular_table_name %>_path, :class => 'btn btn-primary', :id => 'new' %>
+<%%= link_to t('buttons.new'), new_<%= singular_table_name %>_path, :class => 'btn btn-primary', :id => 'new' %>

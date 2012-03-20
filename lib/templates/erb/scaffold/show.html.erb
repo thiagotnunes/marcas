@@ -1,5 +1,5 @@
 <p>
-  <h1><%%= t('<%= singular_table_name %>.title.<%= singular_table_name %>') %></h1>
+  <h1><%%= t('<%= table_name %>.index.title') %></h1>
 </p>
 
 <% attributes.each do |attribute| -%>
@@ -10,7 +10,7 @@
 
 <% end -%>
 <div class="form-actions">
-  <%%= link_to t('button.back'), <%= table_name %>_path, :class => 'btn'  %>
-  <%%= link_to t('button.edit'), edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), :class => 'btn' %>
-  <%%= link_to t('button.destroy'), <%= singular_table_name %>_path(@<%= singular_table_name %>), :method => 'delete', :confirm => t('confirmation.message'), :class => 'btn btn-danger' %>
+  <%%= link_to t('buttons.back'), <%= table_name %>_path, :class => 'btn'  %>
+  <%%= link_to t('buttons.edit'), edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), :class => 'btn' %>
+  <%%= link_to t('buttons.destroy'), <%= singular_table_name %>_path(@<%= singular_table_name %>), :method => 'delete', :confirm => t('messages.confirmation'), :class => 'btn btn-danger' %>
 </div>
