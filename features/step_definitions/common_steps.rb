@@ -2,6 +2,14 @@ Given /^I am on the home page$/ do
   visit(root_url)
 end
 
+Given /^no (.*) exists$/ do |name|
+  constant_for(name).destroy_all
+end
+
+When /^I go to the list of (.*)$/ do |name|
+  click_link(name.gsub(' ', '_'))
+end
+
 When /^I cancel$/ do
   click_on("cancel")
 end
@@ -36,4 +44,12 @@ end
 
 Then /^I should not have received any email$/ do
   ActionMailer::Base.deliveries.empty?.should be_true
+end
+
+Then /^I should not see any (.*)$/ do |name|
+  page.should have_content(I18n.t("#{name.gsub(' ', '_').pluralize}.index.empty"))
+end
+
+def constant_for(element)
+  element.gsub(' ', '_').camelize.constantize
 end
