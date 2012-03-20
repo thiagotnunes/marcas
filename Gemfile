@@ -27,7 +27,6 @@ group :test do
   gem 'watchr'
   gem 'spork'
   gem 'foreman'
-  gem 'i18n_yaml_generator'
 end
 
 gem 'heroku'
