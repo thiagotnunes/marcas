@@ -1,0 +1,19 @@
+pt:
+  activerecord:
+    models:
+      service: "Servico"
+    attributes:
+      service:
+        id: "Id"
+        name: "Nome"
+        description: "Descricao"
+        price: "Preco"
+        order_type_id: "Tipo de pedido"
+  helpers:
+    label:
+      service:
+        id: "Id"
+        name: "Nome"
+        description: "Descricao"
+        price: "Preco"
+        order_type: "Tipo de pedido"

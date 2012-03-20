@@ -1,5 +1,7 @@
 Marcas::Application.routes.draw do
 
+  resources :services
+
   resources :order_types
 
   get "logout" => "sessions#destroy", :as => "logout"

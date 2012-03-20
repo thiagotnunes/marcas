@@ -1,0 +1,29 @@
+<p>
+  <h1><%= t('services.index.title') %></h1>
+</p>
+
+<p>
+  <b><%= t('helpers.label.service.name') %></b><br />
+  <%= @service.name %>
+</p>
+
+<p>
+  <b><%= t('helpers.label.service.description') %></b><br />
+  <%= @service.description %>
+</p>
+
+<p>
+  <b><%= t('helpers.label.service.price') %></b><br />
+  <%= number_to_currency(@service.price) %>
+</p>
+
+<p>
+  <b><%= t('helpers.label.service.order_type') %></b><br />
+  <%= @service.order_type.name %>
+</p>
+
+<div class="form-actions">
+  <%= link_to t('buttons.back'), services_path, :class => 'btn'  %>
+  <%= link_to t('buttons.edit'), edit_service_path(@service), :class => 'btn' %>
+  <%= link_to t('buttons.destroy'), service_path(@service), :method => 'delete', :confirm => t('messages.confirmation'), :class => 'btn btn-danger' %>
+</div>

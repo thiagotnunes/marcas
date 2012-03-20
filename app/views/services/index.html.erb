@@ -1,0 +1,37 @@
+<p>
+  <h1><%= t('services.index.title') %></h1>
+</p>
+
+<% if @services.empty? %>
+  <div class="alert alert-info">
+    <%= t('services.index.empty') %>
+  </div>
+<% else %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= t('helpers.label.service.id') %></th>
+        <th><%= t('helpers.label.service.name') %></th>
+        <th><%= t('helpers.label.service.price') %></th>
+        <th><%= t('helpers.label.service.order_type') %></th>
+        <th><%= t('actions') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @services.each do |service| %>
+        <tr>
+          <td><%= service.id %></td>
+          <td><%= link_to service.name, service_path(service) %></td>
+          <td><%= number_to_currency(service.price) %></td>
+          <td><%= service.order_type.name %></td>
+          <td>
+            <%= link_to t('buttons.edit'), edit_service_path(service), :class => 'btn btn-mini', :id => "edit-#{service.name.parameterize}" %>
+            <%= link_to t('buttons.destroy'), service_path(service), confirm: t('messages.confirmation'), :class => 'btn btn-mini btn-danger', method: :delete, :id => "destroy-#{service.name.parameterize}" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<%= link_to t('buttons.new'), new_service_path, :class => 'btn btn-primary', :id => 'new' %>

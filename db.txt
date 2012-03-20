@@ -18,9 +18,9 @@ id
 type - trademark
 description
 
-OrderSubtype
+Service
 id 
-subtype - pesquisa de anterioridade, somente marca, somente logotipo, logotipo e marca
+name - pesquisa de anterioridade, somente marca, somente logotipo, logotipo e marca
 description
 price
 type

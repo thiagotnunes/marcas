@@ -1,0 +1,16 @@
+pt:
+  services:
+    index:
+      title: "Servicos"
+      empty: "Nenhum servico disponivel."
+    show:
+      title: "Servico"
+    form:
+      title: "Servico"
+    flash:
+      create:
+        notice: "Servico criado com sucesso."
+      update:
+        notice: "Servico alterado com sucesso."
+      destroy:
+        notice: "Servico removido com sucesso."
