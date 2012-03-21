@@ -35,7 +35,6 @@ Feature: Services Management
     And I create a service "Registro de anterioridade" with price "100.00" and type "Marca registrada"
     Then I should see "Registro de anterioridade"
 
-    @focus
   Scenario: Change a service
     Given a service "Registro de anterioridade" with price "20.00" and type "Marca registrada" exists
     And an order type "Direitos autorais" exists
