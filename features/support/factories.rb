@@ -29,4 +29,9 @@ FactoryGirl.define do
     price 100.0
     association :order_type
   end
+
+  factory :order_attachment do
+    sequence(:file) { |n| "file#{n}" }
+    filetype "image"
+  end
 end
