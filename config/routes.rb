@@ -1,5 +1,7 @@
 Marcas::Application.routes.draw do
 
+  resources :trademark_orders
+
   resources :services
 
   resources :order_types

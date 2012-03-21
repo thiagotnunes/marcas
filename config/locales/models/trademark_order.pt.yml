@@ -1,0 +1,19 @@
+pt:
+  activerecord:
+    models:
+      trademark_order: "Marca registrada"
+    attributes:
+      trademark_order:
+        id: "Id"
+        name: "Nome"
+        segment: "Segmento"
+        subsegment: "Subsegmento"
+        observations: "Observacoes"
+  helpers:
+    label:
+      trademark_order:
+        id: "Id"
+        name: "Nome"
+        segment: "Segmento"
+        subsegment: "Subsegmento"
+        observations: "Observacoes"

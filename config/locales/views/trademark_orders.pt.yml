@@ -1,0 +1,16 @@
+pt:
+  trademark_orders:
+    index:
+      title: "Marcas registradas"
+      empty: "Nenhuma marca registrada disponivel."
+    show:
+      title: "Marca registrada"
+    form:
+      title: "Marca registrada"
+    flash:
+      create:
+        notice: "Marca registrada criada com sucesso."
+      update:
+        notice: "Marca registrada alterada com sucesso."
+      destroy:
+        notice: "Marca registrada removida com sucesso."

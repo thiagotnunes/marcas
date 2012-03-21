@@ -6,20 +6,27 @@ class Ability
 
     user ||= User.new
     if user.admin?
-      can :manage, :all
-      cannot :update, User do |other|
-        user.id != other.id
-      end
-      cannot :change_password, User do |other|
-        user.id != other.id
-      end
-      cannot :destroy, User do |other|
-        other.admin?
-      end
+      admin_abilities_for(user)
     elsif user.customer?
-      can :change_password, User, :id => user.id
-      can :update, User, :id => user.id
-      can :show, User, :id => user.id
+      customer_abilities_for(user)
     end
+  end
+
+  def admin_abilities_for(user)
+    can :manage, :all
+
+    cannot [:change_password, :update], User do |other|
+      user.id != other.id
+    end
+    cannot :destroy, User do |other|
+      other.admin?
+    end
+
+    cannot [:create, :update], TrademarkOrder
+  end
+
+  def customer_abilities_for(user)
+    can [:change_password, :update, :show], User, :id => user.id
+    can [:create, :show], TrademarkOrder
   end
 end

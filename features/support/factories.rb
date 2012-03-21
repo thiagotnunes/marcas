@@ -34,4 +34,10 @@ FactoryGirl.define do
     sequence(:file) { |n| "file#{n}" }
     filetype "image"
   end
+  
+  factory :trademark_order do
+    name "name"
+    segment "segment"
+    subsegment "subsegment"
+  end
 end

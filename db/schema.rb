@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120321190738) do
+ActiveRecord::Schema.define(:version => 20120321192233) do
 
   create_table "order_attachments", :force => true do |t|
     t.string   "file"
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(:version => 20120321190738) do
   end
 
   add_index "services", ["order_type_id"], :name => "index_services_on_order_type_id"
+
+  create_table "trademark_orders", :force => true do |t|
+    t.string   "name"
+    t.string   "segment"
+    t.string   "subsegment"
+    t.text     "observations"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username",                        :null => false

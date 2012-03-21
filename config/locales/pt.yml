@@ -8,7 +8,7 @@ pt:
   messages: 
     confirmation: "Voce realmente deseja remove-lo?"
   services:
-    trademarks_registration: "Registro de marcas"
+    trademarks_registration: "Registrar uma marca"
     domain_registration: "Registro de dominios"
     patenting: "Registro de patentes"
   buttons:
