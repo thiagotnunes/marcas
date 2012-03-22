@@ -20,6 +20,7 @@ class TrademarkOrdersController < ApplicationController
 
   def create
     @trademark_order = TrademarkOrder.new(params[:trademark_order])
+    @trademark_order.user = current_user
 
     if @trademark_order.save
       redirect_to @trademark_order, notice: t('trademark_orders.flash.create.notice')

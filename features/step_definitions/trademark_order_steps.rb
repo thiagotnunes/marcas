@@ -1,6 +1,9 @@
 Given /^the following trademark orders exist$/ do |table|
   table.hashes.each do |hash|
-    Factory(:trademark_order, hash)
+    user = User.find_by_username(hash["user"])
+    new_hash = hash.reject { |key| key == "user" }
+    new_hash["user_id"] = user.id
+    Factory(:trademark_order, new_hash)
   end
 end
 

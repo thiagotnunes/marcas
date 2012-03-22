@@ -5,12 +5,13 @@ Feature: Trademark order management
 
   Background:
     Given an activated admin "admin"
+    And a customer "customer" exists
     And I am on the home page
     And I am logged in as "admin"
     And the following trademark orders exist
-      | name  | segment   | subsegment  | observations  |
-      | Trade | Segmento  | Subsegmento | Observacoes   |
-      | Right | Law       | Sublaw      | Hurry         |
+      | name  | segment   | subsegment  | observations  | user      |
+      | Trade | Segmento  | Subsegmento | Observacoes   | customer  |
+      | Right | Law       | Sublaw      | Hurry         | customer  |
 
   Scenario: List all the trademark orders
     When I go to the list of trademark orders
@@ -20,6 +21,7 @@ Feature: Trademark order management
     And I should see "Right"
     And I should see "Law"
     And I should see "Sublaw"
+    And I should see "customer"
     But I should not see "Observacoes"
     And I should not see "Hurry"
 
@@ -30,6 +32,7 @@ Feature: Trademark order management
     And I should see "Law"
     And I should see "Sublaw"
     And I should see "Hurry"
+    And I should see "customer"
 
   Scenario: No trademark order should be displayed
     Given no trademark order exists

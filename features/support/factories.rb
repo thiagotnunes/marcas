@@ -39,5 +39,6 @@ FactoryGirl.define do
     name "name"
     segment "segment"
     subsegment "subsegment"
+    association :user
   end
 end

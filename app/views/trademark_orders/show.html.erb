@@ -22,6 +22,11 @@
   <%= @trademark_order.observations %>
 </p>
 
+<p>
+  <b><%= t('helpers.label.trademark_order.user') %></b><br />
+  <%= @trademark_order.user.username %>
+</p>
+
 <div class="form-actions">
   <%= link_to t('buttons.back'), trademark_orders_path, :class => 'btn'  %>
   <% if can? :destroy, @trademark_order %>

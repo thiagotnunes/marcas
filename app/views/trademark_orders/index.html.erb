@@ -14,6 +14,7 @@
         <th><%= t('helpers.label.trademark_order.name') %></th>
         <th><%= t('helpers.label.trademark_order.segment') %></th>
         <th><%= t('helpers.label.trademark_order.subsegment') %></th>
+        <th><%= t('helpers.label.trademark_order.user') %></th>
         <th><%= t('actions') %></th>
       </tr>
     </thead>
@@ -24,6 +25,7 @@
           <td><%= link_to trademark_order.name, trademark_order_path(trademark_order) %></td>
           <td><%= trademark_order.segment %></td>
           <td><%= trademark_order.subsegment %></td>
+          <td><%= trademark_order.user.username %></td>
           <td>
             <%= link_to t('buttons.destroy'), trademark_order_path(trademark_order), confirm: t('messages.confirmation'), :class => 'btn btn-mini btn-danger', method: :delete %>
           </td>
