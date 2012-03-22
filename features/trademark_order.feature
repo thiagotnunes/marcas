@@ -8,7 +8,6 @@ Feature: Ordering a Trademark
     And I am on the home page
     And I am logged in as "customer"
 
-    @focus
   Scenario: Create a trademark order
     When I go to the new trademark order page
     And I create an order trademark with the following attributes

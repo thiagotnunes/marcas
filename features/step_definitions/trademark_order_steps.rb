@@ -1,3 +1,9 @@
+Given /^the following trademark orders exist$/ do |table|
+  table.hashes.each do |hash|
+    Factory(:trademark_order, hash)
+  end
+end
+
 When /^I go to the new trademark order page$/ do
   click_on("new_trademark_order")
 end
