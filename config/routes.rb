@@ -19,6 +19,7 @@ Marcas::Application.routes.draw do
   get "password_resets/update"
 
   get "index" => "home#index", :as => "home"
+  get "trademark_registration" => "home#trademark_registration", :as => "trademark_registration"
 
   root :to => "home#index"
 

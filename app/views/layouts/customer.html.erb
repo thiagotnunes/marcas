@@ -6,7 +6,7 @@
   <h3><%= t('navigation') %></h3>
   <ul class="nav nav-list">
     <li class="nav-header">Menu</li>
-    <li><%= link_to t('services.trademarks_registration'), new_trademark_order_path, :id => 'new_trademark_order' %></li>
+    <li><%= link_to t('services.trademarks.title'), trademark_registration_path, :id => 'trademark_registration' %></li>
   </ul>
 <% end %>
 <%= render :template => 'layouts/application' %>

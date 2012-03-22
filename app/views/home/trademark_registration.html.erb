@@ -1,33 +1,18 @@
 <div class="hero-unit">
-  <h1><%=t :brand_name %></h1>
+  <h1><%=t('services.trademarks.title') %></h1>
   <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+  <p>
+  <%= link_to t('services.trademarks.registration'), new_trademark_order_path, :class => "btn", :id => "new_trademark_order" %>
+  </p>
 </div>
 <div class="row-fluid">
-  <div class="span4">
-    <h2><%=t 'services.trademarks.title' %></h2>
+  <div class="span12">
+    <h2>Title</h2>
     <p>
     Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
     </p>
     <p>
-    <%= link_to t(:view_details), trademark_registration_path, :class => "btn", :id => "trademarks" %>
-    </p>
-  </div>
-  <div class="span4">
-    <h2><%=t 'services.domains.title' %></h2>
-    <p>
     Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-    </p>
-    <p>
-      <%= link_to t(:view_details), "#", :class => "btn" %>
-    </p>
-  </div>
-  <div class="span4">
-    <h2><%=t 'services.patenting.title' %></h2>
-    <p>
-    Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-    </p>
-    <p>
-      <%= link_to t(:view_details), "#", :class => "btn" %>
     </p>
   </div>
 </div>

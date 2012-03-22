@@ -5,7 +5,7 @@ pt:
     attributes:
       trademark_order:
         id: "Id"
-        name: "Nome"
+        name: "Nome da marca"
         segment: "Segmento"
         subsegment: "Subsegmento"
         observations: "Observacoes"
@@ -13,7 +13,7 @@ pt:
     label:
       trademark_order:
         id: "Id"
-        name: "Nome"
+        name: "Nome da marca"
         segment: "Segmento"
         subsegment: "Subsegmento"
         observations: "Observacoes"
