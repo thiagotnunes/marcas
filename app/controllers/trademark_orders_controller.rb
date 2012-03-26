@@ -2,6 +2,8 @@ class TrademarkOrdersController < ApplicationController
   before_filter :require_login
   load_and_authorize_resource
 
+  ORDER_TYPE_NAME = "Marcas"
+
   def index
     @trademark_orders = TrademarkOrder.all
   end
@@ -12,6 +14,7 @@ class TrademarkOrdersController < ApplicationController
 
   def new
     @trademark_order = TrademarkOrder.new
+    @services = Service.find_by_order_type_name(ORDER_TYPE_NAME)
   end
 
   def edit

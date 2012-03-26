@@ -27,6 +27,11 @@
   <%= trademark_order.user.username %>
 </p>
 
+<p>
+  <b><%= t('helpers.label.trademark_order.service') %></b><br />
+  <%= trademark_order.service.name %>
+</p>
+
 <div class="form-actions">
   <%= link_to t('buttons.back'), trademark_orders_path, :class => 'btn'  %>
   <% if can? :destroy, trademark_order %>

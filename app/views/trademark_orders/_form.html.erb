@@ -11,6 +11,13 @@
     <legend><%= t('trademark_orders.form.title') %></legend>
     
     <div class="control-group">
+      <%= f.label :service, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.collection_select(:service_id, @services, :id, :name, :class => 'text_field') %>
+      </div>
+    </div>
+
+    <div class="control-group">
       <%= f.label :name, :class => 'control-label' %>
       <div class="controls">
         <%= f.text_field :name, :class => 'text_field' %>

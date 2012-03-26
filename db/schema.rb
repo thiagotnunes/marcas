@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120322151227) do
+ActiveRecord::Schema.define(:version => 20120326232440) do
 
   create_table "order_attachments", :force => true do |t|
     t.string   "file"
@@ -55,8 +55,10 @@ ActiveRecord::Schema.define(:version => 20120322151227) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "user_id"
+    t.integer  "service_id"
   end
 
+  add_index "trademark_orders", ["service_id"], :name => "index_trademark_orders_on_service_id"
   add_index "trademark_orders", ["user_id"], :name => "index_trademark_orders_on_user_id"
 
   create_table "users", :force => true do |t|

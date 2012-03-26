@@ -12,4 +12,5 @@ describe TrademarkOrder do
   it { should ensure_length_of(:subsegment).is_at_most(100) }
 
   it { should belong_to(:user) }
+  it { should belong_to(:service) }
 end

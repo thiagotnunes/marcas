@@ -1,5 +1,6 @@
 class TrademarkOrder < ActiveRecord::Base
   belongs_to :user
+  belongs_to :service
 
   validates_presence_of :segment
   validates_length_of :segment, :within => 3..100

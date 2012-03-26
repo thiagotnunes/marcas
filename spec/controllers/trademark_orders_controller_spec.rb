@@ -6,6 +6,13 @@ describe TrademarkOrdersController do
     ignore_security
   end
 
+  it "should fetch all the services to create a trademark order" do
+    services = [Factory(:service)]
+    Service.stub(:find_by_order_type_name).and_return(services)
+    get :new
+    assigns(:services).should == services
+  end
+
   it "should create a trademark order with the current user" do
     user = Factory(:customer) 
     login_user(user)

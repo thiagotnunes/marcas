@@ -6,7 +6,6 @@ subsegment
 observations
 belongs_to user
 belongs_to service
-belongs_to order_type
 has_many order_attachments
 
 OrderAttachments
