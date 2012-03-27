@@ -10,10 +10,11 @@ Feature: Trademark order management
     And I am logged in as "admin"
     And an order type "Marcas" exists
     And a service "service" with price "100" and type "Marcas" exists
+    And an order status "pending" exists
     And the following trademark orders exist
-      | name  | segment   | subsegment  | observations  | user      | service |
-      | Trade | Segmento  | Subsegmento | Observacoes   | customer  | service   |
-      | Right | Law       | Sublaw      | Hurry         | customer  | service   |
+      | name  | segment   | subsegment  | observations  | user      | service | order_status |
+      | Trade | Segmento  | Subsegmento | Observacoes   | customer  | service   | pending |
+      | Right | Law       | Sublaw      | Hurry         | customer  | service   | pending |
 
   Scenario: List all the trademark orders
     When I go to the list of trademark orders
@@ -24,6 +25,7 @@ Feature: Trademark order management
     And I should see "Law"
     And I should see "Sublaw"
     And I should see "customer"
+    And I should see "pending"
     But I should not see "Observacoes"
     And I should not see "Hurry"
 
@@ -36,6 +38,7 @@ Feature: Trademark order management
     And I should see "Hurry"
     And I should see "customer"
     And I should see "service"
+    And I should see "pending"
 
   Scenario: No trademark order should be displayed
     Given no trademark order exists

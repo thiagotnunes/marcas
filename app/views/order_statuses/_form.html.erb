@@ -26,7 +26,7 @@
     <div class="control-group">
       <%= f.label :color, :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_field :color, :class => 'color{hash:true} text_field' %>
+        <%= f.select :color, options_for_color, { :include_blank => true }, :class => 'text_field' %>
       </div>
     </div>
 

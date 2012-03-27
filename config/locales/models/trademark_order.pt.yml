@@ -19,3 +19,4 @@ pt:
         observations: "Observacoes"
         user: "Usuario"
         service: "Service"
+        status: "Estado"

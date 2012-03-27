@@ -32,6 +32,13 @@
   <%= trademark_order.service.name %>
 </p>
 
+<p>
+  <b><%= t('helpers.label.trademark_order.status') %></b><br />
+  <div style="width: 20%;">
+    <%= progress_for(trademark_order) %>
+  </div>
+</p>
+
 <div class="form-actions">
   <%= link_to t('buttons.back'), trademark_orders_path, :class => 'btn'  %>
   <% if can? :destroy, trademark_order %>

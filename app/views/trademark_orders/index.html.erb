@@ -11,9 +11,9 @@
     <thead>
       <tr>
         <th><%= t('helpers.label.trademark_order.id') %></th>
-        <th><%= t('trademark_orders.index.progress') %></th>
         <th><%= t('helpers.label.trademark_order.user') %></th>
         <th><%= t('helpers.label.trademark_order.name') %></th>
+        <th><%= t('trademark_orders.index.progress') %></th>
         <th><%= t('helpers.label.trademark_order.segment') %></th>
         <th><%= t('helpers.label.trademark_order.subsegment') %></th>
         <th><%= t('actions') %></th>
@@ -23,9 +23,9 @@
       <% @trademark_orders.each do |trademark_order| %>
         <tr>
           <td><%= trademark_order.id %></td>
-          <td><%= progress_for(trademark_order) %></td>
           <td><%= trademark_order.user.username %></td>
           <td><%= link_to trademark_order.name, trademark_order_path(trademark_order) %></td>
+          <td><%= progress_for(trademark_order) %></td>
           <td><%= trademark_order.segment %></td>
           <td><%= trademark_order.subsegment %></td>
           <td>

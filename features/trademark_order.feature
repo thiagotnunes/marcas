@@ -9,6 +9,7 @@ Feature: Ordering a Trademark
     And I am logged in as "customer"
     And an order type "Marcas" exists
     And a service "service" with price "100" and type "Marcas" exists
+    And a first order status "pending" exists
 
   Scenario: Create a trademark order
     When I go to the new trademark order page

@@ -15,13 +15,6 @@ describe OrderStatus do
   it { should_not validate_presence_of :description } 
   it { should allow_mass_assignment_of(:description) }
 
-  it { should validate_presence_of :color } 
-  it { should ensure_length_of(:color).is_equal_to(7) } 
-  it { should allow_value("#FF0000").for(:color) }
-  it { should_not allow_value("FF0000").for(:color) }
-  it { should_not allow_value("xFF0000").for(:color) }
-  it { should allow_mass_assignment_of(:color) }
-
   it { should validate_presence_of :first_status }
 
   it "should not be first" do

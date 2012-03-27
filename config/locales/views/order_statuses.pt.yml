@@ -7,6 +7,10 @@ pt:
       title: "Estado de pedido"
     form:
       title: "Estado de pedido"
+      danger: "Parado"
+      warning: "Em andamento"
+      info: "Informacao"
+      success: "Sucesso"
     flash:
       create:
         notice: "Estado de pedido criado com sucesso."

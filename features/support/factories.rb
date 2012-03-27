@@ -16,7 +16,7 @@ FactoryGirl.define do
 
   factory :order_status do
     sequence(:status) { |n| "status#{n}" }
-    color "#000000"
+    color 'progress-danger'
     first_status 0
   end
 
@@ -40,5 +40,6 @@ FactoryGirl.define do
     segment "segment"
     subsegment "subsegment"
     association :user
+    association :order_status
   end
 end

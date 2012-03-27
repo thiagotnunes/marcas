@@ -2,9 +2,13 @@ Given /^the following trademark orders exist$/ do |table|
   table.hashes.each do |hash|
     user = User.find_by_username(hash["user"])
     service = Service.find_by_name(hash["service"])
-    new_hash = hash.reject { |key| key == "user" || key == "service" }
+    order_status = OrderStatus.find_by_status(hash["order_status"])
+
+    new_hash = hash.reject { |key| key == "user" || key == "service" || key == "order_status" }
     new_hash["user_id"] = user.id
     new_hash["service_id"] = service.id
+    new_hash["order_status_id"] = order_status.id
+
     Factory(:trademark_order, new_hash)
   end
 end
