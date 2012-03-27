@@ -1,4 +1,5 @@
 class OrderStatus < ActiveRecord::Base
+  has_many :trademark_orders
 
   default_scope :order => 'first_status DESC'
 
@@ -21,5 +22,9 @@ class OrderStatus < ActiveRecord::Base
 
   def self.all_first_status
     find(:all, :order => "first_status")
+  end
+
+  def self.find_first
+    first(:conditions => ["first_status = 1"])
   end
 end

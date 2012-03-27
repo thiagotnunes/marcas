@@ -24,7 +24,7 @@ class OrderStatusesController < ApplicationController
     update_first_flag
 
     if @order_status.save
-      redirect_to @order_status, notice: t('order_status.messages.created')
+      redirect_to @order_status, notice: t('order_statuses.flash.create.notice')
     else
         render :new
     end
@@ -36,7 +36,7 @@ class OrderStatusesController < ApplicationController
     update_first_flag unless @order_status.first?
 
     if @order_status.update_attributes(params[:order_status])
-        redirect_to @order_status, notice: t('order_status.messages.updated')
+        redirect_to @order_status, notice: t('order_statuses.flash.update.notice')
     else
       render :edit
     end

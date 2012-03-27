@@ -1,6 +1,9 @@
 class TrademarkOrder < ActiveRecord::Base
   belongs_to :user
   belongs_to :service
+  belongs_to :order_status
+
+  default_scope :order => 'service_id DESC'
 
   validates_presence_of :segment
   validates_length_of :segment, :within => 3..100

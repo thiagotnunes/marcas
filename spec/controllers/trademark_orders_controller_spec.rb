@@ -13,12 +13,16 @@ describe TrademarkOrdersController do
     assigns(:services).should == services
   end
 
-  it "should create a trademark order with the current user" do
+  it "should create a trademark order with the current user and first order status" do
     user = Factory(:customer) 
+    first_status = Factory(:order_status, :first_status => 1)
+    Factory(:order_status, :first_status => 0)
+
     login_user(user)
     post :create, {:trademark_order => Factory.attributes_for(:trademark_order)}
 
     trademark_order = TrademarkOrder.first
+    trademark_order.order_status.should == first_status
     trademark_order.user.should == user
   end
   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120326232440) do
+ActiveRecord::Schema.define(:version => 20120327163738) do
 
   create_table "order_attachments", :force => true do |t|
     t.string   "file"
@@ -52,12 +52,14 @@ ActiveRecord::Schema.define(:version => 20120326232440) do
     t.string   "segment"
     t.string   "subsegment"
     t.text     "observations"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.integer  "user_id"
     t.integer  "service_id"
+    t.integer  "order_status_id"
   end
 
+  add_index "trademark_orders", ["order_status_id"], :name => "index_trademark_orders_on_order_status_id"
   add_index "trademark_orders", ["service_id"], :name => "index_trademark_orders_on_service_id"
   add_index "trademark_orders", ["user_id"], :name => "index_trademark_orders_on_user_id"
 

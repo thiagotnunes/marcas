@@ -3,14 +3,15 @@ pt:
     index:
       title: "Marcas registradas"
       empty: "Nenhuma marca registrada disponivel."
+      progress: "Progresso"
     show:
       title: "Marca registrada"
     form:
       title: "Marca registrada"
     flash:
       create:
-        notice: "Marca registrada criada com sucesso."
+        notice: "Marca criada com sucesso."
       update:
-        notice: "Marca registrada alterada com sucesso."
+        notice: "Marca alterada com sucesso."
       destroy:
-        notice: "Marca registrada removida com sucesso."
+        notice: "Marca removida com sucesso."

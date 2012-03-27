@@ -13,4 +13,5 @@ describe TrademarkOrder do
 
   it { should belong_to(:user) }
   it { should belong_to(:service) }
+  it { should belong_to(:order_status) }
 end
