@@ -10,4 +10,10 @@ module TrademarkOrdersHelper
     eos
   end
 
+  def make_downloadable(attachment)
+    raw <<-eos
+      <a href="#{attachment.file_url}">#{attachment.file_identifier}</a>
+    eos
+  end
+
 end

@@ -16,3 +16,6 @@
 
 # Ignore email configuration file
 /env.sh
+
+# Ignore all uploaded files
+/public/uploads/

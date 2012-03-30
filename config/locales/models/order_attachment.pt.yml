@@ -1,0 +1,13 @@
+pt:
+  activerecord:
+    models:
+      order_attachment: "Arquivo do pedido"
+    attributes:
+      order_attachment:
+        id: "Id"
+        file: "Arquivo"
+  helpers:
+    label:
+      order_attachment:
+        id: "Id"
+        file: "Arquivo"

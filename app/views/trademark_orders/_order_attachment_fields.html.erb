@@ -2,10 +2,10 @@
   <% if f.object.file? %>
     <%= f.object.file %>
   <% else %>
-    <%= f.label :order_attachment, :class => 'control-label' %>
+    <%= f.label :file, t('helpers.label.order_attachment.file'), :class => 'control-label' %>
     <div class="controls">
       <%= f.file_field :file %>
-      <%= f.link_to_remove "Remove", :class => 'btn btn-small btn-danger' %>
+      <%= f.link_to_remove t('order_attachments.form.remove'), :class => 'btn btn-small btn-danger' %>
     </div>
   <% end %>
 </div>
