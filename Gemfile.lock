@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/ryanb/nested_form.git
+  revision: 486e0f0e93f3ca455d5d0fc7869053257b6afce2
+  specs:
+    nested_form (0.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -41,6 +47,9 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    carrierwave (0.6.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
     childprocess (0.3.1)
       ffi (~> 1.0.6)
     coderay (1.0.5)
@@ -217,6 +226,7 @@ PLATFORMS
 DEPENDENCIES
   bartt-ssl_requirement (~> 1.4.0)
   cancan
+  carrierwave
   coffee-rails (~> 3.2.1)
   cucumber-rails (~> 1.0)
   database_cleaner
@@ -225,6 +235,7 @@ DEPENDENCIES
   heroku
   jquery-rails
   launchy
+  nested_form!
   pg
   pry
   rails (= 3.2.2)

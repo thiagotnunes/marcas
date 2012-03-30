@@ -32,7 +32,6 @@ FactoryGirl.define do
 
   factory :order_attachment do
     sequence(:file) { |n| "file#{n}" }
-    filetype "image"
   end
   
   factory :trademark_order do

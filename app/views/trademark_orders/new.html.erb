@@ -1,4 +1,4 @@
-<%= form_for @trademark_order, :html => { :class => 'form-horizontal' } do |f| %>
+<%= nested_form_for @trademark_order, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
   <% if @trademark_order.errors.any? %>
     <div id="error" class="alert alert-error">
       <% for message in @trademark_order.errors.full_messages %>
@@ -45,6 +45,17 @@
       </div>
     </div>
     
+    <%= f.fields_for :order_attachments %>
+
+    <div id="fieldsPlaceholder">
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <%= f.link_to_add t('trademark_orders.form.add_attachment'), :order_attachments, :class => 'btn btn-small btn-inverse' %>
+      </div>
+    </div>
+
     <div class="form-actions">
       <%= f.submit t('buttons.create'), :class => 'btn btn-primary', :id => 'commit' %>
       <%= link_to t('buttons.cancel'), trademark_orders_path, :class => 'btn'  %>

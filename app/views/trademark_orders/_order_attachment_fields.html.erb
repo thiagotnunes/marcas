@@ -1,0 +1,11 @@
+<div class="control-group">
+  <% if f.object.file? %>
+    <%= f.object.file %>
+  <% else %>
+    <%= f.label :order_attachment, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field :file %>
+      <%= f.link_to_remove "Remove", :class => 'btn btn-small btn-danger' %>
+    </div>
+  <% end %>
+</div>

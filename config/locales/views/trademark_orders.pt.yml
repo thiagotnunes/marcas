@@ -8,6 +8,7 @@ pt:
       title: "Marca registrada"
     form:
       title: "Marca registrada"
+      add_attachment: "Adicionar arquivo"
     flash:
       create:
         notice: "Marca criada com sucesso."
