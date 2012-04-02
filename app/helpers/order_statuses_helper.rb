@@ -1,10 +1,6 @@
 module OrderStatusesHelper
-  def formatted_first_status_for(order_status)
-    if order_status.first?
-      raw '<i class="icon-ok"></i>'
-    else
-      raw '<i class="icon-remove"></i>'
-    end
+  def checkbox_formatted(value)
+    value == 0 ? raw('<i class="icon-remove"></i>') : raw('<i class="icon-ok"></i>')
   end
 
   def options_for_color

@@ -18,6 +18,7 @@ FactoryGirl.define do
     sequence(:status) { |n| "status#{n}" }
     color 'progress-danger'
     first_status 0
+    after_payment 0
   end
 
   factory :order_type do

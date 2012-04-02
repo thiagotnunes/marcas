@@ -12,6 +12,7 @@
         <th><%= t('helpers.label.order_status.id') %></th>
         <th><%= t('helpers.label.order_status.status') %></th>
         <th><%= t('helpers.label.order_status.first_status') %></th>
+        <th><%= t('helpers.label.order_status.after_payment') %></th>
         <th><%= t('helpers.label.order_status.color') %></th>
         <th><%= t('actions') %></th>
       </tr>
@@ -21,7 +22,8 @@
         <tr>
           <td><%= order_status.id %></td>
           <td><%= link_to order_status.status, order_status_path(order_status) %></td>
-          <td><%= formatted_first_status_for(order_status) %></td>
+          <td><%= checkbox_formatted(order_status.first_status) %></td>
+          <td><%= checkbox_formatted(order_status.after_payment) %></td>
           <td><%= progress_bar_from(order_status.color) %></td>
           <td>
             <%= link_to t('buttons.edit'), edit_order_status_path(order_status), :class => 'btn btn-mini', :id => "edit-#{order_status.status.parameterize}" %>

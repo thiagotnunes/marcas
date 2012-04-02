@@ -8,7 +8,7 @@ describe OrderStatus do
 
   it { should validate_presence_of :status } 
   it { should ensure_length_of(:status).is_at_least(3) } 
-  it { should ensure_length_of(:status).is_at_most(20) } 
+  it { should ensure_length_of(:status).is_at_most(50) } 
   it { should validate_uniqueness_of :status }
   it { should allow_mass_assignment_of(:status) }
 

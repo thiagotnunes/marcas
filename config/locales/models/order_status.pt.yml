@@ -9,6 +9,7 @@ pt:
         description: "Descricao"
         color: "Cor"
         first_status: "Primeiro estado"
+        after_payment: "Estado pos-pagamento"
   helpers:
     label:
       order_status:
@@ -17,3 +18,4 @@ pt:
         description: "Descricao"
         color: "Cor"
         first_status: "Primeiro estado"
+        after_payment: "Estado pos-pagamento"

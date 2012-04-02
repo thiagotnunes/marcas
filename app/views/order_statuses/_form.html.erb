@@ -37,6 +37,13 @@
       </div>
     </div>
 
+    <div class="control-group">
+      <%= f.label :after_payment, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.check_box :after_payment, :class => 'text_field' %>
+      </div>
+    </div>
+
     <div class="form-actions">
       <%= f.submit button_label, :class => 'btn btn-primary', :id => "commit" %>
       <%= link_to t('buttons.cancel'), order_statuses_path, :class => 'btn'  %>

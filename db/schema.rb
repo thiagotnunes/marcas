@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120328194619) do
+ActiveRecord::Schema.define(:version => 20120402172002) do
 
   create_table "order_attachments", :force => true do |t|
     t.string   "file"
@@ -26,9 +26,10 @@ ActiveRecord::Schema.define(:version => 20120328194619) do
     t.string   "status"
     t.text     "description"
     t.string   "color"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
-    t.integer  "first_status", :limit => 1, :default => 0
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.integer  "first_status",  :limit => 1, :default => 0
+    t.integer  "after_payment", :limit => 1, :default => 0
   end
 
   create_table "order_types", :force => true do |t|

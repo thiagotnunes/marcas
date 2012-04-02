@@ -5,7 +5,7 @@ class OrderStatus < ActiveRecord::Base
 
   validates_presence_of :status, :first_status
 
-  validates_length_of :status, :within => 3..20
+  validates_length_of :status, :within => 3..50
 
   validates_uniqueness_of :status
 
