@@ -12,3 +12,4 @@ pt:
       order_type:
         id: "Id"
         name: "Nome"
+        description: "Descricao"
