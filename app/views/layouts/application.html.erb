@@ -28,14 +28,14 @@
 
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container">
+        <div class="container-fluid">
           <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
           <%= link_to t(:brand_name), root_url, class: "brand" %>
-          <div class="container nav-collapse">
+          <div class="container-fluid nav-collapse">
             <%= yield :navbar_menu %>
             <p class="navbar-text pull-right">
             <% if logged_in? %>
@@ -53,31 +53,27 @@
       </div>
     </div>
 
-    <div class="container">
-      <div class="content">
-        <div class="row">
-          <div class="span9">
-            <% if flash[:alert] %>
-              <div id="error" class="alert alert-error">
-                <%= flash[:alert] %>
-              </div>
-            <% elsif flash[:notice] %>
-              <div class="alert alert-success">
-                <%= flash[:notice] %>
-              </div>
-            <% end %>
-            <%= yield %>
-          </div>
-          <div class="span1">&nbsp;</div>
-          <div class="span3">
-            <div class="well sidebar-nav">
-              <%= yield :navigation_menu %>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span9">
+          <% if flash[:alert] %>
+            <div id="error" class="alert alert-error">
+              <%= flash[:alert] %>
             </div>
+          <% elsif flash[:notice] %>
+            <div class="alert alert-success">
+              <%= flash[:notice] %>
+            </div>
+          <% end %>
+          <%= yield %>
+        </div>
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <%= yield :navigation_menu %>
           </div>
         </div>
-      </div><!--/row-->
-    </div><!--/content-->
-
+      </div>
+    </div><!--/row-->
   </div> <!-- /container -->
 
   <!-- Le javascript
