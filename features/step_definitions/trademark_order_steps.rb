@@ -9,7 +9,7 @@ Given /^the following trademark orders exist$/ do |table|
     new_hash["service_id"] = service.id
     new_hash["order_status_id"] = order_status.id
 
-    Factory(:trademark_order, new_hash)
+    FactoryGirl.create(:trademark_order, new_hash)
   end
 end
 

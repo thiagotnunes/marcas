@@ -2,12 +2,12 @@ require 'spec_helper'
 require 'cancan/matchers'
 
 describe Ability do
-  let(:admin) { Factory(:admin) }
-  let(:customer) { Factory(:customer) }
-  let(:another_user) { Factory(:user) }
+  let(:admin) { FactoryGirl.create(:admin) }
+  let(:customer) { FactoryGirl.create(:customer) }
+  let(:another_user) { FactoryGirl.create(:user) }
 
   context "Administrator" do
-    let(:another_admin) { Factory(:admin) }
+    let(:another_admin) { FactoryGirl.create(:admin) }
     let(:administrator_ability) { Ability.new(admin) }
 
     context "Users" do

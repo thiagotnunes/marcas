@@ -118,14 +118,14 @@ Then /^I should not be logged in$/ do
 end
 
 def create_customer(username)
-  Factory(:customer, 
+  FactoryGirl.create(:customer, 
          :username => username,
          :password => DEFAULT_PASSWORD,
          :email => email_for(username))
 end 
 
 def create_admin(username)
-  Factory(:admin, 
+  FactoryGirl.create(:admin, 
          :username => username,
          :password => DEFAULT_PASSWORD,
          :email => email_for(username))

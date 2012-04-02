@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe OrderStatus do
 
-  subject { Factory(:order_status) }
+  subject { FactoryGirl.create(:order_status) }
 
   it { should have_many :trademark_orders }
 
@@ -18,19 +18,19 @@ describe OrderStatus do
   it { should validate_presence_of :first_status }
 
   it "should not be first" do
-    status = Factory(:order_status)
+    status = FactoryGirl.create(:order_status)
     status.first?.should be_false 
   end
 
   it "should be first" do
-    status = Factory(:order_status, :first_status => 1)
+    status = FactoryGirl.create(:order_status, :first_status => 1)
     status.first?.should be_true 
   end
 
   it "should change first status element to false" do
-    Factory(:order_status)
-    Factory(:order_status, :first_status => 1) 
-    Factory(:order_status) 
+    FactoryGirl.create(:order_status)
+    FactoryGirl.create(:order_status, :first_status => 1) 
+    FactoryGirl.create(:order_status) 
 
     OrderStatus.remove_first_flag
 
@@ -40,9 +40,9 @@ describe OrderStatus do
   end
 
   it "should find first" do
-    Factory(:order_status)
-    first = Factory(:order_status, :first_status => 1) 
-    Factory(:order_status) 
+    FactoryGirl.create(:order_status)
+    first = FactoryGirl.create(:order_status, :first_status => 1) 
+    FactoryGirl.create(:order_status) 
 
     OrderStatus.find_first.should == first
   end

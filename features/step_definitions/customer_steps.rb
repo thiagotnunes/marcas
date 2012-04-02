@@ -1,9 +1,9 @@
 Given /^a customer "(.*)" exists$/ do |username|
-  Factory(:customer, :username => username, :email => "#{username}@marcaexpressa.com")
+  FactoryGirl.create(:customer, :username => username, :email => "#{username}@marcaexpressa.com")
 end
 
 Given /^an activated customer "(.*)" exists$/ do |username|
-  user = Factory.build(:customer, :username => username, :email => "#{username}@marcaexpressa.com")
+  user = FactoryGirl.build(:customer, :username => username, :email => "#{username}@marcaexpressa.com")
   user.save!
   user.activate!
 end

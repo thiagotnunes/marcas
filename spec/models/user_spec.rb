@@ -3,7 +3,7 @@ require 'spec_helper'
 describe User do
 
   context "Generic user" do
-    subject { Factory(:user) }
+    subject { FactoryGirl.create(:user) }
 
     it { should validate_presence_of :username }
     it { should validate_uniqueness_of :username }
@@ -24,9 +24,9 @@ describe User do
     it { should have_many(:trademark_orders) }
 
     it "should retrieve all the customers" do
-      firstCustomer = Factory(:customer)
-      secondCustomer = Factory(:customer)
-      admin = Factory(:admin)
+      firstCustomer = FactoryGirl.create(:customer)
+      secondCustomer = FactoryGirl.create(:customer)
+      admin = FactoryGirl.create(:admin)
 
       all_customers = User.all_customers
       all_customers.should include(firstCustomer)
@@ -36,7 +36,7 @@ describe User do
   end
 
   context "Customer" do
-    let(:customer) { Factory(:customer) }
+    let(:customer) { FactoryGirl.create(:customer) }
 
     it "should be a customer" do
       customer.customer?.should be_true
@@ -48,7 +48,7 @@ describe User do
   end
 
   context "Administrator" do
-    let(:admin) { Factory(:admin) }
+    let(:admin) { FactoryGirl.create(:admin) }
 
     it "should not be a customer" do
       admin.customer?.should be_false

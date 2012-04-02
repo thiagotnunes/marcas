@@ -1,9 +1,9 @@
 Given /^a service "(.*)" with price "(.*)" exists$/ do |name, price|
-  Factory(:service, :name => name, :price => price)
+  FactoryGirl.create(:service, :name => name, :price => price)
 end
 
 Given /^a service "(.*)" with price "(.*)" and type "(.*)" exists$/ do |name, price, type|
-  Factory(:service, :name => name, :price => price, :order_type_id => OrderType.find_by_name(type).id)
+  FactoryGirl.create(:service, :name => name, :price => price, :order_type_id => OrderType.find_by_name(type).id)
 end
 
 When /^I create a service "(.*)" with price "(.*)" and type "(.*)"$/ do |name, price, type|

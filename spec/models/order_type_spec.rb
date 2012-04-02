@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe OrderType do
-  subject { Factory(:order_type) }
+  subject { FactoryGirl.create(:order_type) }
 
   it { should validate_presence_of :name }
   it { should validate_uniqueness_of :name }

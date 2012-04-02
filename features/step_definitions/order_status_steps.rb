@@ -1,9 +1,9 @@
 Given /^an order status "(.*)" exists$/ do |status|
-  Factory(:order_status, :status => status)
+  FactoryGirl.create(:order_status, :status => status)
 end
 
 Given /^a first order status "(.*)" exists$/ do |status|
-  Factory(:order_status, :status => status, :first_status => 1)
+  FactoryGirl.create(:order_status, :status => status, :first_status => 1)
 end
 
 When /^I create a order status "(.*)"$/ do |status|

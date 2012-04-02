@@ -1,5 +1,5 @@
 Given /^an order type "(.*)" exists$/ do |name|
-  Factory(:order_type, :name => name)
+  FactoryGirl.create(:order_type, :name => name)
 end
 
 When /^I create a order type "(.*)"$/ do |name|

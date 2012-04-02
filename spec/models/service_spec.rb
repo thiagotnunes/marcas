@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Service do
-  subject { Factory(:service) }
+  subject { FactoryGirl.create(:service) }
 
   it { should belong_to :order_type }
   it { should have_many :trademark_orders }
@@ -19,11 +19,11 @@ describe Service do
   it { should validate_presence_of :order_type_id }
 
   it "should find by order type name" do
-    another_order_type = Factory(:order_type,  :name => "Another Name")
-    Factory(:service, :order_type_id => another_order_type.id)
+    another_order_type = FactoryGirl.create(:order_type,  :name => "Another Name")
+    FactoryGirl.create(:service, :order_type_id => another_order_type.id)
 
-    order_type = Factory(:order_type,  :name => "Name")
-    services = [Factory(:service, :order_type_id => order_type.id)]
+    order_type = FactoryGirl.create(:order_type,  :name => "Name")
+    services = [FactoryGirl.create(:service, :order_type_id => order_type.id)]
 
     Service.find_by_order_type_name("Name").should == services
   end

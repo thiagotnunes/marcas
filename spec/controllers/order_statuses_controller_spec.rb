@@ -19,21 +19,21 @@ describe OrderStatusesController do
   end
 
   it "should remove first flag when a new one is updated for the given order status" do
-    OrderStatus.should_receive(:find).and_return(Factory(:order_status))
+    OrderStatus.should_receive(:find).and_return(FactoryGirl.create(:order_status))
     OrderStatus.should_receive(:remove_first_flag)
     
     put :update, parameters_with_first_status
   end
 
   it "should not remove first flag when a new one is updated for the given order status" do
-    OrderStatus.should_receive(:find).and_return(Factory(:order_status))
+    OrderStatus.should_receive(:find).and_return(FactoryGirl.create(:order_status))
     OrderStatus.should_not_receive(:remove_first_flag)
     
     put :update, parameters_without_first_status
   end
 
   it "should not remove first flag when updating one which is already the first" do
-    OrderStatus.should_receive(:find).and_return(Factory(:order_status, :first_status => "1"))
+    OrderStatus.should_receive(:find).and_return(FactoryGirl.create(:order_status, :first_status => "1"))
     OrderStatus.should_not_receive(:remove_first_flag)
 
     put :update, parameters_with_first_status
