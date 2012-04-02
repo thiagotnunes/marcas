@@ -8,7 +8,7 @@ pt:
         status: "Estado"
         description: "Descricao"
         color: "Cor"
-        first_status: "Primeiro?"
+        first_status: "Primeiro estado"
   helpers:
     label:
       order_status:
@@ -16,4 +16,4 @@ pt:
         status: "Estado"
         description: "Descricao"
         color: "Cor"
-        first_status: "Primeiro?"
+        first_status: "Primeiro estado"
