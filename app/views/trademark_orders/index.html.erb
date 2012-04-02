@@ -29,6 +29,7 @@
           <td><%= trademark_order.segment %></td>
           <td><%= trademark_order.subsegment %></td>
           <td>
+            <%= link_to t('trademark_orders.index.update_order_status'), edit_status_trademark_order_path(trademark_order), :class => 'btn btn-mini', :id => "edit-#{trademark_order.name.parameterize}" %>
             <%= link_to t('buttons.destroy'), trademark_order_path(trademark_order), confirm: t('messages.confirmation'), :class => 'btn btn-mini btn-danger', method: :delete %>
           </td>
         </tr>

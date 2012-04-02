@@ -4,6 +4,7 @@ pt:
       title: "Marcas registradas"
       empty: "Nenhuma marca registrada disponivel."
       progress: "Progresso"
+      update_order_status: "Atualizar estado"
     show:
       title: "Marca registrada"
     form:

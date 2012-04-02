@@ -1,4 +1,4 @@
-<%= form_for @trademark_order, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for @trademark_order, :url => update_status_trademark_order_path(@trademark_order.id, @trademark_order.order_status_id), :html => { :class => 'form-horizontal' } do |f| %>
   <% if @trademark_order.errors.any? %>
     <div id="error" class="alert alert-error">
       <% for message in @trademark_order.errors.full_messages %>

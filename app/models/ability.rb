@@ -22,11 +22,12 @@ class Ability
       other.admin?
     end
 
-    cannot [:create, :update], TrademarkOrder
+    cannot [:create], TrademarkOrder
   end
 
   def customer_abilities_for(user)
     can [:change_password, :update, :show], User, :id => user.id
-    can [:create, :show], TrademarkOrder
+    can :create, TrademarkOrder
+    can [:show], TrademarkOrder, :user_id => user.id
   end
 end

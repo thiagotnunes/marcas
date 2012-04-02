@@ -25,5 +25,15 @@ describe TrademarkOrdersController do
     trademark_order.order_status.should == first_status
     trademark_order.user.should == user
   end
+
+  it "should update the status for the given order" do
+    first_status = Factory(:order_status, :status => "First status")
+    second_status = Factory(:order_status, :status => "Second status")
+    id = Factory(:trademark_order, :order_status_id => first_status.id).id
+
+    put :update_status, { :id => id, :trademark_order => { :order_status_id => second_status.id } }
+
+    TrademarkOrder.find(id).order_status.should == second_status
+  end
   
 end

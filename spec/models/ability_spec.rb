@@ -52,13 +52,13 @@ describe Ability do
       it "should be able to destroy a trademark order" do
         administrator_ability.should be_able_to(:destroy, TrademarkOrder.new)
       end
+      
+      it "should not be able to update a trademark order" do
+        administrator_ability.should be_able_to(:update, TrademarkOrder.new)
+      end
 
       it "should not be able to create a new trademark order" do
         administrator_ability.should_not be_able_to(:create, TrademarkOrder.new)
-      end
-
-      it "should not be able to update a trademark order" do
-        administrator_ability.should_not be_able_to(:update, TrademarkOrder.new)
       end
     end
   end
@@ -122,6 +122,12 @@ describe Ability do
     context "Trademark orders" do 
       it "should be able to create a new trademark order" do
         customer_ability.should be_able_to(:create, TrademarkOrder.new)
+      end
+
+      it "should be able to show it's own trademark order" do
+        order = TrademarkOrder.new
+        order.user_id = customer.id
+        customer_ability.should be_able_to(:show, order)
       end
 
       it "should not be able to destroy a trademark order" do

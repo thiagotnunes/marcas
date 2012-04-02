@@ -28,3 +28,9 @@ When /^I create an order trademark with the following attributes$/ do |table|
     click_button("commit")
   end
 end
+
+When /^I alter the status of "(.*)" to "(.*)"$/ do |name, status|
+  click_on("edit-#{name.parameterize}")
+  select(status, :from => "trademark_order_order_status_id")
+  click_button("commit")
+end

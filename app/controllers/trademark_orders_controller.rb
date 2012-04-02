@@ -17,7 +17,7 @@ class TrademarkOrdersController < ApplicationController
     @services = Service.find_by_order_type_name(ORDER_TYPE_NAME)
   end
 
-  def edit
+  def edit_status
     @trademark_order = TrademarkOrder.find(params[:id])
   end
 
@@ -37,6 +37,16 @@ class TrademarkOrdersController < ApplicationController
     @trademark_order = TrademarkOrder.find(params[:id])
 
     if @trademark_order.update_attributes(params[:trademark_order])
+      redirect_to @trademark_order, notice: t('trademark_orders.flash.update.notice')
+    else
+      render :edit
+    end
+  end
+
+  def update_status
+    @trademark_order = TrademarkOrder.find(params[:id])
+    @trademark_order.order_status = OrderStatus.find(params[:trademark_order][:order_status_id])
+    if @trademark_order.save!
       redirect_to @trademark_order, notice: t('trademark_orders.flash.update.notice')
     else
       render :edit

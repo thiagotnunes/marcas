@@ -11,6 +11,7 @@ Feature: Trademark order management
     And an order type "Marcas" exists
     And a service "service" with price "100" and type "Marcas" exists
     And an order status "pending" exists
+    And an order status "done" exists
     And the following trademark orders exist
       | name  | segment   | subsegment  | observations  | user      | service | order_status |
       | Trade | Segmento  | Subsegmento | Observacoes   | customer  | service   | pending |
@@ -39,6 +40,12 @@ Feature: Trademark order management
     And I should see "customer"
     And I should see "service"
     And I should see "pending"
+
+  Scenario: Update a trademark order status
+    When I go to the list of trademark orders
+    And I alter the status of "Trade" to "done"
+    Then I should see "done"
+    And I should not see "pending"
 
   Scenario: No trademark order should be displayed
     Given no trademark order exists

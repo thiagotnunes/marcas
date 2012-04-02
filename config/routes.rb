@@ -1,11 +1,5 @@
 Marcas::Application.routes.draw do
 
-  resources :trademark_orders
-
-  resources :services
-
-  resources :order_types
-
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   post "login" => "sessions#create", :as => "login"
@@ -31,5 +25,13 @@ Marcas::Application.routes.draw do
   resources :sessions
   resources :password_resets
 
+  resources :trademark_orders do
+    member do
+      get :edit_status
+      put :update_status
+    end
+  end
+  resources :services
+  resources :order_types
   resources :order_statuses
 end
