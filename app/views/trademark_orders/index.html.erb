@@ -30,7 +30,9 @@
           <% if current_user.admin? %>
             <td><%= trademark_order.user.username %></td>
           <% end %>
-          <td><%= link_to trademark_order.name, trademark_order_path(trademark_order) %></td>
+          <td>
+            <%= view_or_pay(trademark_order) %>
+          </td>
           <td><%= progress_for(trademark_order) %></td>
           <td><%= trademark_order.segment %></td>
           <td><%= trademark_order.subsegment %></td>
