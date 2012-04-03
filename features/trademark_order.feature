@@ -24,7 +24,18 @@ Feature: Ordering a Trademark
     And I should see "pending"
     And I should see a payment message
 
-    @focus
+  Scenario: List my own trademark orders
+    Given an activated customer "another"
+    And the following trademark orders exist
+      | name  | segment   | subsegment  | observations  | user      | service | order_status |
+      | Trade | Segmento  | Subsegmento | Observacoes   | customer  | service   | pending |
+      | Right | Law       | Sublaw      | Hurry         | customer  | service   | pending |
+      | Not Mine | Law       | Sublaw      | Hurry         | another | service   | pending |
+    When I go to the list of trademark orders 
+    Then I should see "Trade"
+    And I should see "Right"
+    But I should not see "Not mine"
+
   Scenario: Pay for a trademark order
     When I go to the new trademark order page
     And I create an order trademark with the following attributes
