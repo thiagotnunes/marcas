@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   def create
     user = login(params[:username], params[:password], params[:remember_me])
     if user
-      redirect_back_or_to root_url, :notice => t('sessions.flash.create.notice')
+      redirect_back_or_to trademark_orders_url, :notice => t('sessions.flash.create.notice')
     else
       flash.now.alert = t('sessions.flash.create.alert')
       render :new

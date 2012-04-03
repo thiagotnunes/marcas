@@ -37,5 +37,29 @@ describe TrademarkOrdersController do
 
     TrademarkOrder.find(id).order_status.should == second_status
   end
+
+  it "should list all the trademark_orders for the user" do
+    user = FactoryGirl.create(:customer) 
+    first = FactoryGirl.create(:trademark_order, :user_id => user.id)
+    second = FactoryGirl.create(:trademark_order, :user_id => user.id)
+    third = FactoryGirl.create(:trademark_order)
+
+    login_user(user)
+    get :index
+
+    assigns(:trademark_orders).should == [first, second]
+  end
+
+  it "should list all the trademark_orders when the user is admin" do
+    admin = FactoryGirl.create(:admin) 
+    first = FactoryGirl.create(:trademark_order)
+    second = FactoryGirl.create(:trademark_order)
+    third = FactoryGirl.create(:trademark_order)
+
+    login_user(admin)
+    get :index
+
+    assigns(:trademark_orders).should == [third, second, first]
+  end
   
 end

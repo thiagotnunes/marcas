@@ -5,7 +5,11 @@ class TrademarkOrdersController < ApplicationController
   ORDER_TYPE_NAME = "Marcas"
 
   def index
-    @trademark_orders = TrademarkOrder.all
+    if current_user.admin?
+      @trademark_orders = TrademarkOrder.all
+    else
+      @trademark_orders = TrademarkOrder.order('service_id').find_all_by_user_id(current_user.id)
+    end
   end
 
   def show

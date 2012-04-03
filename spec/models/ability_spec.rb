@@ -124,7 +124,11 @@ describe Ability do
         customer_ability.should be_able_to(:create, TrademarkOrder.new)
       end
 
-      it "should be able to show it's own trademark orders" do
+      it "should be able to list the trademark orders" do
+        customer_ability.should be_able_to(:index, TrademarkOrder.new)
+      end
+
+      it "should be able to show trademark orders" do
         order = TrademarkOrder.new
         order.user_id = customer.id
         customer_ability.should be_able_to(:show, order)
@@ -133,7 +137,7 @@ describe Ability do
       it "should be able to pay for it's own trademark order" do
         order = TrademarkOrder.new
         order.user_id = customer.id
-        customer_ability.should be_able_to(:show, order)
+        customer_ability.should be_able_to(:pay, order)
       end
 
       it "should not be able to destroy a trademark order" do

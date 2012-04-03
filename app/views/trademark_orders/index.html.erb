@@ -11,27 +11,35 @@
     <thead>
       <tr>
         <th><%= t('helpers.label.trademark_order.id') %></th>
-        <th><%= t('helpers.label.trademark_order.user') %></th>
+        <% if current_user.admin? %>
+          <th><%= t('helpers.label.trademark_order.user') %></th>
+        <% end %>
         <th><%= t('helpers.label.trademark_order.name') %></th>
         <th><%= t('trademark_orders.index.progress') %></th>
         <th><%= t('helpers.label.trademark_order.segment') %></th>
         <th><%= t('helpers.label.trademark_order.subsegment') %></th>
-        <th><%= t('actions') %></th>
+        <% if current_user.admin? %>
+          <th><%= t('actions') %></th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
       <% @trademark_orders.each do |trademark_order| %>
         <tr>
           <td><%= trademark_order.id %></td>
-          <td><%= trademark_order.user.username %></td>
+          <% if current_user.admin? %>
+            <td><%= trademark_order.user.username %></td>
+          <% end %>
           <td><%= link_to trademark_order.name, trademark_order_path(trademark_order) %></td>
           <td><%= progress_for(trademark_order) %></td>
           <td><%= trademark_order.segment %></td>
           <td><%= trademark_order.subsegment %></td>
-          <td>
-            <%= link_to t('trademark_orders.index.update_order_status'), edit_status_trademark_order_path(trademark_order), :class => 'btn btn-mini', :id => "edit-#{trademark_order.name.parameterize}" %>
-            <%= link_to t('buttons.destroy'), trademark_order_path(trademark_order), confirm: t('messages.confirmation'), :class => 'btn btn-mini btn-danger', method: :delete %>
-          </td>
+          <% if current_user.admin? %>
+            <td>
+              <%= link_to t('trademark_orders.index.update_order_status'), edit_status_trademark_order_path(trademark_order), :class => 'btn btn-mini', :id => "edit-#{trademark_order.name.parameterize}" %>
+              <%= link_to t('buttons.destroy'), trademark_order_path(trademark_order), confirm: t('messages.confirmation'), :class => 'btn btn-mini btn-danger', method: :delete %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
