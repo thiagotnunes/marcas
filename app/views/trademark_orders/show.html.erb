@@ -1,3 +1,15 @@
+<div class="alert alert-danger">
+  <strong><%= t('trademark_orders.flash.create.alert.title') %></strong><br />
+  <%= t('trademark_orders.flash.create.alert.message') %>
+</div>
+
+<% if current_user.admin? %>
+  <p>
+    <b><%= t('helpers.label.trademark_order.user') %></b><br />
+    <%= @trademark_order.user.username %>
+  </p>
+<% end %>
+
 <p>
   <b><%= t('helpers.label.trademark_order.name') %></b><br />
   <%= @trademark_order.name %>
@@ -19,11 +31,6 @@
 </p>
 
 <p>
-  <b><%= t('helpers.label.trademark_order.user') %></b><br />
-  <%= @trademark_order.user.username %>
-</p>
-
-<p>
   <b><%= t('helpers.label.trademark_order.service') %></b><br />
   <%= @trademark_order.service.name %>
 </p>
@@ -42,9 +49,8 @@
   </p>
 <% end %>
 
-<div class="form-actions">
-  <%= link_to t('buttons.back'), trademark_orders_path, :class => 'btn'  %>
-  <% if can? :destroy, @trademark_order %>
-    <%= link_to t('buttons.destroy'), trademark_order_path(@trademark_order), :method => 'delete', :confirm => t('messages.confirmation'), :class => 'btn btn-danger' %>
-  <% end %>
-</div>
+<% if current_user.admin? %>
+  <%= admin_actions_for(@trademark_order) %>
+<% else %>
+  <%= customer_actions_for(@trademark_order) %>
+<% end %>

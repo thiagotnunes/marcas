@@ -124,20 +124,16 @@ describe Ability do
         customer_ability.should be_able_to(:create, TrademarkOrder.new)
       end
 
-      it "should be able to prepare payment for it's own trademark order" do
+      it "should be able to show it's own trademark orders" do
         order = TrademarkOrder.new
         order.user_id = customer.id
-        customer_ability.should be_able_to(:prepare_payment, order)
+        customer_ability.should be_able_to(:show, order)
       end
 
       it "should be able to pay for it's own trademark order" do
         order = TrademarkOrder.new
         order.user_id = customer.id
-        customer_ability.should be_able_to(:pay, order)
-      end
-
-      it "should not be able to show" do
-        customer_ability.should_not be_able_to(:show, TrademarkOrder.new)
+        customer_ability.should be_able_to(:show, order)
       end
 
       it "should not be able to destroy a trademark order" do
