@@ -10,9 +10,14 @@ pt:
     form:
       title: "Marca registrada"
       add_attachment: "Adicionar arquivo"
+    prepare_payment:
+      message: "Realize o pagamento com: "
     flash:
       create:
-        notice: "Marca criada com sucesso."
+        notice: "Pedido criado com sucesso."
+        alert: 
+          title: "Atencao!"
+          message: "E necessario realizar o pagamento (abaixo) para concluir seu pedido."
       update:
         notice: "Marca alterada com sucesso."
       destroy:

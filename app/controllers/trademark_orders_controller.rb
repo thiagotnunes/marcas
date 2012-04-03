@@ -27,26 +27,16 @@ class TrademarkOrdersController < ApplicationController
     @trademark_order.order_status = OrderStatus.find_first
 
     if @trademark_order.save
-      redirect_to @trademark_order, notice: t('trademark_orders.flash.create.notice')
+      redirect_to prepare_payment_trademark_order_url(@trademark_order), notice: t('trademark_orders.flash.create.notice')
     else
       render :new
-    end
-  end
-
-  def update
-    @trademark_order = TrademarkOrder.find(params[:id])
-
-    if @trademark_order.update_attributes(params[:trademark_order])
-      redirect_to @trademark_order, notice: t('trademark_orders.flash.update.notice')
-    else
-      render :edit
     end
   end
 
   def update_status
     @trademark_order = TrademarkOrder.find(params[:id])
     @trademark_order.order_status = OrderStatus.find(params[:trademark_order][:order_status_id])
-    if @trademark_order.save!
+    if @trademark_order.save
       redirect_to @trademark_order, notice: t('trademark_orders.flash.update.notice')
     else
       render :edit

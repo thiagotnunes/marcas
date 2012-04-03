@@ -29,6 +29,8 @@ Marcas::Application.routes.draw do
     member do
       get :edit_status
       put :update_status
+      get :prepare_payment
+      put :pay
     end
   end
   resources :services

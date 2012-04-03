@@ -34,3 +34,7 @@ When /^I alter the status of "(.*)" to "(.*)"$/ do |name, status|
   select(status, :from => "trademark_order_order_status_id")
   click_button("commit")
 end
+
+When /^I pay for it$/ do
+  click_on("pay")
+end

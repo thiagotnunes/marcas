@@ -24,6 +24,8 @@ describe TrademarkOrdersController do
     trademark_order = TrademarkOrder.first
     trademark_order.order_status.should == first_status
     trademark_order.user.should == user
+
+    response.should redirect_to prepare_payment_trademark_order_url(trademark_order)
   end
 
   it "should update the status for the given order" do
