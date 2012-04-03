@@ -16,5 +16,9 @@
   <% if can? :edit_password, @user %>
     <%= link_to t('users.edit_password.buttons.change_password'), edit_password_path(@user), :id => "change_password", :class => 'btn'  %>
   <% end %>
-  <%= link_to t('buttons.back'), users_path, :class => 'btn'  %>
+  <% if current_user.admin? %>
+    <%= link_to t('buttons.back'), users_path, :class => 'btn'  %>
+  <% else %>
+    <%= link_to t('buttons.back'), root_path, :class => 'btn'  %>
+  <% end %>
 </div>
