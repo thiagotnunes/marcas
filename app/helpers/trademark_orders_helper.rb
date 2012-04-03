@@ -39,6 +39,9 @@ module TrademarkOrdersHelper
     actions += %{<br />}
     actions += %{<br />}
     actions += %{</div>}
+    actions += %{<div class="form-actions">}
+    actions += link_to t('buttons.back'), trademark_orders_path, :class => 'btn'
+    actions += %{</div>}
 
     raw actions
   end

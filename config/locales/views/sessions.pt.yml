@@ -8,11 +8,11 @@ pt:
       logout: "Sair"
       signup: "registro"
       login: "login"
-      error:
-        invalid_login: 
     flash:
       create:
-        alert: "Usuario ou senha invalidos"
+        alert: "Usuario ou senha invalidos."
         notice: "Login realizado com sucesso."
+      login:
+        alert: "Por favor realize o login primeiro."
       destroy:
         notice: "Logout realizado com sucesso."

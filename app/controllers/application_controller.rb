@@ -10,13 +10,21 @@ class ApplicationController < ActionController::Base
   protected
 
   def not_authenticated
-    redirect_to login_path, :alert => "Please login first."
+    redirect_to login_path, :alert => t("sessions.flash.login.alert")
   end
 
   private
 
   def layout_for_user
-    (current_user && current_user.admin?) ? "admin" : "customer"
+    if current_user
+      if current_user.admin?
+        "admin"
+      else
+        "customer"
+      end
+    else
+      "guest"
+    end
   end
 
 end
