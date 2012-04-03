@@ -29,17 +29,7 @@ module TrademarkOrdersHelper
   end
 
   def customer_actions_for(trademark_order)
-    actions = %{<div id="pay_trademark_order" class="alert alert-success">}
-    actions += %{<strong>}
-    actions += t('trademark_orders.prepare_payment.message') 
-    actions += %{</strong><br /><br />}
-    actions += link_to checkout_path(@trademark_order) do 
-      image_tag('pagseguro.gif') 
-    end
-    actions += %{<br />}
-    actions += %{<br />}
-    actions += %{</div>}
-    actions += %{<div class="form-actions">}
+    actions = %{<div class="form-actions">}
     actions += link_to t('buttons.back'), trademark_orders_path, :class => 'btn'
     actions += %{</div>}
 
