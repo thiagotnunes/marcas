@@ -41,5 +41,6 @@ FactoryGirl.define do
     subsegment "subsegment"
     association :user
     association :order_status
+    association :service
   end
 end

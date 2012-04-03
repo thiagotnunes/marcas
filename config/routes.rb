@@ -29,10 +29,11 @@ Marcas::Application.routes.draw do
     member do
       get :edit_status
       put :update_status
-      put :pay
     end
   end
   resources :services
   resources :order_types
   resources :order_statuses
+
+  get "checkout/:id" => "cart#checkout", :as => "checkout"
 end

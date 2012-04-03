@@ -33,7 +33,7 @@ module TrademarkOrdersHelper
     actions += %{<strong>}
     actions += t('trademark_orders.prepare_payment.message') 
     actions += %{</strong><br /><br />}
-    actions += link_to pay_trademark_order_path(@trademark_order) do 
+    actions += link_to checkout_path(@trademark_order) do 
       image_tag('pagseguro.gif') 
     end
     actions += %{<br />}

@@ -1,0 +1,45 @@
+<div class="alert alert-danger">
+  <strong><%= t('trademark_orders.flash.create.alert.title') %></strong><br />
+  <%= t('trademark_orders.flash.create.alert.message') %>
+</div>
+
+<p>
+  <b><%= t('helpers.label.trademark_order.service') %></b><br />
+  <%= @trademark_order.service.name %>
+</p>
+
+<p>
+  <b><%= t('helpers.label.trademark_order.price') %></b><br />
+  <%= number_to_currency(@trademark_order.service.price) %>
+</p>
+
+<p>
+  <b><%= t('helpers.label.trademark_order.name') %></b><br />
+  <%= @trademark_order.name %>
+</p>
+
+<p>
+  <b><%= t('helpers.label.trademark_order.segment') %></b><br />
+  <%= @trademark_order.segment %>
+</p>
+
+<p>
+  <b><%= t('helpers.label.trademark_order.subsegment') %></b><br />
+  <%= @trademark_order.subsegment %>
+</p>
+
+<p>
+  <b><%= t('helpers.label.trademark_order.observations') %></b><br />
+  <%= @trademark_order.observations %>
+</p>
+
+
+<% @trademark_order.order_attachments.each.with_index do |attachment, i| %>
+  <p>
+    <b><%= "#{t('helpers.label.order_attachment.file')} #{i+1}" %></b><br />
+    <%= make_downloadable(attachment) %>
+  </p>
+<% end %>
+
+
+<%= pagseguro_form @order, :submit => "Efetuar pagamento!" %>
