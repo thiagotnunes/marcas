@@ -11,7 +11,6 @@ Feature: Ordering a Trademark
     And a service "service" with price "100" and type "Marcas" exists
     And a first order status "pending" exists
 
-    @focus
   Scenario: Create a trademark order
     When I go to the new trademark order page
     And I create an order trademark with the following attributes
@@ -25,6 +24,7 @@ Feature: Ordering a Trademark
     And I should see "pending"
     And I should see a payment message
 
+    @focus
   Scenario: Pay for a trademark order
     When I go to the new trademark order page
     And I create an order trademark with the following attributes

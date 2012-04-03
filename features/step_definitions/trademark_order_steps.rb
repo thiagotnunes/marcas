@@ -38,3 +38,8 @@ end
 When /^I pay for it$/ do
   click_on("pay")
 end
+
+Then /^I should see a payment message$/ do
+  page.should have_content(I18n.t('trademark_orders.flash.create.alert.title'))
+  page.should have_content(I18n.t('trademark_orders.flash.create.alert.message'))
+end
