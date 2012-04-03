@@ -18,5 +18,6 @@ pt:
         subsegment: "Subsegmento"
         observations: "Observacoes"
         user: "Usuario"
-        service: "Service"
         status: "Estado"
+        service: "Servico"
+        price: "Preco"
