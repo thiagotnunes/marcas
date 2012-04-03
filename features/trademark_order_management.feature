@@ -6,6 +6,7 @@ Feature: Trademark order management
   Background:
     Given an activated admin "admin"
     And a customer "customer" exists
+    And a customer "another" exists
     And I am on the home page
     And I am logged in as "admin"
     And an order type "Marcas" exists
@@ -15,7 +16,7 @@ Feature: Trademark order management
     And the following trademark orders exist
       | name  | segment   | subsegment  | observations  | user      | service | order_status |
       | Trade | Segmento  | Subsegmento | Observacoes   | customer  | service   | pending |
-      | Right | Law       | Sublaw      | Hurry         | customer  | service   | pending |
+      | Right | Law       | Sublaw      | Hurry         | another  | service   | pending |
 
   Scenario: List all the trademark orders
     When I go to the list of trademark orders
@@ -37,7 +38,7 @@ Feature: Trademark order management
     And I should see "Law"
     And I should see "Sublaw"
     And I should see "Hurry"
-    And I should see "customer"
+    And I should see "another"
     And I should see "service"
     And I should see "pending"
 

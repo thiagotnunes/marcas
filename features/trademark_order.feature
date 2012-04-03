@@ -36,6 +36,7 @@ Feature: Ordering a Trademark
     And I should see "Right"
     But I should not see "Not mine"
 
+    @wip
   Scenario: Pay for a trademark order
     When I go to the new trademark order page
     And I create an order trademark with the following attributes
