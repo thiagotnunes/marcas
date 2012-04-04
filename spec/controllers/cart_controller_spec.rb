@@ -13,5 +13,10 @@ describe CartController do
 
     @controller.order.products.should == [{:id => trademark.id, :price => trademark.service.price * 100, :description => trademark.name, :quantity => 1, :weight => nil, :shipping => nil, :fees => nil }]
   end
-  
+
+  it "should handle notification" do
+    NotificationHandler.should_receive(:handle)
+
+    post :order_confirmation
+  end
 end

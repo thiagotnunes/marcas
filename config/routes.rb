@@ -36,4 +36,5 @@ Marcas::Application.routes.draw do
   resources :order_statuses
 
   get "checkout/:id" => "cart#checkout", :as => "checkout"
+  match "order_confirmation" => "cart#order_confirmation"
 end

@@ -24,4 +24,7 @@ class OrderStatus < ActiveRecord::Base
   def self.find_first
     first(:conditions => ["first_status = 1"])
   end
+  def self.find_after_payment
+    first(:conditions => ["after_payment = 1"])
+  end
 end

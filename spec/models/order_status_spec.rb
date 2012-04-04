@@ -46,4 +46,12 @@ describe OrderStatus do
 
     OrderStatus.find_first.should == first
   end
+
+  it "should find after payment" do
+    FactoryGirl.create(:order_status)
+    after_payment = FactoryGirl.create(:order_status, :after_payment => 1)
+    FactoryGirl.create(:order_status)
+
+    OrderStatus.find_after_payment.should == after_payment
+  end
 end
