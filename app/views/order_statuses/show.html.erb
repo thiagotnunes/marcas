@@ -13,13 +13,8 @@
 </p>
 
 <p>
-  <b><%= t('helpers.label.order_status.first_status') %></b><br />
-  <%= checkbox_formatted(@order_status.first_status) %>
-</p>
-
-<p>
-  <b><%= t('helpers.label.order_status.after_payment') %></b><br />
-  <%= checkbox_formatted(@order_status.after_payment) %>
+  <b><%= t('helpers.label.order_status.lifecycle') %></b><br />
+  <%= @order_status.lifecycle %>
 </p>
 
 <p>

@@ -15,45 +15,33 @@ describe OrderStatus do
   it { should_not validate_presence_of :description } 
   it { should allow_mass_assignment_of(:description) }
 
-  it { should validate_presence_of :first_status }
+  it { should validate_presence_of :color }
 
-  it { should validate_presence_of :after_payment }
+  it { should validate_presence_of :lifecycle }
 
-  it "should not be first" do
-    status = FactoryGirl.create(:order_status)
-    status.first_status?.should be_false 
-  end
+  context "Finding through lifecycle" do
+    before :each do
+      FactoryGirl.create(:order_status)
+      FactoryGirl.create(:order_status) 
+    end
 
-  it "should be first" do
-    status = FactoryGirl.create(:order_status, :first_status => 1)
-    status.first_status?.should be_true 
-  end
+    it "should find first" do
+      model = FactoryGirl.create(:order_status, :lifecycle => OrderStatus::LIFECYCLES[:first]) 
 
-  it "should change first status element to false" do
-    FactoryGirl.create(:order_status)
-    FactoryGirl.create(:order_status, :first_status => 1) 
-    FactoryGirl.create(:order_status) 
+      OrderStatus.find_first.should == model
+    end
 
-    OrderStatus.remove_first_flag
+    it "should find during payment" do
+      model = FactoryGirl.create(:order_status, :lifecycle => OrderStatus::LIFECYCLES[:during_payment]) 
 
-    OrderStatus.all.each do |status|
-      status.first_status?.should be_false
+      OrderStatus.find_during_payment.should == model
+    end
+
+    it "should find after payment" do
+      model = FactoryGirl.create(:order_status, :lifecycle => OrderStatus::LIFECYCLES[:after_payment]) 
+
+      OrderStatus.find_after_payment.should == model
     end
   end
 
-  it "should find first" do
-    FactoryGirl.create(:order_status)
-    first = FactoryGirl.create(:order_status, :first_status => 1) 
-    FactoryGirl.create(:order_status) 
-
-    OrderStatus.find_first.should == first
-  end
-
-  it "should find after payment" do
-    FactoryGirl.create(:order_status)
-    after_payment = FactoryGirl.create(:order_status, :after_payment => 1)
-    FactoryGirl.create(:order_status)
-
-    OrderStatus.find_after_payment.should == after_payment
-  end
 end

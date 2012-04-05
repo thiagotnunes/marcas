@@ -8,8 +8,7 @@ pt:
         status: "Estado"
         description: "Descricao"
         color: "Cor"
-        first_status: "Primeiro estado"
-        after_payment: "Estado pos-pagamento"
+        lifecycle: "Lifecycle"
   helpers:
     label:
       order_status:
@@ -17,5 +16,4 @@ pt:
         status: "Estado"
         description: "Descricao"
         color: "Cor"
-        first_status: "Primeiro estado"
-        after_payment: "Estado pos-pagamento"
+        lifecycle: "Lifecycle"

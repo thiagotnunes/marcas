@@ -1,23 +1,28 @@
 class OrderStatus < ActiveRecord::Base
+  LIFECYCLES = {
+    :manual => 'manual',
+    :first => 'first',
+    :during_payment => 'during_payment',
+    :after_payment => 'after_payment'
+  }
+
   has_many :trademark_orders
 
-  default_scope :order => 'first_status DESC'
-
-  validates_presence_of :status, :first_status, :after_payment
+  validates_presence_of :status, :color, :lifecycle
 
   validates_length_of :status, :within => 3..50
 
   validates_uniqueness_of :status
 
-  def self.remove_first_flag
-    update_all("first_status = 0", "first_status = 1")
+  def self.find_first
+    first(:conditions => ["lifecycle = '#{LIFECYCLES[:first]}'"])
   end
 
-  def self.find_first
-    first(:conditions => ["first_status = 1"])
+  def self.find_during_payment
+    first(:conditions => ["lifecycle = '#{LIFECYCLES[:during_payment]}'"])
   end
 
   def self.find_after_payment
-    first(:conditions => ["after_payment = 1"])
+    first(:conditions => ["lifecycle = '#{LIFECYCLES[:after_payment]}'"])
   end
 end

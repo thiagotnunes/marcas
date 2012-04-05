@@ -3,7 +3,7 @@ class OrderStatusesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @order_statuses = OrderStatus.find(:all, :order => "first_status")
+    @order_statuses = OrderStatus.all
   end
 
   def show
@@ -21,7 +21,7 @@ class OrderStatusesController < ApplicationController
   def create
     @order_status = OrderStatus.new(params[:order_status])
     
-    update_first_flag
+    handle_status
 
     if @order_status.save
       redirect_to @order_status, notice: t('order_statuses.flash.create.notice')
@@ -33,7 +33,7 @@ class OrderStatusesController < ApplicationController
   def update
     @order_status = OrderStatus.find(params[:id])
 
-    update_first_flag unless @order_status.first_status?
+    handle_status
 
     if @order_status.update_attributes(params[:order_status])
         redirect_to @order_status, notice: t('order_statuses.flash.update.notice')
@@ -51,8 +51,14 @@ class OrderStatusesController < ApplicationController
 
   private
 
-  def update_first_flag
-    OrderStatus.remove_first_flag if new_first_status
+  def handle_status
+    if new_first_status
+      remove_current_first_status
+    end
+  end
+
+  def remove_current_first_status
+    OrderStatus.remove_first_flag 
   end
 
   def new_first_status
