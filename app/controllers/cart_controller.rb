@@ -8,7 +8,11 @@ class CartController < ApplicationController
     @trademark_order = TrademarkOrder.find(params[:id])
     authorize! :checkout, @trademark_order
 
-    @order = PagSeguro::Order.new(1)
+    invoice = Invoice.create!
+    @trademark_order.invoice = invoice
+    @trademark_order.save!
+
+    @order = PagSeguro::Order.new(invoice.id)
     @order.add id: @trademark_order.id, price: @trademark_order.service.price, description: @trademark_order.name
   end
 

@@ -17,14 +17,16 @@ describe OrderStatus do
 
   it { should validate_presence_of :first_status }
 
+  it { should validate_presence_of :after_payment }
+
   it "should not be first" do
     status = FactoryGirl.create(:order_status)
-    status.first?.should be_false 
+    status.first_status?.should be_false 
   end
 
   it "should be first" do
     status = FactoryGirl.create(:order_status, :first_status => 1)
-    status.first?.should be_true 
+    status.first_status?.should be_true 
   end
 
   it "should change first status element to false" do
@@ -35,7 +37,7 @@ describe OrderStatus do
     OrderStatus.remove_first_flag
 
     OrderStatus.all.each do |status|
-      status.first?.should be_false
+      status.first_status?.should be_false
     end
   end
 

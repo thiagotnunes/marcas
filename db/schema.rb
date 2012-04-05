@@ -14,7 +14,6 @@
 ActiveRecord::Schema.define(:version => 20120405165811) do
 
   create_table "invoices", :force => true do |t|
-    t.integer "trademark_orders_id"
   end
 
   create_table "order_attachments", :force => true do |t|

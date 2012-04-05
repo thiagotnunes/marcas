@@ -33,7 +33,7 @@ class OrderStatusesController < ApplicationController
   def update
     @order_status = OrderStatus.find(params[:id])
 
-    update_first_flag unless @order_status.first?
+    update_first_flag unless @order_status.first_status?
 
     if @order_status.update_attributes(params[:order_status])
         redirect_to @order_status, notice: t('order_statuses.flash.update.notice')

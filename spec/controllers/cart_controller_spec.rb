@@ -11,7 +11,11 @@ describe CartController do
 
     get :checkout, { :id => trademark.id }
 
+    invoice = Invoice.find(@controller.order.id)
+
     @controller.order.products.should == [{:id => trademark.id, :price => trademark.service.price * 100, :description => trademark.name, :quantity => 1, :weight => nil, :shipping => nil, :fees => nil }]
+    invoice.should_not be_nil 
+    TrademarkOrder.find(trademark.id).invoice.should == invoice
   end
 
   it "should handle notification" do
