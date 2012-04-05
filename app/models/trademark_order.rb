@@ -2,6 +2,7 @@ class TrademarkOrder < ActiveRecord::Base
   belongs_to :user
   belongs_to :service
   belongs_to :order_status
+  belongs_to :invoice
   has_many :order_attachments
 
   attr_accessible :name, :segment, :subsegment, :observations, :service_id, :order_attachments_attributes

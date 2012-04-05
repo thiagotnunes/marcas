@@ -14,6 +14,7 @@ describe TrademarkOrder do
   it { should belong_to(:user) }
   it { should belong_to(:service) }
   it { should belong_to(:order_status) }
+  it { should belong_to(:invoice) }
   it { should have_many(:order_attachments) }
 
   it { should allow_mass_assignment_of(:name) }

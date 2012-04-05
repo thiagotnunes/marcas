@@ -42,5 +42,9 @@ FactoryGirl.define do
     association :user
     association :order_status
     association :service
+    association :invoice
+  end
+
+  factory :invoice do
   end
 end

@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120405142642) do
+ActiveRecord::Schema.define(:version => 20120405165811) do
+
+  create_table "invoices", :force => true do |t|
+    t.integer "trademark_orders_id"
+  end
 
   create_table "order_attachments", :force => true do |t|
     t.string   "file"
@@ -60,8 +64,10 @@ ActiveRecord::Schema.define(:version => 20120405142642) do
     t.integer  "user_id"
     t.integer  "service_id"
     t.integer  "order_status_id"
+    t.integer  "invoice_id"
   end
 
+  add_index "trademark_orders", ["invoice_id"], :name => "index_trademark_orders_on_invoice_id"
   add_index "trademark_orders", ["order_status_id"], :name => "index_trademark_orders_on_order_status_id"
   add_index "trademark_orders", ["service_id"], :name => "index_trademark_orders_on_service_id"
   add_index "trademark_orders", ["user_id"], :name => "index_trademark_orders_on_user_id"
