@@ -37,10 +37,6 @@ module TrademarkOrdersHelper
   end
 
   def view_or_pay(trademark_order)
-    if trademark_order.payed?
-      link_to trademark_order.name, trademark_order_path(trademark_order)
-    else
-      link_to trademark_order.name, checkout_path(trademark_order)
-    end
+    link_to trademark_order.name, trademark_order_path(trademark_order)
   end
 end

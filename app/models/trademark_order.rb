@@ -15,8 +15,4 @@ class TrademarkOrder < ActiveRecord::Base
   validates_length_of :subsegment, :within => 3..100
 
   accepts_nested_attributes_for :order_attachments, :allow_destroy => true
-
-  def pay
-    update_attribute(:payed, 1)
-  end
 end

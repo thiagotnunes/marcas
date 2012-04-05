@@ -31,7 +31,7 @@ class TrademarkOrdersController < ApplicationController
     @trademark_order.order_status = OrderStatus.find_first
 
     if @trademark_order.save
-      redirect_to @trademark_order, notice: t('trademark_orders.flash.create.notice')
+      redirect_to checkout_path(@trademark_order), notice: t('trademark_orders.flash.create.notice')
     else
       render :new
     end

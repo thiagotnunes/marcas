@@ -25,7 +25,7 @@ describe TrademarkOrdersController do
     trademark_order.order_status.should == first_status
     trademark_order.user.should == user
 
-    response.should redirect_to trademark_order
+    response.should redirect_to checkout_path(trademark_order)
   end
 
   it "should update the status for the given order" do
@@ -38,7 +38,7 @@ describe TrademarkOrdersController do
     TrademarkOrder.find(id).order_status.should == second_status
   end
 
-  it "should list all the trademark_orders for the user" do
+  it "should list all the trademark_orders for the customer" do
     user = FactoryGirl.create(:customer) 
     first = FactoryGirl.create(:trademark_order, :user_id => user.id)
     second = FactoryGirl.create(:trademark_order, :user_id => user.id)
@@ -47,7 +47,7 @@ describe TrademarkOrdersController do
     login_user(user)
     get :index
 
-    assigns(:trademark_orders).should == [first, second]
+    assigns(:trademark_orders).should == [second, first]
   end
 
   it "should list all the trademark_orders when the user is admin" do

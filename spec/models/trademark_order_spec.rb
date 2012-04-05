@@ -24,9 +24,4 @@ describe TrademarkOrder do
   it { should allow_mass_assignment_of(:order_attachments_attributes) }
   it { should_not allow_mass_assignment_of(:user_id) }
   it { should_not allow_mass_assignment_of(:order_status) }
-  
-  it "should pay the trademark order" do
-    subject.pay
-    subject.payed?.should be_true
-  end
 end

@@ -21,7 +21,6 @@ Feature: Ordering a Trademark
     And I should see "Subsegmento 1"
     And I should see "Obs."
     And I should see "service"
-    And I should see "pending"
     And I should see a payment message
 
   Scenario: List my own trademark orders

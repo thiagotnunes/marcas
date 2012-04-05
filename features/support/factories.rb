@@ -39,7 +39,6 @@ FactoryGirl.define do
     name "name"
     segment "segment"
     subsegment "subsegment"
-    payed 0
     association :user
     association :order_status
     association :service
