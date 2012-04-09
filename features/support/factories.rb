@@ -17,7 +17,7 @@ FactoryGirl.define do
   factory :order_status do
     sequence(:status) { |n| "status#{n}" }
     color 'progress-danger'
-    lifecycle OrderStatus::LIFECYCLES[:manual]
+    lifecycle 'manual'
   end
 
   factory :order_type do

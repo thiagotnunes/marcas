@@ -46,7 +46,9 @@ describe OrderStatus do
 
   context "Dealing with order status lifecycle" do
     it "should not allow creation with a lifecycle outside of pre-defined ones" do
-      FactoryGirl.create(:order_status, :lifecycle => 'invalid') 
+      expect do 
+        FactoryGirl.create(:order_status, :lifecycle => 'invalid') 
+      end.should raise_error
     end
 
     it "should allow creation with a lifecycle within pre-defined values" do

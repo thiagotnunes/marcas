@@ -31,6 +31,6 @@ class OrderStatus < ActiveRecord::Base
   private
 
   def validate_lifecycle
-    errors.add(:lifecycle, t('errors.messages.invalid')) unless LIFECYCLES.include? lifecycle.to_sym
+    errors.add(:lifecycle, I18n.t('errors.messages.invalid')) unless lifecycle.present? && LIFECYCLES.include?(lifecycle.to_sym)
   end
 end
