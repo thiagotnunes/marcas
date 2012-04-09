@@ -15,8 +15,9 @@ describe TrademarkOrdersController do
 
   it "should create a trademark order with the current user and first order status" do
     user = FactoryGirl.create(:customer) 
-    first_status = FactoryGirl.create(:order_status, :first_status => 1)
-    FactoryGirl.create(:order_status, :first_status => 0)
+    FactoryGirl.create(:order_status)
+    first_status = FactoryGirl.create(:order_status, :lifecycle => OrderStatus::LIFECYCLES[:first])
+    FactoryGirl.create(:order_status)
 
     login_user(user)
     post :create, {:trademark_order => FactoryGirl.attributes_for(:trademark_order)}
