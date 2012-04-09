@@ -19,6 +19,8 @@ end
 
 When /^I create an order trademark with the following attributes$/ do |table|
   table.hashes.each do |hash|
+    @last_created_order = create_order_with(hash)
+
     fill_in("trademark_order_name", :with => hash[:name])
     select(hash[:segment], :from => "trademark_order_segment")
     select(hash[:subsegment], :from => "trademark_order_subsegment")
@@ -41,4 +43,22 @@ end
 Then /^I should see a payment message$/ do
   page.should have_content(I18n.t('trademark_orders.flash.create.alert.title'))
   page.should have_content(I18n.t('trademark_orders.flash.create.alert.message'))
+end
+
+Then /^an order to pagseguro should have been created$/ do
+  pagseguro = YAML.load_file(File.join(Rails.root, "tmp", "pagseguro-test.yml"))
+  pagseguro["1"]["item_quant_1"].should == "1"
+  pagseguro["1"]["moeda"].should == "BRL"
+  pagseguro["1"]["item_descr_1"].should == @last_created_order.name
+  pagseguro["1"]["item_valor_1"].should == "%.0f" % (@last_created_order.service.price * 100)
+end
+
+def create_order_with(hash)
+  order = TrademarkOrder.new
+  order.name = hash[:name]
+  order.segment = hash[:segment]
+  order.subsegment = hash[:subsegment]
+  order.observations = hash[:observations]
+  order.service = Service.find_by_name(hash[:service])
+  order
 end

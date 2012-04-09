@@ -35,12 +35,13 @@ Feature: Ordering a Trademark
     And I should see "Right"
     But I should not see "Not mine"
 
-    @wip
   Scenario: Pay for a trademark order
     When I go to the new trademark order page
     And I create an order trademark with the following attributes
       | name      | segment     | subsegment    | observations  | service |
       | Trademark | Segmento 1  | Subsegmento 1 | Obs.          | service |
     And I pay for it
-    Then I should see "Trademark"
-    And I should see "payed" 
+    Then an order to pagseguro should have been created
+    And I should see "Trademark"
+    And I should see "Segmento 1"
+    And I should see "Subsegmento 1"
