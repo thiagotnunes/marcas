@@ -33,7 +33,7 @@
     <div class="control-group">
       <%= f.label :lifecycle, :class => 'control-label' %>
       <div class="controls">
-        <%= f.select :lifecycle, options_for_lifecycle %>
+        <%= f.select :lifecycle, options_for_lifecycle, :include_blank => true %>
       </div>
     </div>
 
