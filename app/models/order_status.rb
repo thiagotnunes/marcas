@@ -14,6 +14,8 @@ class OrderStatus < ActiveRecord::Base
 
   validates_uniqueness_of :status
 
+  validate :validate_lifecycle
+
   def self.find_first
     first(:conditions => ["lifecycle = '#{LIFECYCLES[:first]}'"])
   end
@@ -24,5 +26,11 @@ class OrderStatus < ActiveRecord::Base
 
   def self.find_after_payment
     first(:conditions => ["lifecycle = '#{LIFECYCLES[:after_payment]}'"])
+  end
+
+  private
+
+  def validate_lifecycle
+    errors.add(:lifecycle, t('errors.messages.invalid')) unless LIFECYCLES.include? lifecycle.to_sym
   end
 end

@@ -21,7 +21,7 @@
         <tr>
           <td><%= order_status.id %></td>
           <td><%= link_to order_status.status, order_status_path(order_status) %></td>
-          <td><%= order_status.lifecycle %></td>
+          <td><%= t("order_statuses.form.lifecycle.#{order_status.lifecycle}") %></td>
           <td><%= progress_bar_from(order_status.color) %></td>
           <td>
             <%= link_to t('buttons.edit'), edit_order_status_path(order_status), :class => 'btn btn-mini', :id => "edit-#{order_status.status.parameterize}" %>

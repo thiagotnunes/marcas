@@ -7,10 +7,16 @@ pt:
       title: "Estado de pedido"
     form:
       title: "Estado de pedido"
-      danger: "Parado"
-      warning: "Em andamento"
-      info: "Informacao"
-      success: "Sucesso"
+      color:
+        danger: "Parado"
+        warning: "Em andamento"
+        info: "Informacao"
+        success: "Sucesso"
+      lifecycle:
+        manual: "Manualmente"
+        first: "Apos criacao"
+        during_payment: "Durante pagamento"
+        after_payment: "Apos pagamento"
     flash:
       create:
         notice: "Estado de pedido criado com sucesso."

@@ -8,7 +8,7 @@ pt:
         status: "Estado"
         description: "Descricao"
         color: "Cor"
-        lifecycle: "Lifecycle"
+        lifecycle: "Ativado"
   helpers:
     label:
       order_status:
@@ -16,4 +16,4 @@ pt:
         status: "Estado"
         description: "Descricao"
         color: "Cor"
-        lifecycle: "Lifecycle"
+        lifecycle: "Ativado"
