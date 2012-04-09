@@ -23,6 +23,8 @@ class CartController < ApplicationController
       end
 
       render :nothing => true
+    else
+      redirect_to :trademark_orders, :notice => t("trademark_orders.flash.index.notice")
     end
   end
 
