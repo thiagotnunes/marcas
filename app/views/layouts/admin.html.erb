@@ -1,11 +1,5 @@
 <% content_for :navbar_menu do %>
   <ul class="nav">
-  </ul>
-<% end %>
-<% content_for :navigation_menu do %>
-  <h3><%= t('navigation') %></h3>
-  <ul class="nav nav-list">
-    <li class="nav-header">Menu</li>
     <li><%= link_to t('trademark_orders.index.title'), trademark_orders_path, :id => 'trademark_orders' %></li>
     <li><%= link_to t('services.index.title'), services_path, :id => 'services' %></li>
     <li><%= link_to t('order_statuses.index.title'), order_statuses_path, :id => 'order_statuses' %></li>

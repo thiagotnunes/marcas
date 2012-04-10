@@ -55,7 +55,7 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span9">
+        <div class="span12">
           <% if flash[:alert] %>
             <div id="error" class="alert alert-error">
               <%= flash[:alert] %>
@@ -66,11 +66,6 @@
             </div>
           <% end %>
           <%= yield %>
-        </div>
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <%= yield :navigation_menu %>
-          </div>
         </div>
       </div>
     </div><!--/row-->
