@@ -17,26 +17,17 @@ module TrademarkOrdersHelper
   end
 
   def admin_actions_for(trademark_order)
-    actions = %{<div class="form-actions">}
-    actions += link_to t('buttons.back'), trademark_orders_path, :class => 'btn'
-    if can? :destroy, @trademark_order
-      actions += " "
-      actions += link_to t('buttons.destroy'), trademark_order_path(@trademark_order), :method => 'delete', :confirm => t('messages.confirmation'), :class => 'btn btn-danger'
-    end 
-    actions += %{</div>}
+    actions = link_to t('trademark_orders.index.update_order_status'), edit_status_path(trademark_order.purchase), :class => 'btn btn-mini', :id => "edit-#{trademark_order.name.parameterize}"
+    actions += " "
+    actions += link_to t('buttons.destroy'), trademark_order_path(trademark_order), :method => 'delete', :confirm => t('messages.confirmation'), :class => 'btn btn-mini btn-danger'
 
     raw actions
   end
 
   def customer_actions_for(trademark_order)
-    actions = %{<div class="form-actions">}
-    actions += link_to t('buttons.back'), trademark_orders_path, :class => 'btn'
-    actions += %{</div>}
+    actions = link_to t('orders.index.pay'), checkout_path(trademark_order.purchase), :class => 'btn btn-mini btn-success', :id => "pay-#{trademark_order.name.parameterize}"
 
     raw actions
   end
 
-  def view_or_pay(trademark_order)
-    link_to trademark_order.name, trademark_order_path(trademark_order)
-  end
 end

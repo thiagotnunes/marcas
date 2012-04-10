@@ -1,0 +1,7 @@
+<%= link_to t('buttons.back'), trademark_orders_path, :class => 'btn' %>
+<% if current_user.admin? %>
+  <%= link_to t('trademark_orders.index.update_order_status'), edit_status_path(trademark_order.purchase), :class => 'btn', :id => "edit-#{trademark_order.name.parameterize}" %>
+  <%= link_to t('buttons.destroy'), trademark_order_path(trademark_order), :method => 'delete', :confirm => t('messages.confirmation'), :class => 'btn btn-danger' %>
+<% else %>
+  <%= link_to t('orders.index.pay'), checkout_path(trademark_order.purchase), :class => 'btn btn-success', :id => "pay-#{trademark_order.name.parameterize}" %>
+<% end %>

@@ -1,5 +1,7 @@
 pt:
   orders:
+    index:
+      pay: "Pagar"
     form:
       title: "Atualizar estado do pedido"
     flash:

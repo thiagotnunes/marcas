@@ -44,8 +44,6 @@
   </p>
 <% end %>
 
-<% if current_user.admin? %>
-  <%= admin_actions_for(@trademark_order) %>
-<% else %>
-  <%= customer_actions_for(@trademark_order) %>
-<% end %>
+<div class="form-actions">
+  <%= render :partial => 'show_actions', :locals => {:trademark_order => @trademark_order } %>
+</div>
