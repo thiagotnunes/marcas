@@ -79,15 +79,10 @@ describe Ability do
     end
 
     it "should be able to show trademark orders" do
-      order = TrademarkOrder.new
-      order.user_id = customer.id
-      customer_ability.should be_able_to(:show, order)
-    end
-
-    it "should be able to checkout it's own trademark orders" do
-      order = TrademarkOrder.new
-      order.user_id = customer.id
-      customer_ability.should be_able_to(:checkout, order)
+      trade = TrademarkOrder.new
+      trade.purchase = Order.new
+      trade.purchase.user = customer
+      customer_ability.should be_able_to(:show, trade)
     end
 
     it "should not be able to destroy a trademark order" do
@@ -101,10 +96,18 @@ describe Ability do
     it "should not be able to update status of a trademark order" do
       customer_ability.should_not be_able_to(:update_status, TrademarkOrder.new)
     end
+  end
 
-    it "should not be able to checkout another users trademark orders" do
-      order = TrademarkOrder.new
-      order.user_id = another_user.id
+  context "Orders" do
+    it "should be able to checkout it's own order" do
+      order = Order.new
+      order.user = customer
+      customer_ability.should be_able_to(:checkout, order)
+    end
+
+    it "should not be able to checkout another user's order" do
+      order = Order.new
+      order.user = another_user
       customer_ability.should_not be_able_to(:checkout, order)
     end
   end

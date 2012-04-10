@@ -1,0 +1,7 @@
+pt:
+  orders:
+    form:
+      title: "Atualizar estado do pedido"
+    flash:
+      update:
+        notice: "Estado atualizado com sucesso."

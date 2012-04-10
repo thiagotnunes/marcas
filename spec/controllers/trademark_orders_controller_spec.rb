@@ -6,61 +6,75 @@ describe TrademarkOrdersController do
     ignore_security
   end
 
-  it "should fetch all the services to create a trademark order" do
-    services = [FactoryGirl.create(:service)]
-    Service.stub(:find_by_order_type_name).and_return(services)
-    get :new
-    assigns(:services).should == services
+  let(:admin) { FactoryGirl.create(:admin) } 
+  let(:customer) { FactoryGirl.create(:customer) } 
+
+  context "Listing" do
+    let!(:customer_orders) { [FactoryGirl.create(:trademark_order, :purchase => FactoryGirl.create(:order, :user_id => customer.id)), FactoryGirl.create(:trademark_order, :purchase => FactoryGirl.create(:order, :user_id => customer.id))] }
+    let!(:other_orders) { [FactoryGirl.create(:trademark_order), FactoryGirl.create(:trademark_order)] }
+
+    it "should list all the trademark_orders for the customer" do
+      login_user(customer)
+      get :index
+
+      assigns(:trademark_orders).should == customer_orders
+    end
+
+    it "should list all the trademark_orders when the user is admin" do
+      login_user(admin)
+      get :index
+
+      assigns(:trademark_orders).should == customer_orders + other_orders
+    end
   end
 
-  it "should create a trademark order with the current user and first order status" do
-    user = FactoryGirl.create(:customer) 
-    FactoryGirl.create(:order_status)
-    first_status = FactoryGirl.create(:order_status, :lifecycle => OrderStatus::LIFECYCLES[:first])
-    FactoryGirl.create(:order_status)
+  context "Preparing" do
+    it "should find all the services existing for the Marcas order type" do
+      marcas = FactoryGirl.create(:order_type, :name => "Marcas")
+      other = FactoryGirl.create(:order_type, :name => "Other")
 
-    login_user(user)
-    post :create, {:trademark_order => FactoryGirl.attributes_for(:trademark_order)}
+      marcas_services = [
+        FactoryGirl.create(:service, :order_type => marcas),
+        FactoryGirl.create(:service, :order_type => marcas),
+        FactoryGirl.create(:service, :order_type => marcas)
+      ]
 
-    trademark_order = TrademarkOrder.first
-    trademark_order.order_status.should == first_status
-    trademark_order.user.should == user
+      3.times { FactoryGirl.create(:service, :order_type => other) }
 
-    response.should redirect_to checkout_path(trademark_order)
+      get :new
+
+      assigns(:services).should == marcas_services
+    end
   end
 
-  it "should update the status for the given order" do
-    first_status = FactoryGirl.create(:order_status, :status => "First status")
-    second_status = FactoryGirl.create(:order_status, :status => "Second status")
-    id = FactoryGirl.create(:trademark_order, :order_status_id => first_status.id).id
+  context "Creating" do
+    it "should create a trademark order with valid parameters" do
+      status = FactoryGirl.create(:order_status, :lifecycle => OrderStatus::LIFECYCLES[:first])
+      order_type = FactoryGirl.create(:order_type, :name => "Marcas")
+      service = FactoryGirl.create(:service, :order_type => order_type)
 
-    put :update_status, { :id => id, :trademark_order => { :order_status_id => second_status.id } }
+      login_user(customer)
 
-    TrademarkOrder.find(id).order_status.should == second_status
+      post :create, { 
+        "order" => {
+          "service_id" => service.id,
+        },
+        "trademark_order" => {
+          "name" => "Trademark",
+          "segment" => "segment",
+          "subsegment" => "subsegment",
+          "observations" => "observations"
+        }
+      }
+
+      @controller.trademark_order.name.should == "Trademark"
+      @controller.trademark_order.segment.should == "segment"
+      @controller.trademark_order.subsegment.should == "subsegment"
+      @controller.trademark_order.observations.should == "observations"
+      @controller.trademark_order.purchase.user.should == customer
+      @controller.trademark_order.purchase.service.should == service
+      @controller.trademark_order.purchase.order_status.should == status
+    end
   end
 
-  it "should list all the trademark_orders for the customer" do
-    user = FactoryGirl.create(:customer) 
-    first = FactoryGirl.create(:trademark_order, :user_id => user.id)
-    second = FactoryGirl.create(:trademark_order, :user_id => user.id)
-    third = FactoryGirl.create(:trademark_order)
-
-    login_user(user)
-    get :index
-
-    assigns(:trademark_orders).should == [second, first]
-  end
-
-  it "should list all the trademark_orders when the user is admin" do
-    admin = FactoryGirl.create(:admin) 
-    first = FactoryGirl.create(:trademark_order)
-    second = FactoryGirl.create(:trademark_order)
-    third = FactoryGirl.create(:trademark_order)
-
-    login_user(admin)
-    get :index
-
-    assigns(:trademark_orders).should == [third, second, first]
-  end
-  
 end

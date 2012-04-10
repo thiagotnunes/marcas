@@ -28,6 +28,7 @@ class Ability
   def customer_abilities_for(user)
     can [:change_password, :update, :show], User, :id => user.id
     can [:create, :index], TrademarkOrder
-    can [:show, :checkout], TrademarkOrder, :user_id => user.id
+    can [:show], TrademarkOrder, :purchase => { :user_id => user.id }
+    can [:checkout], Order, :user_id => user.id
   end
 end

@@ -4,7 +4,7 @@ describe Service do
   subject { FactoryGirl.create(:service) }
 
   it { should belong_to :order_type }
-  it { should have_many :trademark_orders }
+  it { should have_many :orders }
 
   it { should validate_presence_of :name }
   it { should validate_uniqueness_of :name }

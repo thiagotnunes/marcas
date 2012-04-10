@@ -1,6 +1,6 @@
 class Service < ActiveRecord::Base
   belongs_to :order_type
-  has_many :trademark_orders
+  has_many :orders
 
   validates_presence_of :name
   validates_uniqueness_of :name

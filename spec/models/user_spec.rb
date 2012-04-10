@@ -21,7 +21,7 @@ describe User do
     it { should_not allow_value("invalidMail").for(:email) }
     it { should allow_mass_assignment_of(:email) }
 
-    it { should have_many(:trademark_orders) }
+    it { should have_many(:orders) }
 
     it "should retrieve all the customers" do
       firstCustomer = FactoryGirl.create(:customer)

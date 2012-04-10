@@ -2,18 +2,17 @@ class CartController < ApplicationController
   before_filter :require_login
   skip_before_filter :require_login, :verify_authenticity_token, :only => :order_confirmation
 
-  attr_reader :order
+  attr_reader :pagseguro_order
 
   def checkout
-    @trademark_order = TrademarkOrder.find(params[:id])
-    authorize! :checkout, @trademark_order
+    @order = Order.find(params[:id])
+    authorize! :checkout, @order
 
-    invoice = Invoice.create!
-    @trademark_order.invoice = invoice
-    @trademark_order.save!
+    @order.invoice = Invoice.create!
+    @order.save!
 
-    @order = PagSeguro::Order.new(invoice.id)
-    @order.add id: @trademark_order.id, price: @trademark_order.service.price, description: @trademark_order.name
+    @pagseguro_order = PagSeguro::Order.new(@order.invoice.id)
+    @pagseguro_order.add id: @order.id, price: @order.service.price, description: @order.service.name
   end
 
   def order_confirmation

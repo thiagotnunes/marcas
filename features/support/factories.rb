@@ -38,10 +38,7 @@ FactoryGirl.define do
     name "name"
     segment "segment"
     subsegment "subsegment"
-    association :user
-    association :order_status
-    association :service
-    association :invoice
+    association :purchase, factory: :order
   end
 
   factory :invoice do

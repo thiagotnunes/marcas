@@ -1,14 +1,14 @@
-<%= form_for @trademark_order, :url => update_status_trademark_order_path(@trademark_order.id, @trademark_order.order_status_id), :html => { :class => 'form-horizontal' } do |f| %>
-  <% if @trademark_order.errors.any? %>
+<%= form_for @order, :url => update_status_path(@order), :html => { :class => 'form-horizontal' } do |f| %>
+  <% if @order.errors.any? %>
     <div id="error" class="alert alert-error">
-      <% for message in @trademark_order.errors.full_messages %>
+      <% for message in @order.errors.full_messages %>
       <div><%= message %></div>
       <% end %>
     </div>
   <% end %>
 
   <fieldset>
-    <legend><%= t('trademark_orders.form.title') %></legend>
+    <legend><%= t('orders.form.title') %></legend>
     
     <div class="control-group">
       <%= f.label :order_status, :class => 'control-label' %>

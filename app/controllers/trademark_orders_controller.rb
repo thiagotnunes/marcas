@@ -4,11 +4,13 @@ class TrademarkOrdersController < ApplicationController
 
   ORDER_TYPE_NAME = "Marcas"
 
+  attr_reader :trademark_order
+
   def index
     if current_user.admin?
       @trademark_orders = TrademarkOrder.all
     else
-      @trademark_orders = TrademarkOrder.order('service_id').find_all_by_user_id(current_user.id)
+      @trademark_orders = TrademarkOrder.all_for_user(current_user.id)
     end
   end
 
@@ -21,29 +23,18 @@ class TrademarkOrdersController < ApplicationController
     @services = Service.find_by_order_type_name(ORDER_TYPE_NAME)
   end
 
-  def edit_status
-    @trademark_order = TrademarkOrder.find(params[:id])
-  end
-
   def create
     @trademark_order = TrademarkOrder.new(params[:trademark_order])
-    @trademark_order.user = current_user
-    @trademark_order.order_status = OrderStatus.find_first
+
+    @trademark_order.purchase = Order.new
+    @trademark_order.purchase.user = current_user
+    @trademark_order.purchase.service = Service.find(params[:order][:service_id])
+    @trademark_order.purchase.order_status = OrderStatus.find_first
 
     if @trademark_order.save
-      redirect_to checkout_path(@trademark_order), notice: t('trademark_orders.flash.create.notice')
+      redirect_to checkout_path(@trademark_order.purchase), notice: t('trademark_orders.flash.create.notice')
     else
       render :new
-    end
-  end
-
-  def update_status
-    @trademark_order = TrademarkOrder.find(params[:id])
-    @trademark_order.order_status = OrderStatus.find(params[:trademark_order][:order_status_id])
-    if @trademark_order.save
-      redirect_to @trademark_order, notice: t('trademark_orders.flash.update.notice')
-    else
-      render :edit
     end
   end
 

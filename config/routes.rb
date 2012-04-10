@@ -25,15 +25,13 @@ Marcas::Application.routes.draw do
   resources :sessions
   resources :password_resets
 
-  resources :trademark_orders do
-    member do
-      get :edit_status
-      put :update_status
-    end
-  end
+  resources :trademark_orders
   resources :services
   resources :order_types
   resources :order_statuses
+  
+  get "orders/edit_status/:id" => "orders#edit_status", :as => "edit_status"
+  put "orders/update_status/:id" => "orders#update_status", :as => "update_status"
 
   get "checkout/:id" => "cart#checkout", :as => "checkout"
   match "order_confirmation" => "cart#order_confirmation"

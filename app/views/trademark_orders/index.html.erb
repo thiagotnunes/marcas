@@ -28,7 +28,7 @@
         <tr>
           <td><%= trademark_order.id %></td>
           <% if current_user.admin? %>
-            <td><%= trademark_order.user.username %></td>
+            <td><%= trademark_order.purchase.user.username %></td>
           <% end %>
           <td>
             <%= view_or_pay(trademark_order) %>
@@ -38,7 +38,7 @@
           <td><%= trademark_order.subsegment %></td>
           <% if current_user.admin? %>
             <td>
-              <%= link_to t('trademark_orders.index.update_order_status'), edit_status_trademark_order_path(trademark_order), :class => 'btn btn-mini', :id => "edit-#{trademark_order.name.parameterize}" %>
+              <%= link_to t('trademark_orders.index.update_order_status'), edit_status_path(trademark_order.purchase), :class => 'btn btn-mini', :id => "edit-#{trademark_order.name.parameterize}" %>
               <%= link_to t('buttons.destroy'), trademark_order_path(trademark_order), confirm: t('messages.confirmation'), :class => 'btn btn-mini btn-danger', method: :delete %>
             </td>
           <% end %>
@@ -48,6 +48,8 @@
   </table>
 <% end %>
 
-<%= link_to  new_trademark_order_path, :class => "btn btn-inverse", :id => "new_trademark_order" do %>
-  <%= t('services.trademarks.registration') %>
+<% if current_user.customer? %>
+  <%= link_to  new_trademark_order_path, :class => "btn btn-inverse", :id => "new_trademark_order" do %>
+    <%= t('services.trademarks.registration') %>
+  <% end %>
 <% end %>

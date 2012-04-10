@@ -1,5 +1,5 @@
 class Invoice < ActiveRecord::Base
 
-  has_many :trademark_orders
+  has_many :orders
 
 end

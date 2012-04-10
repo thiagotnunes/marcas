@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120409180003) do
+ActiveRecord::Schema.define(:version => 20120409211700) do
 
   create_table "invoices", :force => true do |t|
   end
@@ -66,18 +66,12 @@ ActiveRecord::Schema.define(:version => 20120409180003) do
     t.string   "segment"
     t.string   "subsegment"
     t.text     "observations"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.integer  "user_id"
-    t.integer  "service_id"
-    t.integer  "order_status_id"
-    t.integer  "invoice_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "order_id"
   end
 
-  add_index "trademark_orders", ["invoice_id"], :name => "index_trademark_orders_on_invoice_id"
-  add_index "trademark_orders", ["order_status_id"], :name => "index_trademark_orders_on_order_status_id"
-  add_index "trademark_orders", ["service_id"], :name => "index_trademark_orders_on_service_id"
-  add_index "trademark_orders", ["user_id"], :name => "index_trademark_orders_on_user_id"
+  add_index "trademark_orders", ["order_id"], :name => "index_trademark_orders_on_order_id"
 
   create_table "users", :force => true do |t|
     t.string   "username",                        :null => false

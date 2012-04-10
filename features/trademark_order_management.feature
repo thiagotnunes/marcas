@@ -16,7 +16,7 @@ Feature: Trademark order management
     And the following trademark orders exist
       | name  | segment   | subsegment  | observations  | user      | service | order_status |
       | Trade | Segmento  | Subsegmento | Observacoes   | customer  | service   | pending |
-      | Right | Law       | Sublaw      | Hurry         | another  | service   | pending |
+      | Right | Law       | Sublaw      | Hurry         | another  | service   | done |
 
   Scenario: List all the trademark orders
     When I go to the list of trademark orders
@@ -28,6 +28,7 @@ Feature: Trademark order management
     And I should see "Sublaw"
     And I should see "customer"
     And I should see "pending"
+    And I should see "done"
     But I should not see "Observacoes"
     And I should not see "Hurry"
 
@@ -40,7 +41,7 @@ Feature: Trademark order management
     And I should see "Hurry"
     And I should see "another"
     And I should see "service"
-    And I should see "pending"
+    And I should see "done"
 
   Scenario: Update a trademark order status
     When I go to the list of trademark orders

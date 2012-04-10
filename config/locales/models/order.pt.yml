@@ -1,0 +1,13 @@
+pt:
+  activerecord:
+    models:
+      order: "Pedido"
+    attributes:
+      order:
+        id: "Id"
+  helpers:
+    label:
+      order:
+        id: "Id"
+        order_status: "Estado"
+        service_id: "Servico"

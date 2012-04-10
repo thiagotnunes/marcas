@@ -10,7 +10,7 @@ class NotificationHandler
 
   def self.handle(notification)
     notification.products.each do |product|
-      order = TrademarkOrder.find(product[:id])
+      order = Order.find(product[:id])
       @@handler[notification.status].call(order)
     end
   end

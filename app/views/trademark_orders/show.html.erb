@@ -1,7 +1,7 @@
 <% if current_user.admin? %>
   <p>
     <b><%= t('helpers.label.trademark_order.user') %></b><br />
-    <%= @trademark_order.user.username %>
+    <%= @trademark_order.purchase.user.username %>
   </p>
 <% end %>
 
@@ -27,7 +27,7 @@
 
 <p>
   <b><%= t('helpers.label.trademark_order.service') %></b><br />
-  <%= @trademark_order.service.name %>
+  <%= @trademark_order.purchase.service.name %>
 </p>
 
 <p>

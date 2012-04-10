@@ -11,18 +11,24 @@ describe TrademarkOrder do
   it { should ensure_length_of(:subsegment).is_at_least(3) }
   it { should ensure_length_of(:subsegment).is_at_most(100) }
 
-  it { should belong_to(:user) }
-  it { should belong_to(:service) }
-  it { should belong_to(:order_status) }
-  it { should belong_to(:invoice) }
+  it { should belong_to :purchase }
   it { should have_many(:order_attachments) }
 
   it { should allow_mass_assignment_of(:name) }
   it { should allow_mass_assignment_of(:segment) }
   it { should allow_mass_assignment_of(:subsegment) }
   it { should allow_mass_assignment_of(:observations) }
-  it { should allow_mass_assignment_of(:service_id) }
   it { should allow_mass_assignment_of(:order_attachments_attributes) }
-  it { should_not allow_mass_assignment_of(:user_id) }
-  it { should_not allow_mass_assignment_of(:order_status) }
+
+  it "should fetch all the trademark orders for the given user" do
+    user = FactoryGirl.create(:user)
+    another_user = FactoryGirl.create(:user)
+
+    my_order_1 = FactoryGirl.create(:trademark_order, :purchase => FactoryGirl.create(:order, :user_id => user.id))
+    FactoryGirl.create(:trademark_order, :purchase => FactoryGirl.create(:order, :user_id => another_user.id))
+    my_order_2 = FactoryGirl.create(:trademark_order, :purchase => FactoryGirl.create(:order, :user_id => user.id))
+    FactoryGirl.create(:trademark_order, :purchase => FactoryGirl.create(:order, :user_id => another_user.id))
+
+    TrademarkOrder.all_for_user(user).should == [my_order_1, my_order_2]
+  end
 end

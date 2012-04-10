@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
-  has_many :trademark_orders
+  has_many :orders
 
   attr_accessible :username, :email, :password, :password_confirmation
 

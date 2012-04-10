@@ -6,7 +6,7 @@ class OrderStatus < ActiveRecord::Base
     :after_payment => 'after_payment'
   }
 
-  has_many :trademark_orders
+  has_many :orders
 
   validates_presence_of :status, :color, :lifecycle
 

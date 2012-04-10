@@ -11,6 +11,5 @@ describe Order do
   it { should validate_presence_of :user }
   it { should validate_presence_of :order_status }
   it { should validate_presence_of :service }
-  it { should validate_presence_of :invoice }
   
 end

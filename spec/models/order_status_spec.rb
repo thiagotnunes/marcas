@@ -4,7 +4,7 @@ describe OrderStatus do
 
   subject { FactoryGirl.create(:order_status) }
 
-  it { should have_many :trademark_orders }
+  it { should have_many :orders }
 
   it { should validate_presence_of :status } 
   it { should ensure_length_of(:status).is_at_least(3) } 

@@ -16,7 +16,7 @@ describe NotificationHandler do
 
     NotificationHandler.handle(notification)
 
-    TrademarkOrder.find(order.id).order_status.should == first
+    Order.find(order.id).order_status.should == first
   end
 
   it "should update trademark order status to first when status is refunded" do
@@ -25,7 +25,7 @@ describe NotificationHandler do
 
     NotificationHandler.handle(notification)
 
-    TrademarkOrder.find(order.id).order_status.should == first
+    Order.find(order.id).order_status.should == first
   end
 
   it "should update trademark order status to during payment when status is verifying" do
@@ -34,7 +34,7 @@ describe NotificationHandler do
     
     NotificationHandler.handle(notification)
 
-    TrademarkOrder.find(order.id).order_status.should == during_payment
+    Order.find(order.id).order_status.should == during_payment
   end
 
   it "should update trademark order status to during payment when status is pending" do
@@ -43,7 +43,7 @@ describe NotificationHandler do
     
     NotificationHandler.handle(notification)
 
-    TrademarkOrder.find(order.id).order_status.should == during_payment
+    Order.find(order.id).order_status.should == during_payment
   end
 
   it "should update trademark order status to after payment when status is completed" do
@@ -52,7 +52,7 @@ describe NotificationHandler do
     
     NotificationHandler.handle(notification)
 
-    TrademarkOrder.find(order.id).order_status.should == after_payment
+    Order.find(order.id).order_status.should == after_payment
   end
 
   it "should update trademark order status to after payment when status is approved" do
@@ -61,7 +61,7 @@ describe NotificationHandler do
     
     NotificationHandler.handle(notification)
 
-    TrademarkOrder.find(order.id).order_status.should == after_payment
+    Order.find(order.id).order_status.should == after_payment
   end
 
 end
