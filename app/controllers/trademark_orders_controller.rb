@@ -20,22 +20,25 @@ class TrademarkOrdersController < ApplicationController
 
   def new
     @trademark_order = TrademarkOrder.new
+    @trademark_order.purchase = Order.new
     @services = Service.find_by_order_type_name(ORDER_TYPE_NAME)
   end
 
   def create
-    @trademark_order = TrademarkOrder.new(params[:trademark_order])
+    purchase = Order.new(params[:trademark_order][:purchase_attributes])
+    purchase.user = current_user
+    purchase.service = Service.find(params[:purchase][:service_id])
+    purchase.order_status = OrderStatus.find_first
 
-    @trademark_order.purchase = Order.new
-    @trademark_order.purchase.user = current_user
-    @trademark_order.purchase.service = Service.find(params[:order][:service_id])
-    @trademark_order.purchase.order_status = OrderStatus.find_first
+    @trademark_order = TrademarkOrder.new(params[:trademark_order])
+    @trademark_order.purchase = purchase
 
     if @trademark_order.save
       redirect_to checkout_path(@trademark_order.purchase), notice: t('trademark_orders.flash.create.notice')
     else
       render :new
     end
+
   end
 
   def destroy

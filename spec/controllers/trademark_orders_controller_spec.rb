@@ -56,7 +56,7 @@ describe TrademarkOrdersController do
       login_user(customer)
 
       post :create, { 
-        "order" => {
+        "purchase" => {
           "service_id" => service.id,
         },
         "trademark_order" => {

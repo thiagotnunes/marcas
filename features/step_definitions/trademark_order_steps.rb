@@ -26,7 +26,7 @@ When /^I create an order trademark with the following attributes$/ do |table|
     select(hash[:segment], :from => "trademark_order_segment")
     select(hash[:subsegment], :from => "trademark_order_subsegment")
     fill_in("trademark_order_observations", :with => hash[:observations])
-    select(hash[:service], :from => "order_service_id")
+    select(hash[:service], :from => "purchase_service_id")
     click_button("commit")
   end
 end

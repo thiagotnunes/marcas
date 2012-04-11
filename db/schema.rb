@@ -11,19 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120409211700) do
+ActiveRecord::Schema.define(:version => 20120411013919) do
 
   create_table "invoices", :force => true do |t|
   end
 
   create_table "order_attachments", :force => true do |t|
     t.string   "file"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-    t.integer  "trademark_order_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "order_id"
   end
 
-  add_index "order_attachments", ["trademark_order_id"], :name => "index_order_attachments_on_trademark_order_id"
+  add_index "order_attachments", ["order_id"], :name => "index_order_attachments_on_order_id"
 
   create_table "order_statuses", :force => true do |t|
     t.string   "status"

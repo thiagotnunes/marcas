@@ -37,7 +37,7 @@
   </div>
 </p>
 
-<% @trademark_order.order_attachments.each.with_index do |attachment, i| %>
+<% @trademark_order.purchase.order_attachments.each.with_index do |attachment, i| %>
   <p>
     <b><%= "#{t('helpers.label.order_attachment.file')} #{i+1}" %></b><br />
     <%= make_downloadable(attachment) %>
