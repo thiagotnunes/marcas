@@ -4,7 +4,7 @@ require 'net/https'
 require 'uri'
 require 'pagseguro'
 
-class Payment
+class UserBilling
   def initialize(request)
     @request = request
   end

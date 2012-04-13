@@ -23,4 +23,16 @@ describe CartController do
 
     post :order_confirmation
   end
+
+  it "should pay an order sending a request to pagseguro" do
+    order = FactoryGirl.create(:order)
+    @controller.should_receive(:authorize!).with(:pay, order).and_return(true)
+    billing = stub
+    UserBilling.stub(:new).and_return(billing)
+    billing.should_receive(:pay).with(order)
+
+    post :pay, { :id => order.id }
+
+    response.should redirect_to :trademark_orders
+  end
 end

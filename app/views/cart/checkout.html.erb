@@ -13,4 +13,18 @@
   <%= number_to_currency(@order.service.price) %>
 </p>
 
-<%= pagseguro_form @pagseguro_order, :submit => "Efetuar pagamento!" %>
+<%= form_tag payment_url(@order), :method => :post do %>
+  <div id="pay_trademark_order" class="alert alert-success">
+    <strong>
+      <%= t('trademark_orders.prepare_payment.message') %>
+    </strong>
+    <br />
+    <br />
+    <%= submit_tag "Pay", :type => :image, :src => "/assets/pagseguro.gif", :id => "pay" %>
+    <br />
+    <br />
+  </div>
+  <div class="form-actions">
+    <%= link_to t('buttons.cancel'), trademark_orders_path, :class => 'btn'%>
+  </div>
+<% end %>

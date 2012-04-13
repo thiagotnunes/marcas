@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe Payment do
+describe UserBilling do
 
   let(:req) { stub }
   let(:email) { "email" }
   let(:order) { PagSeguro::Order.new(10) }
-  let(:payment) { Payment.new(req) }
+  let(:user_billing) { UserBilling.new(req) }
 
   before :each do
     request = stub
@@ -32,7 +32,7 @@ describe Payment do
 
     Net::HTTP.stub(:post_form).with(URI.parse("http://url/gateway"), data).and_return("302")
 
-    payment.pay(order).should == "302"
+    user_billing.pay(order).should == "302"
   end
 end
 

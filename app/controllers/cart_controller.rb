@@ -23,12 +23,18 @@ class CartController < ApplicationController
 
       render :nothing => true
     else
-      redirect_to :trademark_orders, :notice => t("trademark_orders.flash.index.notice")
+      redirect_to :trademark_orders, :notice => t("trademark_orders.flash.index.confirmation.notice")
     end
   end
 
   def pay
+    @order = Order.find(params[:id])
+    authorize! :pay, @order
 
+    billing = UserBilling.new(request)
+    billing.pay(@order)
+
+    redirect_to :trademark_orders, :notice => t("trademark_orders.flash.index.payment.notice")
   end
 
 end

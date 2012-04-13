@@ -34,5 +34,6 @@ Marcas::Application.routes.draw do
   put "orders/update_status/:id" => "orders#update_status", :as => "update_status"
 
   get "checkout/:id" => "cart#checkout", :as => "checkout"
+  post "pay/:id" => "cart#pay", :as => "payment"
   match "order_confirmation" => "cart#order_confirmation"
 end

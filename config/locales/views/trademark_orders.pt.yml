@@ -24,4 +24,7 @@ pt:
       destroy:
         notice: "Marca removida com sucesso."
       index:
-        notice: "Pedido criado com sucesso, assim que obtivermos a confirmacao de pagamento atualizaremos o estado de seu pedido"
+        confirmation:
+          notice: "Pedido criado com sucesso."
+        payment:
+          notice: "Assim que recebermos a confirmacao de pagamento atualizaremos o estado de seu pedido."
