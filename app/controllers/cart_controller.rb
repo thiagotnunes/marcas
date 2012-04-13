@@ -2,6 +2,9 @@ class CartController < ApplicationController
   before_filter :require_login
   skip_before_filter :require_login, :verify_authenticity_token, :only => :order_confirmation
 
+  include SslRequirement
+  ssl_exceptions :order_confirmation
+
   attr_reader :pagseguro_order
 
   def checkout
@@ -10,9 +13,6 @@ class CartController < ApplicationController
 
     @order.invoice = Invoice.create!
     @order.save!
-
-    @pagseguro_order = PagSeguro::Order.new(@order.invoice.id)
-    @pagseguro_order.add id: @order.id, price: @order.service.price, description: @order.service.name
   end
 
   def order_confirmation
@@ -31,8 +31,11 @@ class CartController < ApplicationController
     @order = Order.find(params[:id])
     authorize! :pay, @order
 
+    @pagseguro_order = PagSeguro::Order.new(@order.invoice.id)
+    @pagseguro_order.add id: @order.id, price: @order.service.price, description: @order.service.name
+
     billing = UserBilling.new(request)
-    billing.pay(@order)
+    billing.pay(@pagseguro_order)
 
     redirect_to :trademark_orders, :notice => t("trademark_orders.flash.index.payment.notice")
   end

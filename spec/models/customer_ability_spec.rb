@@ -110,6 +110,18 @@ describe Ability do
       order.user = another_user
       customer_ability.should_not be_able_to(:checkout, order)
     end
+
+    it "should be able to pay for it's own order" do
+      order = Order.new
+      order.user = customer
+      customer_ability.should be_able_to(:pay, order)
+    end
+
+    it "should not be able to pay for another user's order" do
+      order = Order.new
+      order.user = another_user
+      customer_ability.should_not be_able_to(:pay, order)
+    end
   end
 
 end

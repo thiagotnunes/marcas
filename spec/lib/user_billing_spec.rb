@@ -10,7 +10,7 @@ describe UserBilling do
   before :each do
     request = stub
     order.add id: 20, price: 10000, description: "Description"
-    req.stub(:url).and_return("http://url")
+    req.stub(:base_url).and_return("http://url")
     PagSeguro.stub(:config).and_return(email)
     PagSeguro.stub(:gateway_url).and_return("/gateway")
   end

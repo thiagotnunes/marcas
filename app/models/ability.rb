@@ -29,6 +29,6 @@ class Ability
     can [:change_password, :update, :show], User, :id => user.id
     can [:create, :index], TrademarkOrder
     can [:show], TrademarkOrder, :purchase => { :user_id => user.id }
-    can [:checkout], Order, :user_id => user.id
+    can [:checkout, :pay], Order, :user_id => user.id
   end
 end

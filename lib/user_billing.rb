@@ -10,7 +10,7 @@ class UserBilling
   end
 
   def pay(order)
-    Net::HTTP.post_form(URI.parse("#{@request.url}#{PagSeguro.gateway_url}"), data_from(order)) 
+    Net::HTTP.post_form(URI.parse("#{@request.base_url}#{PagSeguro.gateway_url}"), data_from(order)) 
   end
 
   private
