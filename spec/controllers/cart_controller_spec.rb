@@ -38,5 +38,6 @@ describe CartController do
     post :pay, { :id => order.id }
 
     response.should redirect_to :trademark_orders
+    Order.find(order.id).followed_payment_link?.should be_true
   end
 end

@@ -31,9 +31,11 @@ class CartController < ApplicationController
     @order = Order.find(params[:id])
     authorize! :pay, @order
 
+    @order.followed_payment_link = true
+    @order.save!
+
     @pagseguro_order = PagSeguro::Order.new(@order.invoice.id)
     @pagseguro_order.add id: @order.id, price: @order.service.price, description: @order.service.name
-
     billing = UserBilling.new(request)
     billing.pay(@pagseguro_order)
 
