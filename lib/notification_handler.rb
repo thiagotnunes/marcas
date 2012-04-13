@@ -18,7 +18,9 @@ class NotificationHandler
   private
 
   def self.first_status_for(order)
-    order.update_attribute(:order_status_id, OrderStatus.find_first.id)
+    order.order_status = OrderStatus.find_first
+    order.followed_payment_link = false
+    order.save!
   end
 
   def self.during_payment_status_for(order)

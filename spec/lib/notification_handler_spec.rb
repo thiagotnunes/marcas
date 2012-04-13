@@ -4,7 +4,7 @@ require 'notification_handler'
 describe NotificationHandler do
 
   let(:notification) { stub(:notification) }
-  let(:order) { order = FactoryGirl.create(:trademark_order) }
+  let(:order) { FactoryGirl.create(:order, :followed_payment_link => true) }
 
   before :each do
     notification.stub(:products => [{:id => order.id}])
@@ -16,7 +16,9 @@ describe NotificationHandler do
 
     NotificationHandler.handle(notification)
 
-    Order.find(order.id).order_status.should == first
+    expected = Order.find(order.id)
+    expected.order_status.should == first
+    expected.followed_payment_link?.should be_false
   end
 
   it "should update trademark order status to first when status is refunded" do
@@ -25,7 +27,9 @@ describe NotificationHandler do
 
     NotificationHandler.handle(notification)
 
-    Order.find(order.id).order_status.should == first
+    expected = Order.find(order.id)
+    expected.order_status.should == first
+    expected.followed_payment_link?.should be_false
   end
 
   it "should update trademark order status to during payment when status is verifying" do

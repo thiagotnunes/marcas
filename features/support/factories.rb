@@ -49,5 +49,6 @@ FactoryGirl.define do
     association :order_status
     association :service
     association :invoice
+    followed_payment_link false
   end
 end
