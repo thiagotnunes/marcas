@@ -27,4 +27,8 @@ class CartController < ApplicationController
     end
   end
 
+  def pay
+
+  end
+
 end
