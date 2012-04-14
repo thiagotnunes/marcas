@@ -122,6 +122,13 @@ describe Ability do
       order.user = another_user
       customer_ability.should_not be_able_to(:pay, order)
     end
+
+    it "should not be able to pay for an order when the user has already followed the payment link" do
+      order = Order.new
+      order.user = customer
+      order.followed_payment_link = true
+      customer_ability.should_not be_able_to(:pay, order)
+    end
   end
 
 end
