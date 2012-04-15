@@ -5,7 +5,7 @@ describe UserBilling do
   let(:req) { stub }
   let(:email) { "email" }
   let(:order) { PagSeguro::Order.new(10) }
-  let(:user_billing) { UserBilling.new(req) }
+  let(:user_billing) { UserBilling.new(order, req) }
 
   before :each do
     request = stub
@@ -32,7 +32,7 @@ describe UserBilling do
 
     Net::HTTP.stub(:post_form).with(URI.parse("http://url/gateway"), data).and_return("302")
 
-    user_billing.pay(order).should == "302"
+    user_billing.perform.should == "302"
   end
 end
 

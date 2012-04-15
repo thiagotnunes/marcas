@@ -33,7 +33,7 @@ describe CartController do
     pagseguro_order.should_receive(:add).with({ id: order.id, price: order.service.price, description: order.service.name})
 
     UserBilling.stub(:new).and_return(billing)
-    billing.should_receive(:pay).with(pagseguro_order)
+    billing.should_receive(:perform).with(pagseguro_order)
 
     post :pay, { :id => order.id }
 
