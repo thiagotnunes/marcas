@@ -18,5 +18,14 @@ describe Order do
   it { should_not allow_mass_assignment_of :order_status }
   it { should_not allow_mass_assignment_of :service }
   it { should_not allow_mass_assignment_of :invoice }
-  
+
+  it "should build a pagseguro order from itself" do
+    pagseguro_order = PagSeguro::Order.new(subject.invoice.id)
+    pagseguro_order.add :id => subject.id, :price => subject.service.price, :description => subject.service.description
+    
+    pagseguro_order = subject.build_pagseguro_order
+    pagseguro_order.id.should == pagseguro_order.id
+    pagseguro_order.products.should == pagseguro_order.products
+  end
+
 end

@@ -16,7 +16,7 @@ describe CartController do
     Order.find(order.id).invoice.should == invoice
   end
 
-  it "should handle notification" do
+  it "should handle notification when it is a post request" do
     NotificationHandler.should_receive(:handle)
 
     post :order_confirmation
@@ -25,19 +25,19 @@ describe CartController do
   it "should pay an order sending a request to pagseguro" do
     billing = stub
     pagseguro_order = stub
-    order = FactoryGirl.create(:order)
+    order = stub(:build_pagseguro_order => pagseguro_order)
+    order.should_receive(:update_attribute).with(:followed_payment_link, true)
+    Order.stub(:find).and_return(order)
 
     @controller.should_receive(:authorize!).with(:pay, order).and_return(true)
 
-    PagSeguro::Order.stub(:new).with(order.invoice.id).and_return(pagseguro_order)
-    pagseguro_order.should_receive(:add).with({ id: order.id, price: order.service.price, description: order.service.name})
+    PagSeguro.stub(:gateway_url).and_return('/gateway')
 
     UserBilling.stub(:new).and_return(billing)
-    billing.should_receive(:pay).with(pagseguro_order)
+    billing.should_receive(:data_from).with(pagseguro_order).and_return({})
 
-    post :pay, { :id => order.id }
+    post :pay, { :id => 1 }
 
-    response.should redirect_to :trademark_orders
-    Order.find(order.id).followed_payment_link?.should be_true
+    response.should redirect_to PagSeguro.gateway_url
   end
 end
