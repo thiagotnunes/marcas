@@ -5,13 +5,12 @@ require 'uri'
 require 'pagseguro'
 
 class UserBilling
-  def initialize(order, request)
-    @order = order
+  def initialize(request)
     @request = request
   end
 
-  def perform
-    Net::HTTP.post_form(URI.parse("#{@request.base_url}#{PagSeguro.gateway_url}"), data_from(@order)) 
+  def pay(order)
+    Net::HTTP.post_form(URI.parse("#{@request.base_url}#{PagSeguro.gateway_url}"), data_from(order)) 
   end
 
   private

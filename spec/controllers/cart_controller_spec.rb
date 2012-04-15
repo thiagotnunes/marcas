@@ -33,7 +33,7 @@ describe CartController do
     pagseguro_order.should_receive(:add).with({ id: order.id, price: order.service.price, description: order.service.name})
 
     UserBilling.stub(:new).and_return(billing)
-    Delayed::Job.stub(:enqueue).with(billing)
+    billing.should_receive(:pay).with(pagseguro_order)
 
     post :pay, { :id => order.id }
 
