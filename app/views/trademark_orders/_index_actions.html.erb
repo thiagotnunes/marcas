@@ -2,5 +2,9 @@
   <%= link_to t('trademark_orders.index.update_order_status'), edit_status_path(trademark_order.purchase), :class => 'btn btn-mini', :id => "edit-#{trademark_order.name.parameterize}" %>
   <%= link_to t('buttons.destroy'), trademark_order_path(trademark_order), :method => 'delete', :confirm => t('messages.confirmation'), :class => 'btn btn-mini btn-danger' %>
 <% else %>
-  <%= link_to t('orders.index.pay'), checkout_path(trademark_order.purchase), :class => 'btn btn-mini btn-success', :id => "pay-#{trademark_order.name.parameterize}" %>
+  <% if trademark_order.purchase.followed_payment_link? %>
+    <%= link_to t('orders.index.pay'), '#', :class => 'btn btn-mini btn-success btn-disabled', :id => "pay-#{trademark_order.name.parameterize}" %>
+  <% else %>
+    <%= link_to t('orders.index.pay'), checkout_path(trademark_order.purchase), :class => 'btn btn-mini btn-success', :id => "pay-#{trademark_order.name.parameterize}" %>
+  <% end %>
 <% end %>
