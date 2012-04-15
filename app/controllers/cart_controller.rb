@@ -28,16 +28,17 @@ class CartController < ApplicationController
   end
 
   def pay
-    @order = Order.find(params[:id])
-    authorize! :pay, @order
+    order = Order.find(params[:id])
+    authorize! :pay, order
 
-    @order.followed_payment_link = true
-    @order.save!
+    order.followed_payment_link = true
+    order.save!
 
-    @pagseguro_order = PagSeguro::Order.new(@order.invoice.id)
-    @pagseguro_order.add id: @order.id, price: @order.service.price, description: @order.service.name
-    billing = UserBilling.new(request)
-    billing.pay(@pagseguro_order)
+    pagseguro_order = PagSeguro::Order.new(order.invoice.id)
+    pagseguro_order.add id: order.id, price: order.service.price, description: order.service.name
+    billing = UserBilling.new(pagseguro_order, request)
+
+    Delayed::Job.enqueue(billing)
 
     redirect_to :trademark_orders, :notice => t("trademark_orders.flash.index.payment.notice")
   end
