@@ -32,7 +32,8 @@ class CartController < ApplicationController
     authorize! :pay, @order
 
     @order.update_attribute(:followed_payment_link, true)
-    checkout = PagSeguro::CheckoutStrategyFactory.strategy_for(Rails.env)
+    checkout_strategy_factory = PagSeguro::CheckoutStrategyFactory.new
+    checkout = checkout_strategy_factory.strategy_for(Rails.env)
 
     redirect_to checkout.url_for(@order)
   end

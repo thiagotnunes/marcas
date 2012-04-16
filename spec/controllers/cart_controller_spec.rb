@@ -1,8 +1,7 @@
 require 'spec_helper'
 
 describe CartController do
-  before :each do
-    ignore_security
+  before :each do ignore_security
   end
 
   it "should create an order with trademark order details" do
@@ -25,8 +24,10 @@ describe CartController do
   it "should pay an order redirecting an user to pagseguro" do
     order = FactoryGirl.create(:order, :followed_payment_link => false)
     @controller.should_receive(:authorize!).with(:pay, order)
+    strategy = stub
+    PagSeguro::CheckoutStrategyFactory.stub(:new).and_return(strategy)
     checkout = stub
-    PagSeguro::CheckoutStrategyFactory.stub(:strategy_for).with(Rails.env).and_return(checkout)
+    strategy.stub(:strategy_for).with(Rails.env).and_return(checkout)
     checkout.should_receive(:url_for).with(order).and_return("redirection")
 
     post :pay, { id: order.id }
