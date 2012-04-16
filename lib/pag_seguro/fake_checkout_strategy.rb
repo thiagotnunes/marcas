@@ -1,5 +1,5 @@
 module PagSeguro
-  class DeveloperUrlBuilder
+  class FakeCheckoutStrategy
     FILE_PATH = File.join(Rails.root, "tmp", "pagseguro-#{Rails.env}.yml")
 
     def url_for(order)

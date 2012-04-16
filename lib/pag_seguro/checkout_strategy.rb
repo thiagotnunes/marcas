@@ -2,7 +2,7 @@ require 'net/https'
 require 'uri'
 
 module PagSeguro
-  class Checkout
+  class CheckoutStrategy
     URL = "https://pagseguro.uol.com.br/v2/checkout/payment.html?code="
 
     def initialize

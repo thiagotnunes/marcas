@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe PagSeguro::DeveloperUrlBuilder do
-  let(:file_path) { PagSeguro::DeveloperUrlBuilder::FILE_PATH }
-  subject { PagSeguro::DeveloperUrlBuilder.new }
+describe PagSeguro::FakeCheckoutStrategy do
+  let(:file_path) { PagSeguro::FakeCheckoutStrategy::FILE_PATH }
+  subject { PagSeguro::FakeCheckoutStrategy.new }
 
   before :each do
     File.unlink(file_path) if File.exist?(file_path)

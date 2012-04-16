@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe PagSeguro::Checkout do
+describe PagSeguro::CheckoutStrategy do
 
-  subject { PagSeguro::Checkout.new }
+  subject { PagSeguro::CheckoutStrategy.new }
 
   it "should get the return url for the order" do
     resp = stub
@@ -16,7 +16,7 @@ describe PagSeguro::Checkout do
     parser.stub(:checkout_code).and_return("code")
     PagSeguro.stub(:config).and_return({ "return_to" => "return_url" })
 
-    subject.url_for(order).should == "#{PagSeguro::Checkout::URL}code"
+    subject.url_for(order).should == "#{PagSeguro::CheckoutStrategy::URL}code"
   end
 end
 
