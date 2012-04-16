@@ -38,6 +38,7 @@ gem 'cancan'
 gem 'bartt-ssl_requirement', '~>1.4.0', :require => 'ssl_requirement'
 gem 'carrierwave'
 gem 'nested_form', :git => 'https://github.com/ryanb/nested_form.git'
+gem 'pagseguro'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
