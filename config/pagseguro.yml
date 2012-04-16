@@ -1,8 +1,5 @@
 development: &development
-  developer: true
-  authenticity_token: Fake token
-  base: "http://localhost:3000"
-  return_to: "/order_confirmation"
+  authenticity_token: 18E50F3027B74AD6A7340CF9056E2678
   email: thiagotnunes@yahoo.com.br
 
 test:
@@ -11,4 +8,3 @@ test:
 production:
   authenticity_token: 18E50F3027B74AD6A7340CF9056E2678
   email: thiagotnunes@yahoo.com.br
-  return_to: "/order_confirmation"
