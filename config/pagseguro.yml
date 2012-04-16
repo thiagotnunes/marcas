@@ -1,5 +1,6 @@
 development: &development
   developer: true
+  authenticity_token: Fake token
   base: "http://localhost:3000"
   return_to: "/order_confirmation"
   email: thiagotnunes@yahoo.com.br
