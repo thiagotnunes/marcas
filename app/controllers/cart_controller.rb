@@ -32,11 +32,9 @@ class CartController < ApplicationController
     authorize! :pay, @order
 
     @order.update_attribute(:followed_payment_link, true)
+    checkout = PagSeguro::Checkout.new
 
-    billing = UserBilling.new
-    data = billing.data_from(@order.build_pagseguro_order)
-
-    redirect_to PagSeguro.gateway_url, data
+    redirect_to checkout.url_for(@order)
   end
 
 end

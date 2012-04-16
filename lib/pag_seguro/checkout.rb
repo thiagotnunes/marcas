@@ -9,7 +9,7 @@ module PagSeguro
       @payment = PagSeguro::Payment.new
     end
 
-    def checkout_url_for(order)
+    def url_for(order)
       response = @payment.post_payment_for(order)
       parser = PagSeguro::ResponseParser.new(response)
 

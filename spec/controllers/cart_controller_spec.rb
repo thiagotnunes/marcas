@@ -7,7 +7,7 @@ describe CartController do
 
   it "should create an order with trademark order details" do
     order = FactoryGirl.create(:order)
-    @controller.should_receive(:authorize!).with(:checkout, order).and_return(true)
+    @controller.should_receive(:authorize!).with(:checkout, order)
     invoice = FactoryGirl.create(:invoice)
     Invoice.stub(:create!).and_return(invoice)
 
@@ -22,22 +22,16 @@ describe CartController do
     post :order_confirmation
   end
 
-  it "should pay an order sending a request to pagseguro" do
-    billing = stub
-    pagseguro_order = stub
-    order = stub(:build_pagseguro_order => pagseguro_order)
-    order.should_receive(:update_attribute).with(:followed_payment_link, true)
-    Order.stub(:find).and_return(order)
+  it "should pay an order redirecting an user to pagseguro" do
+    order = FactoryGirl.create(:order, :followed_payment_link => false)
+    @controller.should_receive(:authorize!).with(:pay, order)
+    checkout = stub
+    PagSeguro::Checkout.stub(:new).and_return(checkout)
+    checkout.should_receive(:url_for).with(order).and_return("redirection")
 
-    @controller.should_receive(:authorize!).with(:pay, order).and_return(true)
-
-    PagSeguro.stub(:gateway_url).and_return('/gateway')
-
-    UserBilling.stub(:new).and_return(billing)
-    billing.should_receive(:data_from).with(pagseguro_order).and_return({})
-
-    post :pay, { :id => 1 }
-
-    response.should redirect_to PagSeguro.gateway_url
+    post :pay, { id: order.id }
+    
+    response.should redirect_to "redirection"
+    Order.find(order).followed_payment_link?.should be_true
   end
 end

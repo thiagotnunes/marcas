@@ -16,7 +16,7 @@ describe PagSeguro::Checkout do
     parser.stub(:checkout_code).and_return("code")
     PagSeguro.stub(:config).and_return({ "return_to" => "return_url" })
 
-    subject.checkout_url_for(order).should == "#{PagSeguro::Checkout::URL}code"
+    subject.url_for(order).should == "#{PagSeguro::Checkout::URL}code"
   end
 end
 
