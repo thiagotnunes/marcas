@@ -12,6 +12,8 @@ module PagSeguro
       File.open(FILE_PATH, "w+") do |f|
         f << orders.to_yaml
       end
+
+      PagSeguro.config["return_to"]
     end
   end
 end

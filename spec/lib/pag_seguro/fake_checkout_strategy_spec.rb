@@ -27,11 +27,12 @@ describe PagSeguro::FakeCheckoutStrategy do
     order = FactoryGirl.create(:order)
     config = {
       "email" => "email",
-      "authenticity_token" => "token"
+      "authenticity_token" => "token",
+      "return_to" => "return_url"
     }
     PagSeguro.stub(:config).and_return(config)
 
-    subject.url_for(order)
+    url = subject.url_for(order)
 
     orders = YAML.load_file(file_path)
     actual = orders[order.invoice.id]
@@ -43,5 +44,6 @@ describe PagSeguro::FakeCheckoutStrategy do
     actual["itemId1"].should == order.id
     actual["itemDescription1"].should == order.service.name
     actual["itemAmount1"].should == "%.2f" % order.service.price
+    url.should == "return_url"
   end
 end

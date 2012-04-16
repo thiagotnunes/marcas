@@ -1,6 +1,7 @@
 development: &development
   authenticity_token: 18E50F3027B74AD6A7340CF9056E2678
   email: thiagotnunes@yahoo.com.br
+  return_to: /order_confirmation
 
 test:
   <<: *development
