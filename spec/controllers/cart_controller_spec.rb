@@ -26,7 +26,7 @@ describe CartController do
     order = FactoryGirl.create(:order, :followed_payment_link => false)
     @controller.should_receive(:authorize!).with(:pay, order)
     checkout = stub
-    PagSeguro::Checkout.stub(:new).and_return(checkout)
+    PagSeguro::CheckoutStrategyFactory.stub(:strategy_for).with(Rails.env).and_return(checkout)
     checkout.should_receive(:url_for).with(order).and_return("redirection")
 
     post :pay, { id: order.id }
