@@ -11,10 +11,16 @@ class Order < ActiveRecord::Base
 
   validates_presence_of :user, :order_status, :service
 
-  def build_pagseguro_order
-    pagseguro_order = PagSeguro::Order.new(invoice.id)
-    pagseguro_order.add :id => id, :price => service.price, :description => service.description
-
-    pagseguro_order
+  def pagseguro_billing_data
+    {
+      "email" => PagSeguro.config["email"],
+      "token" => PagSeguro.config["authenticity_token"],
+      "currency" => "BRL",
+      "reference" => invoice.id,
+      "itemQuantity1" => "1",
+      "itemId1" => id,
+      "itemDescription1" => service.name,
+      "itemAmount1" => ("%.2f" % service.price)
+    }
   end
 end

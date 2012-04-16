@@ -19,13 +19,23 @@ describe Order do
   it { should_not allow_mass_assignment_of :service }
   it { should_not allow_mass_assignment_of :invoice }
 
-  it "should build a pagseguro order from itself" do
-    pagseguro_order = PagSeguro::Order.new(subject.invoice.id)
-    pagseguro_order.add :id => subject.id, :price => subject.service.price, :description => subject.service.description
-    
-    pagseguro_order = subject.build_pagseguro_order
-    pagseguro_order.id.should == pagseguro_order.id
-    pagseguro_order.products.should == pagseguro_order.products
-  end
+  it "should build pagseguro billing data" do
+    config = {
+      "email" => "email",
+      "authenticity_token" => "token"
+    }
+    PagSeguro.stub(:config).and_return(config)
+    data = {
+      "email" => "email",
+      "token" => "token",
+      "currency" => "BRL",
+      "reference" => subject.invoice.id,
+      "itemQuantity1" => "1",
+      "itemId1" => subject.id,
+      "itemDescription1" => subject.service.name,
+      "itemAmount1" => ("%.2f" % subject.service.price)
+    }
 
+    subject.pagseguro_billing_data.should == data
+  end
 end
