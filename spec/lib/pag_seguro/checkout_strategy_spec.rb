@@ -12,7 +12,7 @@ describe PagSeguro::CheckoutStrategy do
 
     PagSeguro::Payment.stub(:new).and_return(payment)
     payment.stub(:post_payment_for).with(order).and_return(resp)
-    PagSeguro::ResponseParser.stub(:new).with(resp).and_return(parser)
+    PagSeguro::CheckoutResponseParser.stub(:new).with(resp).and_return(parser)
     parser.stub(:checkout_code).and_return("code")
     PagSeguro.stub(:config).and_return({ "return_to" => "return_url" })
 

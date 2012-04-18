@@ -11,7 +11,7 @@ module PagSeguro
 
     def url_for(order)
       response = @payment.post_payment_for(order)
-      parser = PagSeguro::ResponseParser.new(response)
+      parser = PagSeguro::CheckoutResponseParser.new(response)
 
       "#{URL}#{parser.checkout_code}"
     end

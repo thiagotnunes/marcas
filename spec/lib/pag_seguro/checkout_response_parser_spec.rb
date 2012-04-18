@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe PagSeguro::ResponseParser do
+describe PagSeguro::CheckoutResponseParser do
 
   it "retrieve the checkout code from the response" do
     req = stub(:code => "200", :body => "<checkout><code>abcde</code></checkout>")
-    parser = PagSeguro::ResponseParser.new(req)
+    parser = PagSeguro::CheckoutResponseParser.new(req)
 
     parser.checkout_code.should == "abcde"
   end
@@ -13,7 +13,7 @@ describe PagSeguro::ResponseParser do
     req = stub(:code => "400", :body => "")
 
     lambda {
-      PagSeguro::ResponseParser.new(req)
+      PagSeguro::CheckoutResponseParser.new(req)
     }.should raise_error
   end
   

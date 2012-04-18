@@ -1,7 +1,7 @@
 require 'rexml/document'
 
 module PagSeguro
-  class ResponseParser
+  class CheckoutResponseParser
     OK = "200"
 
     def initialize(req)
