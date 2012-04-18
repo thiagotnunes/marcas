@@ -15,10 +15,21 @@ describe CartController do
     Order.find(order.id).invoice.should == invoice
   end
 
-  it "should handle notification when it is a post request" do
-    NotificationHandler.should_receive(:handle)
+  it "should handle notification" do
+    parameters = {
+      "notificationCode" => "code",
+      "notificationType" => "type" 
+    }
 
-    post :order_confirmation
+    resp = stub
+    notification_request = stub(:check_data => resp)
+    PagSeguro::NotificationRequest.stub(:new).with(parameters).and_return(notification_request)
+    notification = stub
+    notification_response_parser = stub(:notification => notification)
+    PagSeguro::NotificationResponseParser.stub(:new).with(resp).and_return(notification_response_parser)
+    NotificationHandler.should_receive(:handle).with(notification)
+
+    post :notification, parameters
   end
 
   it "should pay an order redirecting an user to pagseguro" do

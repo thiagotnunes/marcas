@@ -16,15 +16,16 @@ class CartController < ApplicationController
   end
 
   def order_confirmation
-    if request.post?
-      pagseguro_notification do |notification|
-        NotificationHandler.handle(notification)
-      end
+    redirect_to :trademark_orders, :notice => t("trademark_orders.flash.index.confirmation.notice")
+  end
 
-      render :nothing => true
-    else
-      redirect_to :trademark_orders, :notice => t("trademark_orders.flash.index.confirmation.notice")
-    end
+  def notification
+    notification_request = PagSeguro::NotificationRequest.new(params.except("controller", "action"))
+    notification_response = notification_request.check_data
+    parser = PagSeguro::NotificationResponseParser.new(notification_response)
+    NotificationHandler.handle(parser.notification)
+
+    render :nothing => true
   end
 
   def pay
