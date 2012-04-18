@@ -48,10 +48,13 @@ end
 
 Then /^an order to pagseguro should have been created$/ do
   pagseguro = YAML.load_file(File.join(Rails.root, "tmp", "pagseguro-test.yml"))
-  pagseguro["1"]["item_quant_1"].should == "1"
-  pagseguro["1"]["moeda"].should == "BRL"
-  pagseguro["1"]["item_descr_1"].should == @last_created_order.purchase.service.name
-  pagseguro["1"]["item_valor_1"].should == "%.0f" % (@last_created_order.purchase.service.price * 100)
+  trademark = TrademarkOrder.find_by_name(@last_created_order.name)
+  order = pagseguro[trademark.purchase.id]
+  order["currency"].should == "BRL"
+  order["itemQuantity1"].should == "1"
+  order["itemId1"].should == trademark.id
+  order["itemDescription1"].should == trademark.purchase.service.name
+  order["itemAmount1"].should == "%.2f" % trademark.purchase.service.price
 end
 
 def create_order_with(hash)
