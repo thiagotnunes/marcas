@@ -1,11 +1,11 @@
 class NotificationHandler
   @@handler = {
-    :canceled => lambda { |order| first_status_for(order) },
-    :refunded => lambda { |order| first_status_for(order) },
-    :verifying => lambda { |order| during_payment_status_for(order) },
-    :pending => lambda { |order| during_payment_status_for(order) },
-    :completed => lambda { |order| after_payment_status_for(order) },
-    :approved => lambda { |order| after_payment_status_for(order) }
+    :cancelada => lambda { |order| first_status_for(order) },
+    :devolvida => lambda { |order| first_status_for(order) },
+    :em_analise => lambda { |order| during_payment_status_for(order) },
+    :aguardando_pagamento => lambda { |order| during_payment_status_for(order) },
+    :paga => lambda { |order| after_payment_status_for(order) },
+    :disponivel => lambda { |order| after_payment_status_for(order) }
   }
 
   def self.handle(notification)
