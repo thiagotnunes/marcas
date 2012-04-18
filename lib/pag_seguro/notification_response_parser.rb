@@ -1,4 +1,5 @@
 require 'rexml/document'
+require_relative 'notification'
 
 module PagSeguro
   class NotificationResponseParser
@@ -18,6 +19,12 @@ module PagSeguro
       raise BadResponse unless response.code == OK
       @xml = REXML::Document.new response.body
     end
+    
+    def notification
+      PagSeguro::Notification.new(reference, status)
+    end
+
+    private
 
     def status
       STATUS_MAPPING[@xml.elements["transaction/status"].text]
