@@ -1,0 +1,2 @@
+class BadResponse < StandardError
+end

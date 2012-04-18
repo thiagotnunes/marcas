@@ -2,6 +2,8 @@ require 'rexml/document'
 
 module PagSeguro
   class NotificationResponseParser
+    OK = "200"
+
     STATUS_MAPPING = {
       "1" => :aguardando_pagamento,
       "2" => :em_analise,
@@ -13,6 +15,7 @@ module PagSeguro
     }
 
     def initialize(response)
+      raise BadResponse unless response.code == OK
       @xml = REXML::Document.new response.body
     end
 

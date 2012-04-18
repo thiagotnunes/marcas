@@ -13,6 +13,4 @@ module PagSeguro
       @xml.elements["checkout/code"].text
     end
   end
-
-  class BadResponse < StandardError; end
 end
