@@ -23,7 +23,8 @@ class CartController < ApplicationController
     notification_request = PagSeguro::NotificationRequest.new(params.except("controller", "action"))
     notification_response = notification_request.check_data
     parser = PagSeguro::NotificationResponseParser.new(notification_response)
-    NotificationHandler.handle(parser.notification)
+    handler = NotificationHandler.new
+    handler.handle(parser.notification)
 
     render :nothing => true
   end

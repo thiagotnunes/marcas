@@ -80,5 +80,4 @@ describe NotificationHandler do
 
     subject.handle(notification)
   end
-
 end

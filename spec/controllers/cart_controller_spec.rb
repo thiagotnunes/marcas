@@ -27,7 +27,9 @@ describe CartController do
     notification = stub
     notification_response_parser = stub(:notification => notification)
     PagSeguro::NotificationResponseParser.stub(:new).with(resp).and_return(notification_response_parser)
-    NotificationHandler.should_receive(:handle).with(notification)
+    handler = stub
+    NotificationHandler.stub(:new).and_return(handler)
+    handler.should_receive(:handle).with(notification)
 
     post :notification, parameters
   end
