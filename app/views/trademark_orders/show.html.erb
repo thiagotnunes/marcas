@@ -1,7 +1,7 @@
 <% if current_user.admin? %>
   <p>
     <b><%= t('helpers.label.trademark_order.user') %></b><br />
-    <%= @trademark_order.purchase.user.username %>
+    <%= username_for(@trademark_order) %>
   </p>
 <% end %>
 

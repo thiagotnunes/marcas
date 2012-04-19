@@ -30,4 +30,13 @@ module TrademarkOrdersHelper
     raw actions
   end
 
+  def username_for(trademark_order)
+    user = trademark_order.purchase.user
+    if user.present?
+      return user.username
+    else
+      return I18n.t("trademark_orders.index.removed_user")
+    end
+  end
+
 end
