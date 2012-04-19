@@ -5,7 +5,7 @@ pt:
       empty: "Nenhuma marca registrada disponivel."
       progress: "Progresso"
       update_order_status: "Atualizar estado"
-      mine: "Meus pedidos"
+      my_orders: "Meus pedidos"
       removed_user: "Removido"
     show:
       title: "Marca registrada"
