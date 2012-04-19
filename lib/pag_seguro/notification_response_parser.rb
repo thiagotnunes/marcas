@@ -1,5 +1,4 @@
 require 'rexml/document'
-require_relative 'notification'
 
 module PagSeguro
   class NotificationResponseParser
@@ -16,7 +15,7 @@ module PagSeguro
     }
 
     def initialize(response)
-      raise BadResponse unless response.code == OK
+      raise PagSeguro::BadResponse unless response.code == OK
       @xml = REXML::Document.new response.body
     end
     

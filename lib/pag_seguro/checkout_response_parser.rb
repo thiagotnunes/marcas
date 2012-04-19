@@ -5,7 +5,7 @@ module PagSeguro
     OK = "200"
 
     def initialize(req)
-      raise BadResponse unless req.code == OK
+      raise PagSeguro::BadResponse unless req.code == OK
       @xml = REXML::Document.new req.body
     end
 

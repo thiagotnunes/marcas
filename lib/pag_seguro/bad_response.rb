@@ -1,2 +1,4 @@
-class BadResponse < StandardError
+module PagSeguro
+  class BadResponse < StandardError
+  end
 end
