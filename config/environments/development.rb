@@ -38,5 +38,6 @@ Marcas::Application.configure do
 
   SslRequirement.disable_ssl_check = true
 
-  ActionMailer::Base.default_url_options[:host] = "0.0.0.0:3000"
+  config.action_mailer.default :url_options => { :host => "0.0.0.0:3000" }
+  
 end
