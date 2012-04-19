@@ -72,4 +72,13 @@ describe NotificationHandler do
     subject.handle(notification)
   end
 
+  it "should log when there is no order for the specified notification" do
+    notification.stub(:reference => "30", :status => :disponivel)
+    logger = stub
+    Logger.stub(:new).with(STDERR).and_return(logger)
+    logger.should_receive(:warn)
+
+    subject.handle(notification)
+  end
+
 end

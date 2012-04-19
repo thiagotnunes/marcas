@@ -12,12 +12,16 @@ class NotificationHandler
   end
 
   def handle(notification)
-    order = Order.find(notification.reference.to_i)
-    handler = @handler[notification.status]
-    if handler.present?
-      handler.call(order)
-    else
-      unknown_notification(notification)
+    begin
+      order = Order.find(notification.reference.to_i)
+      handler = @handler[notification.status]
+      if handler.present?
+        handler.call(order)
+      else
+        unknown_notification(notification)
+      end
+    rescue ActiveRecord::RecordNotFound
+      order_not_found(notification)
     end
   end
 
@@ -39,5 +43,8 @@ class NotificationHandler
   def unknown_notification(notification)
     @logger.warn("Unknown notification #{notification.status} was received for order id #{notification.reference}, no action has been taken")
   end
-    
+
+  def order_not_found(notification)
+    @logger.warn("Notification #{notification.status} was given for non-existing order #{notification.reference}")
+  end
 end
