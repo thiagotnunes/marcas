@@ -1,1 +1,0 @@
-- Quando usuario eh removido, nao eh possivel mostrar as orders dele na pagina do admin (Null pointer)
