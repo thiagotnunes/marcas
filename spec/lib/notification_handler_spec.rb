@@ -2,19 +2,19 @@ require 'spec_helper'
 require 'notification_handler'
 
 describe NotificationHandler do
+  subject { NotificationHandler.new }
 
-  let(:notification) { stub(:notification) }
   let(:order) { FactoryGirl.create(:order, :followed_payment_link => true) }
+  let(:notification) { stub(:reference => order.id) }
 
-  before :each do
-    notification.stub(:products => [{:id => order.id}])
-  end
+  let!(:first) { FactoryGirl.create(:order_status, :lifecycle => OrderStatus::LIFECYCLES[:first]) }
+  let!(:during_payment) { FactoryGirl.create(:order_status, :lifecycle => OrderStatus::LIFECYCLES[:during_payment]) }
+  let!(:after_payment) { FactoryGirl.create(:order_status, :lifecycle => OrderStatus::LIFECYCLES[:after_payment]) }
 
   it "should update trademark order status to first when status is cancelada" do
-    first = FactoryGirl.create(:order_status, :lifecycle => OrderStatus::LIFECYCLES[:first])
     notification.stub(:status => :cancelada)
 
-    NotificationHandler.handle(notification)
+    subject.handle(notification)
 
     expected = Order.find(order.id)
     expected.order_status.should == first
@@ -22,10 +22,9 @@ describe NotificationHandler do
   end
 
   it "should update trademark order status to first when status is devolvida" do
-    first = FactoryGirl.create(:order_status, :lifecycle => OrderStatus::LIFECYCLES[:first])
     notification.stub(:status => :devolvida)
 
-    NotificationHandler.handle(notification)
+    subject.handle(notification)
 
     expected = Order.find(order.id)
     expected.order_status.should == first
@@ -33,39 +32,44 @@ describe NotificationHandler do
   end
 
   it "should update trademark order status to during payment when status is em analise" do
-    during_payment = FactoryGirl.create(:order_status, :lifecycle => OrderStatus::LIFECYCLES[:during_payment]) 
     notification.stub(:status => :em_analise)
     
-    NotificationHandler.handle(notification)
+    subject.handle(notification)
 
     Order.find(order.id).order_status.should == during_payment
   end
 
   it "should update trademark order status to during payment when status is aguardando pagamento" do
-    during_payment = FactoryGirl.create(:order_status, :lifecycle => OrderStatus::LIFECYCLES[:during_payment]) 
     notification.stub(:status => :aguardando_pagamento)
     
-    NotificationHandler.handle(notification)
+    subject.handle(notification)
 
     Order.find(order.id).order_status.should == during_payment
   end
 
   it "should update trademark order status to after payment when status is paga" do
-    after_payment = FactoryGirl.create(:order_status, :lifecycle => OrderStatus::LIFECYCLES[:after_payment]) 
     notification.stub(:status => :paga)
     
-    NotificationHandler.handle(notification)
+    subject.handle(notification)
 
     Order.find(order.id).order_status.should == after_payment
   end
 
   it "should update trademark order status to after payment when status is disponivel" do
-    after_payment = FactoryGirl.create(:order_status, :lifecycle => OrderStatus::LIFECYCLES[:after_payment]) 
     notification.stub(:status => :disponivel)
     
-    NotificationHandler.handle(notification)
+    subject.handle(notification)
 
     Order.find(order.id).order_status.should == after_payment
+  end
+
+  it "should log when there is no handler for the specified notification" do
+    notification.stub(:status => :not_existing)
+    logger = stub
+    Logger.stub(:new).with(STDERR).and_return(logger)
+    logger.should_receive(:warn)
+
+    subject.handle(notification)
   end
 
 end
