@@ -13,7 +13,7 @@ class NotificationHandler
 
   def handle(notification)
     begin
-      order = Order.find(notification.reference.to_i)
+      order = Order.find(notification.reference)
       handler = handler_for(notification.status)
       handler.call(order)
     rescue ActiveRecord::RecordNotFound
