@@ -1,4 +1,2 @@
-- Email de ativacao esta errado
-- Cadastro de marcas esta com service ao inves de servico
 - Cadastro de servico, preco esta sem mascara
 - Quando usuario eh removido, nao eh possivel mostrar as orders dele na pagina do admin (Null pointer)
