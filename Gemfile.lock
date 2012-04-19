@@ -117,7 +117,6 @@ GEM
     oauth2 (0.5.2)
       faraday (~> 0.7)
       multi_json (~> 1.0)
-    pagseguro (0.1.13)
     pg (0.13.2)
     polyglot (0.3.3)
     pry (0.9.8.4)
@@ -222,7 +221,6 @@ DEPENDENCIES
   jquery-rails
   launchy
   nested_form!
-  pagseguro
   pg
   pry
   rails (= 3.2.2)
