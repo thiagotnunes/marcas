@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.2'
 
 gem 'sqlite3', :group => [:development, :test]
+gem 'pry', :group => [:development, :test]
 gem 'pg', :group => :production
 
 # Gems used only for assets and not required
@@ -23,7 +24,6 @@ group :test do
   gem 'cucumber-rails', "~> 1.0", require: false
   gem 'database_cleaner'
   gem 'launchy'
-  gem 'pry'
   gem 'watchr'
   gem 'spork'
   gem 'foreman'

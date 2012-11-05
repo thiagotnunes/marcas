@@ -5,7 +5,7 @@ module PagSeguro
     def url_for(order)
       FileUtils.touch(FILE_PATH) unless File.exist?(FILE_PATH)
 
-      orders = YAML.load_file(FILE_PATH) || {}
+      orders = load_orders
 
       orders[order.invoice.id] = order.pagseguro_billing_data.except("reference")
 
@@ -14,6 +14,14 @@ module PagSeguro
       end
 
       PagSeguro.config["return_to"]
+    end
+
+    private
+
+    def load_orders
+      YAML.load_file(FILE_PATH) || {}
+    rescue
+      {}
     end
   end
 end
